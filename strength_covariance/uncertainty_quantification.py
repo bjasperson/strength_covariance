@@ -69,7 +69,7 @@ def boostrap_plot(df, y_pred, r2_adj, filename):
     p.set_title(f"Bootstrap uncertainty results\n95% CI (actual point withheld during calculation)\nAdjusted r2 using mean = {r2_adj:.3f}")
     #fig = plt.figure()
     #fig.add_axes(p)
-    plt.savefig(f"./strength_covariance/data_ays/{filename}.png",dpi=300)
+    plt.savefig(f"./strength_covariance/model_ays/{filename}.png",dpi=300)
 
 
 
@@ -91,9 +91,10 @@ def main():
     df_clean = basic_outlier_removal(df_in)
 
     # set parameters
+    params_list_full = ['c44_fcc','extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']
     # params_list_full = ['c44_sc', 'surface_energy_111_fcc', 'unstable_stack_energy_fcc']
     # params_list_full = ['c44_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']
-    params_list_full = ['c44_fcc','extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']
+    # params_list_full = ['c44_fcc','c11_fcc', 'c12_fcc']
     X = df_clean[params_list_full]
     y = df_clean['strength_MPa']
 
