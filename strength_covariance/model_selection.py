@@ -114,7 +114,7 @@ def main():
                                             transformer = StandardScaler())
     
 
-    n_factor_max = 2
+    n_factor_max = 3
 
     cv = RepeatedKFold(n_splits=10, n_repeats=3)
     df_results = factor_select_cv(X, y, pipe, n_factor_max = n_factor_max, cv = cv, scoring='neg_root_mean_squared_error')

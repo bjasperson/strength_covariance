@@ -14,7 +14,9 @@ lattice_constant_diamond,0.5287954732635228
 c44_bcc,0.4256171765459879
 thermal_expansion_coeff_fcc,0.4214940330544948
 c44_sc,0.2471568216290132
+unrelaxed_formation_potential_energy_fcc,0.17336989124977084
 cohesive_energy_sc,0.17102881436278536
+relaxed_formation_potential_energy_fcc,0.16788468793097716
 intr_stack_fault_energy_fcc,0.15972318276300587
 c44_diamond,0.1316520996436316
 unstable_twinning_energy_slip_fraction_fcc,0.12204157437641794
@@ -34,6 +36,7 @@ c11_fcc,0.0706199560534962
 bulk_modulus_fcc,0.07041983919619048
 c12_fcc,0.07029483554798743
 extr_stack_fault_energy_fcc,0.0374645707218498
+relaxation_volume_fcc,0.032741054888594405
 c12_diamond,0.008738789101424822
 disqualified,
 thermal_expansion_coeff_bcc,
@@ -42,3 +45,12 @@ surface_energy_100_bcc,
 surface_energy_110_bcc,
 surface_energy_111_bcc,
 surface_energy_121_bcc,
+relaxed_formation_potential_energy_bcc,
+relaxed_formation_potential_energy_diamond,
+relaxed_formation_potential_energy_hcp,
+unrelaxed_formation_potential_energy_bcc,
+unrelaxed_formation_potential_energy_diamond,
+unrelaxed_formation_potential_energy_hcp,
+relaxation_volume_bcc,
+relaxation_volume_diamond,
+relaxation_volume_hcp,

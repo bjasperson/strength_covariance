@@ -1,22 +1,1562 @@
 ,factors,cv_score,cv_score_std
-19,['unstable_stack_energy_fcc'],-222.17845683787039,263.00839522468823
-13,['c44_fcc'],-233.34456444890725,289.70753498247717
-1,['lattice_constant_fcc'],-256.83893606083217,313.22246199298587
-0,['lattice_constant_bcc'],-267.4998876854425,370.85410954652593
-15,['cohesive_energy_fcc'],-268.6888184033938,322.9425320695225
-12,['c44_bcc'],-286.7895526739289,350.46591424290574
-7,['c11_fcc'],-291.08655040740035,308.78784779797604
-10,['c12_fcc'],-312.0787572707837,366.60041665175805
-2,['lattice_constant_sc'],-326.5999552082714,359.34969539703434
-17,['surface_energy_100_fcc'],-344.17405482901785,376.3500656796958
-4,['bulk_modulus_fcc'],-347.15235539264904,366.98187971625214
-16,['thermal_expansion_coeff_fcc'],-365.06496236431684,421.8336253628903
-8,['c11_sc'],-384.06525261226193,374.0304518601482
-14,['c44_sc'],-393.263412128314,457.83380095720776
-20,['unstable_stack_energy_slip_fraction_fcc'],-416.3780515777645,434.50318233792257
-3,['bulk_modulus_bcc'],-435.63735305910313,440.8160100956088
-6,['c11_bcc'],-440.2094911318101,440.9232202032667
-5,['bulk_modulus_sc'],-440.61799648188537,409.5795429304886
-18,['extr_stack_fault_energy_fcc'],-442.1618107609348,418.0065418475691
-11,['c12_sc'],-443.4997283093127,469.1195771106806
-9,['c12_bcc'],-443.6023297174296,432.73335848250167
+1525,"['c44_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-155.45201921934316,205.35853451680603
+1274,"['c11_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-158.33264750380263,194.9971711658187
+1523,"['c44_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-158.68319946065787,200.17532622511328
+963,"['bulk_modulus_fcc', 'c12_sc', 'unstable_stack_energy_fcc']",-158.96605550572332,203.2448536149198
+1237,"['c11_fcc', 'c12_sc', 'unstable_stack_energy_fcc']",-159.3455854771463,203.3707136129811
+1559,"['surface_energy_100_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-159.8886723086637,229.0698038395147
+1454,"['c12_sc', 'c44_fcc', 'unstable_stack_energy_fcc']",-161.35838105449616,205.811295056885
+1482,"['c44_bcc', 'c44_fcc', 'unstable_stack_energy_fcc']",-161.36010441426717,264.52792207832556
+876,"['bulk_modulus_bcc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-161.9877034292042,256.4962542012727
+1500,"['c44_bcc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-162.01955359682097,261.164537852139
+1472,"['c12_sc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-163.49278137760038,225.6033526105244
+1557,"['surface_energy_100_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-163.67784454040378,224.24175788921917
+1245,"['c11_fcc', 'c44_bcc', 'unstable_stack_energy_fcc']",-164.10316254075354,260.9117973147805
+1391,"['c12_bcc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-164.61994272410482,255.11548129454397
+1403,"['c12_fcc', 'c12_sc', 'unstable_stack_energy_fcc']",-166.87406883205753,213.0633078211861
+971,"['bulk_modulus_fcc', 'c44_bcc', 'unstable_stack_energy_fcc']",-168.66022645884257,255.665532287604
+1192,"['c11_bcc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-168.6629296130241,270.09428532063976
+1521,"['c44_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-168.7382600655224,238.14117217470482
+1272,"['c11_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-170.22554110809628,196.77687702419368
+562,"['lattice_constant_fcc', 'c44_bcc', 'unstable_stack_energy_fcc']",-170.7315307732709,263.65296747731884
+1436,"['c12_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-171.84179461646164,239.48156137776732
+1167,"['c11_bcc', 'c44_bcc', 'unstable_stack_energy_fcc']",-172.06764513144023,269.78990054263295
+1000,"['bulk_modulus_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-172.13710543655188,206.39169890995126
+1493,"['c44_bcc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-172.9094067662739,271.22322052650094
+1318,"['c11_sc', 'c44_fcc', 'unstable_stack_energy_fcc']",-172.93034875415051,237.55867848851963
+677,"['lattice_constant_sc', 'c11_sc', 'unstable_stack_energy_fcc']",-173.43011391350072,230.95013010182518
+1218,"['c11_fcc', 'c12_bcc', 'unstable_stack_energy_fcc']",-173.57967345854385,245.41922150412515
+341,"['lattice_constant_bcc', 'c11_fcc', 'unstable_stack_energy_fcc']",-174.17640251954586,214.7228799584152
+1373,"['c12_bcc', 'c44_fcc', 'unstable_stack_energy_fcc']",-174.2576488715737,266.3647069612995
+998,"['bulk_modulus_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-174.29924029055306,201.24505300453163
+1438,"['c12_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-174.475453691075,207.8377802962676
+1509,"['c44_fcc', 'c44_sc', 'unstable_stack_energy_fcc']",-174.94048039650093,238.399872719172
+587,"['lattice_constant_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-174.97494213796023,238.26924464050916
+416,"['lattice_constant_bcc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-175.10697049687442,235.44812244916952
+299,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'unstable_stack_energy_fcc']",-175.13201693876564,206.9916785097274
+715,"['lattice_constant_sc', 'c44_bcc', 'unstable_stack_energy_fcc']",-175.55191436597883,262.6335246457744
+1311,"['c11_sc', 'c44_bcc', 'unstable_stack_energy_fcc']",-175.60915846334373,265.65503993266503
+1447,"['c12_sc', 'c44_bcc', 'unstable_stack_energy_fcc']",-175.93325273212815,254.56304996995607
+151,"['c11_fcc', 'unstable_stack_energy_fcc']",-176.223663302382,217.41903399527763
+391,"['lattice_constant_bcc', 'c44_bcc', 'unstable_stack_energy_fcc']",-176.59978141919356,276.3511738716993
+1440,"['c12_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-176.85610574477133,216.0028455656675
+1411,"['c12_fcc', 'c44_bcc', 'unstable_stack_energy_fcc']",-177.0097696710775,257.40181719083284
+1083,"['bulk_modulus_sc', 'c44_fcc', 'unstable_stack_energy_fcc']",-177.6035140711661,223.24350379544714
+1552,"['thermal_expansion_coeff_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-177.69223979842954,228.38763046535337
+722,"['lattice_constant_sc', 'c44_fcc', 'unstable_stack_energy_fcc']",-178.14190860511016,230.53042023418124
+1548,"['cohesive_energy_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-178.84250072830602,225.50048871502335
+470,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'unstable_stack_energy_fcc']",-178.90730260371515,221.70527296417052
+623,"['lattice_constant_sc', 'bulk_modulus_fcc', 'unstable_stack_energy_fcc']",-178.99149795272484,223.86914164291636
+1550,"['cohesive_energy_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-179.87758914850897,239.8602654592309
+201,"['c44_bcc', 'unstable_stack_energy_fcc']",-180.0258097902571,271.9717838827496
+1418,"['c12_fcc', 'c44_fcc', 'unstable_stack_energy_fcc']",-180.0766091244153,229.04203442997152
+398,"['lattice_constant_bcc', 'c44_fcc', 'unstable_stack_energy_fcc']",-180.11168171493466,229.47061456702562
+353,"['lattice_constant_bcc', 'c11_sc', 'unstable_stack_energy_fcc']",-180.13831711305187,229.73445691156493
+1366,"['c12_bcc', 'c44_bcc', 'unstable_stack_energy_fcc']",-180.1470370950787,266.4064792799702
+1340,"['c11_sc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-180.2764899805504,224.88675482639343
+1546,"['cohesive_energy_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-180.42480945848698,253.80485040316222
+944,"['bulk_modulus_fcc', 'c12_bcc', 'unstable_stack_energy_fcc']",-180.4806152149259,241.71466125487066
+851,"['bulk_modulus_bcc', 'c44_bcc', 'unstable_stack_energy_fcc']",-180.53139494630176,267.95077047109197
+1076,"['bulk_modulus_sc', 'c44_bcc', 'unstable_stack_energy_fcc']",-180.74981322468943,250.5722657488795
+1518,"['c44_fcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-180.7778441365475,232.83866593991758
+858,"['bulk_modulus_bcc', 'c44_fcc', 'unstable_stack_energy_fcc']",-180.92851751419636,277.3815037357329
+109,"['bulk_modulus_fcc', 'unstable_stack_energy_fcc']",-181.39083403741145,216.86469813372497
+996,"['bulk_modulus_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-181.6773339944112,249.77387960761575
+1303,"['c11_sc', 'c12_sc', 'unstable_stack_energy_fcc']",-181.7930822302834,216.28806842392248
+1101,"['bulk_modulus_sc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-182.0506178786152,231.44187349791022
+1270,"['c11_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-182.13778962385877,238.74940171413755
+665,"['lattice_constant_sc', 'c11_fcc', 'unstable_stack_energy_fcc']",-182.5093502483497,233.12598212692833
+801,"['bulk_modulus_bcc', 'c11_fcc', 'unstable_stack_energy_fcc']",-182.60495814114742,257.094153161128
+1207,"['c11_fcc', 'c11_sc', 'unstable_stack_energy_fcc']",-182.77158200454113,243.2160683940767
+671,"['lattice_constant_sc', 'c11_sc', 'c44_fcc']",-182.8035963225194,262.10034987112306
+740,"['lattice_constant_sc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-182.85478704883184,242.90338156352
+1329,"['c11_sc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-183.2132391822228,258.31770582624796
+374,"['lattice_constant_bcc', 'c12_fcc', 'unstable_stack_energy_fcc']",-183.43896021023593,213.9270852875137
+226,"['surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-184.0224723708861,254.54279573045463
+1174,"['c11_bcc', 'c44_fcc', 'unstable_stack_energy_fcc']",-184.17640498455873,273.28378545710126
+1338,"['c11_sc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-184.40207805246737,226.99542645931288
+554,"['lattice_constant_fcc', 'c12_sc', 'unstable_stack_energy_fcc']",-184.63646612239333,222.67464054420992
+545,"['lattice_constant_fcc', 'c12_fcc', 'unstable_stack_energy_fcc']",-184.82491485151363,225.2545966209358
+1068,"['bulk_modulus_sc', 'c12_sc', 'unstable_stack_energy_fcc']",-185.11531454013928,204.69477963085683
+933,"['bulk_modulus_fcc', 'c11_sc', 'unstable_stack_energy_fcc']",-185.40805721849924,242.97002949606764
+524,"['lattice_constant_fcc', 'c11_sc', 'unstable_stack_energy_fcc']",-186.00593487804582,239.630243868389
+163,"['c11_sc', 'unstable_stack_energy_fcc']",-186.17361404995748,238.39572106416148
+383,"['lattice_constant_bcc', 'c12_sc', 'unstable_stack_energy_fcc']",-186.18883056550982,224.29180094580565
+954,"['bulk_modulus_fcc', 'c12_fcc', 'unstable_stack_energy_fcc']",-186.59413966598302,222.88289240887323
+1252,"['c11_fcc', 'c44_fcc', 'unstable_stack_energy_fcc']",-186.79832357380414,247.8248293230574
+1536,"['c44_sc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-187.01361674959213,258.91651457426485
+1267,"['c11_fcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-187.626030418058,215.60998711404613
+569,"['lattice_constant_fcc', 'c44_fcc', 'unstable_stack_energy_fcc']",-187.72527833141348,253.7813594967534
+698,"['lattice_constant_sc', 'c12_fcc', 'unstable_stack_energy_fcc']",-187.8548939279846,232.57443348885408
+1349,"['c12_bcc', 'c12_fcc', 'unstable_stack_energy_fcc']",-188.16868951567432,251.83652590313443
+1502,"['c44_bcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-188.28380553029618,263.80689186405493
+1481,"['c44_bcc', 'c44_fcc', 'extr_stack_fault_energy_fcc']",-188.68442968867498,305.4081757349605
+978,"['bulk_modulus_fcc', 'c44_fcc', 'unstable_stack_energy_fcc']",-188.6902596747237,242.69140464906755
+1140,"['c11_bcc', 'c12_bcc', 'unstable_stack_energy_fcc']",-188.83738086381985,275.742893670829
+921,"['bulk_modulus_fcc', 'c11_fcc', 'unstable_stack_energy_fcc']",-189.02429066931214,234.45937758747942
+589,"['lattice_constant_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-189.30888662631145,243.03256905600082
+1497,"['c44_bcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-189.4559899062211,281.44653357981775
+1465,"['c12_sc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-189.46873000055518,233.6342749059743
+1504,"['c44_bcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-189.68826222796537,275.6039295124385
+1038,"['bulk_modulus_sc', 'c11_sc', 'unstable_stack_energy_fcc']",-189.70769744844318,231.67728209262904
+1514,"['c44_fcc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-189.72672592659663,260.5414658327421
+688,"['lattice_constant_sc', 'c12_bcc', 'unstable_stack_energy_fcc']",-189.77744082867713,253.0340996094118
+1319,"['c11_sc', 'c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-190.08944257248027,268.94407130450736
+518,"['lattice_constant_fcc', 'c11_sc', 'c44_fcc']",-190.23311087365587,266.06064078154674
+512,"['lattice_constant_fcc', 'c11_fcc', 'unstable_stack_energy_fcc']",-190.5128215766909,241.5133348329314
+208,"['c44_fcc', 'unstable_stack_energy_fcc']",-190.61467417890282,258.76508312579017
+1294,"['c11_sc', 'c12_fcc', 'unstable_stack_energy_fcc']",-190.66398299941977,237.69348474764973
+744,"['lattice_constant_sc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-190.7230209820192,226.55675520242366
+1336,"['c11_sc', 'surface_energy_100_fcc', 'unstable_stack_energy_fcc']",-190.80070242591896,262.3758366711294
+418,"['lattice_constant_bcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-191.1098616024912,239.54027438567653
+1476,"['c12_sc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-191.37371641543828,220.85909244951927
+1026,"['bulk_modulus_sc', 'c11_fcc', 'unstable_stack_energy_fcc']",-191.41006683389764,225.34064023109872
+535,"['lattice_constant_fcc', 'c12_bcc', 'unstable_stack_energy_fcc']",-191.50650172819724,259.4106453866397
+707,"['lattice_constant_sc', 'c12_sc', 'unstable_stack_energy_fcc']",-191.5875932565832,225.36975003813907
+1258,"['c11_fcc', 'c44_sc', 'unstable_stack_energy_fcc']",-191.60950541111632,237.079366681151
+1384,"['c12_bcc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-191.98828022646214,271.23167263059105
+984,"['bulk_modulus_fcc', 'c44_sc', 'unstable_stack_energy_fcc']",-192.02502536680524,239.29383174491153
+733,"['lattice_constant_sc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-192.10288176163147,246.2856831700912
+184,"['c12_fcc', 'unstable_stack_energy_fcc']",-192.50056473264738,228.9509900243861
+813,"['bulk_modulus_bcc', 'c11_sc', 'unstable_stack_energy_fcc']",-192.5118762583326,259.99880654060786
+347,"['lattice_constant_bcc', 'c11_sc', 'c44_fcc']",-192.5779782493494,265.77656659454647
+1244,"['c11_fcc', 'c44_bcc', 'extr_stack_fault_energy_fcc']",-192.5780071038165,321.7432304806214
+314,"['lattice_constant_bcc', 'bulk_modulus_sc', 'unstable_stack_energy_fcc']",-192.90932597496635,219.2167068202336
+420,"['lattice_constant_bcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-192.97146687793312,232.5145307437057
+759,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'unstable_stack_energy_fcc']",-193.06204414447944,266.065068465885
+1474,"['c12_sc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-193.09574625280112,234.61145390850714
+1284,"['c11_sc', 'c12_bcc', 'unstable_stack_energy_fcc']",-193.17988420954399,257.6768226023854
+742,"['lattice_constant_sc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-193.44902682966926,235.23772486754774
+1317,"['c11_sc', 'c44_fcc', 'extr_stack_fault_energy_fcc']",-193.6694370023255,272.8256670384041
+1117,"['c11_bcc', 'c11_fcc', 'unstable_stack_energy_fcc']",-193.69813526161596,262.4141906533637
+591,"['lattice_constant_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-193.7157354611012,237.89172064451247
+1393,"['c12_bcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-193.72956617075093,256.4962520911426
+1228,"['c11_fcc', 'c12_fcc', 'unstable_stack_energy_fcc']",-193.73345230973385,234.61622588567673
+1263,"['c11_fcc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-193.99799751441253,240.90837046958038
+1529,"['c44_sc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-194.15397654375357,256.75886332048174
+364,"['lattice_constant_bcc', 'c12_bcc', 'unstable_stack_energy_fcc']",-194.18692728213,269.48354060214973
+1315,"['c11_sc', 'c44_fcc', 'thermal_expansion_coeff_fcc']",-194.628051179755,289.3475978915772
+1388,"['c12_bcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-195.11577025177314,260.98142463038243
+1105,"['bulk_modulus_sc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-195.51440242789778,214.26406947525592
+1395,"['c12_bcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-195.6793244606812,249.76920183164515
+1103,"['bulk_modulus_sc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-196.07054326687253,212.9095827427111
+824,"['bulk_modulus_bcc', 'c12_bcc', 'unstable_stack_energy_fcc']",-196.16878623814196,267.3433625135006
+1540,"['c44_sc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-196.198424588244,250.72667718852236
+1358,"['c12_bcc', 'c12_sc', 'unstable_stack_energy_fcc']",-196.2900538426115,251.3382050252351
+607,"['lattice_constant_sc', 'bulk_modulus_bcc', 'unstable_stack_energy_fcc']",-196.70171273285206,264.88435240982704
+834,"['bulk_modulus_bcc', 'c12_fcc', 'unstable_stack_energy_fcc']",-196.89821851901826,252.59565282358673
+1469,"['c12_sc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-197.28277266605085,232.57561171958926
+76,"['lattice_constant_sc', 'unstable_stack_energy_fcc']",-197.4301731121062,233.85250036666434
+843,"['bulk_modulus_bcc', 'c12_sc', 'unstable_stack_energy_fcc']",-197.459485202727,253.17601097535297
+1488,"['c44_bcc', 'c44_sc', 'unstable_stack_energy_fcc']",-197.70117934726187,287.7598359995986
+658,"['lattice_constant_sc', 'c11_fcc', 'c44_bcc']",-198.34533555405326,281.30226631926206
+1129,"['c11_bcc', 'c11_sc', 'unstable_stack_energy_fcc']",-198.43249902353776,265.9918603271851
+894,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'unstable_stack_energy_fcc']",-198.4869537608395,235.4730657274492
+709,"['lattice_constant_sc', 'c44_bcc', 'c44_fcc']",-198.77544957044267,285.0064751175365
+878,"['bulk_modulus_bcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-199.2061154313967,249.1469747951466
+556,"['lattice_constant_fcc', 'c44_bcc', 'c44_fcc']",-199.32674393117506,278.17691654608274
+989,"['bulk_modulus_fcc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-199.42581945790943,237.23933915049403
+1433,"['c12_fcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-200.01764826155417,223.42923767160732
+737,"['lattice_constant_sc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-200.083525061411,227.59628210825812
+993,"['bulk_modulus_fcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-200.1340295822668,222.30617111279886
+385,"['lattice_constant_bcc', 'c44_bcc', 'c44_fcc']",-200.73584371510327,285.9492300774065
+1307,"['c11_sc', 'c44_bcc', 'cohesive_energy_fcc']",-200.7372288778787,295.9173910980715
+174,"['c12_bcc', 'unstable_stack_energy_fcc']",-200.9022855954495,272.35003144707144
+454,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'unstable_stack_energy_fcc']",-201.12514805750547,267.17095240525964
+908,"['bulk_modulus_fcc', 'c11_bcc', 'unstable_stack_energy_fcc']",-201.25455959808687,263.9844002033874
+1483,"['c44_bcc', 'c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-201.65100683741016,302.05422706564775
+322,"['lattice_constant_bcc', 'c11_bcc', 'c44_fcc']",-201.83968736843434,276.66043459391915
+970,"['bulk_modulus_fcc', 'c44_bcc', 'extr_stack_fault_energy_fcc']",-201.90144108892758,331.37699067627506
+485,"['lattice_constant_fcc', 'bulk_modulus_sc', 'unstable_stack_energy_fcc']",-202.0247056661403,236.41534626937633
+334,"['lattice_constant_bcc', 'c11_fcc', 'c44_bcc']",-202.09080405842715,292.19584032180825
+1170,"['c11_bcc', 'c44_fcc', 'cohesive_energy_fcc']",-202.23078019357587,277.9580426064141
+788,"['bulk_modulus_bcc', 'c11_bcc', 'unstable_stack_energy_fcc']",-202.3645784678438,283.4042245310111
+409,"['lattice_constant_bcc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-202.39062248808142,244.6824507962251
+869,"['bulk_modulus_bcc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-202.5192112129982,282.30767589759205
+1505,"['c44_fcc', 'c44_sc', 'cohesive_energy_fcc']",-202.7383251879587,257.7437212934286
+1410,"['c12_fcc', 'c44_bcc', 'extr_stack_fault_energy_fcc']",-202.8462399695429,327.7791920462343
+1429,"['c12_fcc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-203.1513645312178,239.41767737205174
+1556,"['thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-203.21658288367718,230.45333280501248
+880,"['bulk_modulus_bcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-203.24450540921563,253.15894577977417
+1185,"['c11_bcc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-203.33358227388098,282.75523162791853
+292,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'c44_bcc']",-203.65321078871494,295.81499025642717
+193,"['c12_sc', 'unstable_stack_energy_fcc']",-203.8432689587844,243.104216928779
+1510,"['c44_fcc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-203.88561809640154,256.0499880234049
+616,"['lattice_constant_sc', 'bulk_modulus_fcc', 'c44_bcc']",-203.90270467620738,281.9574721193445
+499,"['lattice_constant_fcc', 'c11_bcc', 'unstable_stack_energy_fcc']",-204.28684131586678,276.1339475007548
+437,"['lattice_constant_fcc', 'lattice_constant_sc', 'unstable_stack_energy_fcc']",-204.3101258280887,251.9236270658841
+652,"['lattice_constant_sc', 'c11_bcc', 'unstable_stack_energy_fcc']",-204.498031788632,267.5060022645257
+266,"['lattice_constant_bcc', 'lattice_constant_sc', 'unstable_stack_energy_fcc']",-204.59515250821556,249.40213955581183
+575,"['lattice_constant_fcc', 'c44_sc', 'unstable_stack_energy_fcc']",-204.62353364655,258.9391367823433
+1159,"['c11_bcc', 'c12_sc', 'unstable_stack_energy_fcc']",-204.79431686466825,278.34144696675315
+58,"['lattice_constant_fcc', 'unstable_stack_energy_fcc']",-204.8182438589896,266.271448494116
+1424,"['c12_fcc', 'c44_sc', 'unstable_stack_energy_fcc']",-204.99224851126155,246.75910700917552
+1499,"['c44_bcc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-205.0176147590881,346.32005443013134
+505,"['lattice_constant_fcc', 'c11_fcc', 'c44_bcc']",-205.08423126188623,272.7389124989104
+399,"['lattice_constant_bcc', 'c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-205.10928226258673,279.7091472550032
+538,"['lattice_constant_fcc', 'c12_fcc', 'c44_bcc']",-205.20033014303206,273.38990949897556
+632,"['lattice_constant_sc', 'bulk_modulus_sc', 'c44_fcc']",-205.2174403623877,275.5107019572935
+393,"['lattice_constant_bcc', 'c44_fcc', 'c44_sc']",-205.27914233000718,263.3618551961877
+1314,"['c11_sc', 'c44_fcc', 'cohesive_energy_fcc']",-205.32058383731996,273.33567675052575
+728,"['lattice_constant_sc', 'c44_sc', 'unstable_stack_energy_fcc']",-205.5091586259276,261.1230117988507
+711,"['lattice_constant_sc', 'c44_bcc', 'cohesive_energy_fcc']",-205.60267445627127,293.7672163424206
+1543,"['cohesive_energy_fcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-205.7706087761405,232.9596758649599
+328,"['lattice_constant_bcc', 'c11_bcc', 'unstable_stack_energy_fcc']",-205.93261831613094,285.4176447169639
+1492,"['c44_bcc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-206.01651911151362,327.76964366803145
+39,"['lattice_constant_bcc', 'unstable_stack_energy_fcc']",-206.05615507616193,244.21383068490425
+580,"['lattice_constant_fcc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-206.11990312957312,255.85194317045546
+463,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'c44_bcc']",-206.15126581432625,269.67582831547514
+396,"['lattice_constant_bcc', 'c44_fcc', 'surface_energy_100_fcc']",-206.42010836576316,287.963609775388
+1166,"['c11_bcc', 'c44_bcc', 'extr_stack_fault_energy_fcc']",-206.4479961689133,328.0140392419036
+1313,"['c11_sc', 'c44_fcc', 'c44_sc']",-206.54524826873177,279.2388495401617
+397,"['lattice_constant_bcc', 'c44_fcc', 'extr_stack_fault_energy_fcc']",-206.5871188434504,285.92060247429015
+520,"['lattice_constant_fcc', 'c11_sc', 'cohesive_energy_fcc']",-206.66422860292153,283.90997251374495
+1477,"['c44_bcc', 'c44_fcc', 'c44_sc']",-206.7539943737502,284.0248894775648
+1415,"['c12_fcc', 'c44_fcc', 'thermal_expansion_coeff_fcc']",-206.9023236518344,296.86466244681213
+1194,"['c11_bcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-207.42700738232432,248.70606229741995
+404,"['lattice_constant_bcc', 'c44_sc', 'unstable_stack_energy_fcc']",-207.43954132111935,252.57625895612918
+1231,"['c11_fcc', 'c12_sc', 'c44_fcc']",-207.48946577545476,264.17243060557917
+701,"['lattice_constant_sc', 'c12_sc', 'c44_fcc']",-207.6222026458097,279.3544640230095
+564,"['lattice_constant_fcc', 'c44_fcc', 'c44_sc']",-207.7706298618954,262.6073003607862
+1196,"['c11_bcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-207.95370734000957,252.0591155137831
+774,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'unstable_stack_energy_fcc']",-208.00852450057403,251.83834758650235
+283,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'unstable_stack_energy_fcc']",-208.06797774684,291.26296633535964
+673,"['lattice_constant_sc', 'c11_sc', 'cohesive_energy_fcc']",-208.10624786557193,284.12548083987497
+230,"['unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-208.1858559453007,239.83451467642647
+568,"['lattice_constant_fcc', 'c44_fcc', 'extr_stack_fault_energy_fcc']",-208.2545134846926,286.29028534387277
+1305,"['c11_sc', 'c44_bcc', 'c44_fcc']",-208.43753097570126,290.11967262617054
+395,"['lattice_constant_bcc', 'c44_fcc', 'thermal_expansion_coeff_fcc']",-208.59567714347108,290.36192781623026
+1379,"['c12_bcc', 'c44_sc', 'unstable_stack_energy_fcc']",-208.63288357202842,273.4508526067131
+1508,"['c44_fcc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-208.6624778478067,272.9212110311095
+1511,"['c44_fcc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-208.90239533450992,287.64873926682776
+646,"['lattice_constant_sc', 'c11_bcc', 'c44_fcc']",-208.94558745853465,279.3723431823359
+501,"['lattice_constant_fcc', 'c11_fcc', 'c11_sc']",-208.97746624753088,257.21239076877106
+691,"['lattice_constant_sc', 'c12_fcc', 'c44_bcc']",-208.98566578235955,285.76639651439416
+1150,"['c11_bcc', 'c12_fcc', 'unstable_stack_energy_fcc']",-209.04469396463594,265.1114130515669
+1513,"['c44_fcc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-209.12945111067484,281.5035312685713
+654,"['lattice_constant_sc', 'c11_fcc', 'c11_sc']",-209.35401013244874,268.15147925856564
+1084,"['bulk_modulus_sc', 'c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-209.3703330306664,272.5560280935701
+308,"['lattice_constant_bcc', 'bulk_modulus_sc', 'c44_fcc']",-209.4461197034192,279.3563649879036
+1333,"['c11_sc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-209.4474592356603,261.2521361936132
+873,"['bulk_modulus_bcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-209.5243965563332,276.88258801900315
+1059,"['bulk_modulus_sc', 'c12_fcc', 'unstable_stack_energy_fcc']",-209.60119802685497,243.1703662321073
+1441,"['c12_sc', 'c44_bcc', 'c44_fcc']",-209.6240324538273,286.1073126700716
+1370,"['c12_bcc', 'c44_fcc', 'thermal_expansion_coeff_fcc']",-209.75781126907552,314.4202956037423
+459,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'c11_sc']",-209.8088830298181,258.95223001760286
+570,"['lattice_constant_fcc', 'c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-209.9489396833806,277.64223352813076
+692,"['lattice_constant_sc', 'c12_fcc', 'c44_fcc']",-210.15502722797686,283.58687614025797
+260,"['lattice_constant_bcc', 'lattice_constant_sc', 'c44_fcc']",-210.28662547956935,286.02154768611473
+1515,"['c44_fcc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-210.459948945284,273.69044826644557
+1324,"['c11_sc', 'c44_sc', 'unstable_stack_energy_fcc']",-210.60501310120287,258.36217354899065
+367,"['lattice_constant_bcc', 'c12_fcc', 'c44_bcc']",-210.61706906731075,300.0326120029165
+1251,"['c11_fcc', 'c44_fcc', 'extr_stack_fault_energy_fcc']",-210.757359553809,278.12964233574905
+390,"['lattice_constant_bcc', 'c44_bcc', 'extr_stack_fault_energy_fcc']",-210.79981059132834,338.93668069269955
+1089,"['bulk_modulus_sc', 'c44_sc', 'unstable_stack_energy_fcc']",-210.87357278305564,230.62136294255416
+1419,"['c12_fcc', 'c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-210.93282690261933,275.3325968582047
+1417,"['c12_fcc', 'c44_fcc', 'extr_stack_fault_energy_fcc']",-210.96346557185913,283.2207250330877
+977,"['bulk_modulus_fcc', 'c44_fcc', 'extr_stack_fault_energy_fcc']",-210.97152211219807,281.26095356344035
+319,"['lattice_constant_bcc', 'c11_bcc', 'c12_fcc']",-211.10140048132078,282.76485643603775
+1013,"['bulk_modulus_sc', 'c11_bcc', 'unstable_stack_energy_fcc']",-211.1842213215153,256.2376257282204
+558,"['lattice_constant_fcc', 'c44_bcc', 'cohesive_energy_fcc']",-211.25067710464313,293.2537206445103
+717,"['lattice_constant_sc', 'c44_fcc', 'c44_sc']",-211.2904583907392,270.804686981633
+1316,"['c11_sc', 'c44_fcc', 'surface_energy_100_fcc']",-211.4728487084569,271.2689815913247
+1171,"['c11_bcc', 'c44_fcc', 'thermal_expansion_coeff_fcc']",-211.55938292699892,305.52033593309716
+400,"['lattice_constant_bcc', 'c44_sc', 'cohesive_energy_fcc']",-211.60013755628032,290.15695360640245
+493,"['lattice_constant_fcc', 'c11_bcc', 'c44_fcc']",-211.67685874290083,276.8500492821907
+721,"['lattice_constant_sc', 'c44_fcc', 'extr_stack_fault_energy_fcc']",-211.7273167084612,293.4158987067909
+1460,"['c12_sc', 'c44_sc', 'unstable_stack_energy_fcc']",-211.729725142017,256.3563020498728
+975,"['bulk_modulus_fcc', 'c44_fcc', 'thermal_expansion_coeff_fcc']",-212.00591992543363,298.2256987288219
+1049,"['bulk_modulus_sc', 'c12_bcc', 'unstable_stack_energy_fcc']",-212.03063981550616,253.59887190214684
+1062,"['bulk_modulus_sc', 'c12_sc', 'c44_fcc']",-212.04267770277602,259.890316628529
+1173,"['c11_bcc', 'c44_fcc', 'extr_stack_fault_energy_fcc']",-212.06001015631242,286.1127960414185
+719,"['lattice_constant_sc', 'c44_fcc', 'thermal_expansion_coeff_fcc']",-212.06710906027942,303.81516455887663
+927,"['bulk_modulus_fcc', 'c11_sc', 'c44_fcc']",-212.19800252244352,267.94769287711773
+857,"['bulk_modulus_bcc', 'c44_fcc', 'extr_stack_fault_energy_fcc']",-212.2130806349543,300.3371302715727
+1094,"['bulk_modulus_sc', 'cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-212.47993390894803,257.72916129415256
+431,"['lattice_constant_fcc', 'lattice_constant_sc', 'c44_fcc']",-212.57913567764078,288.19350768746375
+1247,"['c11_fcc', 'c44_fcc', 'c44_sc']",-212.63318644047231,254.011377136863
+248,"['lattice_constant_bcc', 'lattice_constant_fcc', 'unstable_stack_energy_fcc']",-212.63393572909027,264.18123301769305
+723,"['lattice_constant_sc', 'c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-212.64812282540635,281.23301648483744
+571,"['lattice_constant_fcc', 'c44_sc', 'cohesive_energy_fcc']",-212.65994701301813,272.4444684525868
+1512,"['c44_fcc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-212.80963802687134,286.1831258893853
+70,"['lattice_constant_sc', 'c44_fcc']",-212.82501736658617,286.9370057999708
+203,"['c44_fcc', 'c44_sc']",-212.98107738684988,259.0121574210906
+957,"['bulk_modulus_fcc', 'c12_sc', 'c44_fcc']",-212.9845865436053,268.3241085558771
+228,"['extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-213.04597494252434,250.51893089439528
+515,"['lattice_constant_fcc', 'c11_sc', 'c12_fcc']",-213.09444414245655,264.0104172475303
+293,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'c44_fcc']",-213.12215967804585,272.9091186718353
+1253,"['c11_fcc', 'c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-213.28972332082813,268.41234093622046
+33,"['lattice_constant_bcc', 'c44_fcc']",-213.32369364059207,278.2396772224704
+617,"['lattice_constant_sc', 'bulk_modulus_fcc', 'c44_fcc']",-213.32856874660888,282.4851131349152
+1538,"['c44_sc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-213.41374888826013,257.6228650180528
+214,"['c44_sc', 'unstable_stack_energy_fcc']",-213.462621485447,268.32205937902387
+1201,"['c11_fcc', 'c11_sc', 'c44_fcc']",-213.60982078864814,272.46167467232
+479,"['lattice_constant_fcc', 'bulk_modulus_sc', 'c44_fcc']",-213.72161073755896,273.7916924850362
+413,"['lattice_constant_bcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-213.82744884272006,255.44241327372103
+93,"['bulk_modulus_bcc', 'unstable_stack_energy_fcc']",-213.83795200273096,289.6559430326877
+1175,"['c11_bcc', 'c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-213.9259177149068,284.6838581638436
+638,"['lattice_constant_sc', 'bulk_modulus_sc', 'unstable_stack_energy_fcc']",-213.9399025572086,231.95999430740002
+1288,"['c11_sc', 'c12_fcc', 'c44_fcc']",-213.96120198729062,269.24259601499267
+1082,"['bulk_modulus_sc', 'c44_fcc', 'extr_stack_fault_energy_fcc']",-213.99073238358127,277.29450734706325
+368,"['lattice_constant_bcc', 'c12_fcc', 'c44_fcc']",-214.22733681961057,272.6704157769412
+1161,"['c11_bcc', 'c44_bcc', 'c44_fcc']",-214.24393349589704,284.5310190246409
+330,"['lattice_constant_bcc', 'c11_fcc', 'c11_sc']",-214.36974771524388,271.3528487410049
+1449,"['c12_sc', 'c44_fcc', 'c44_sc']",-214.51195219762187,261.42967037889866
+1309,"['c11_sc', 'c44_bcc', 'surface_energy_100_fcc']",-214.76320640410248,315.8535117701391
+548,"['lattice_constant_fcc', 'c12_sc', 'c44_fcc']",-214.84467275636104,270.49148481493415
+718,"['lattice_constant_sc', 'c44_fcc', 'cohesive_energy_fcc']",-214.87825095784933,282.478546778992
+1075,"['bulk_modulus_sc', 'c44_bcc', 'extr_stack_fault_energy_fcc']",-214.89651475261107,341.16042719126335
+1365,"['c12_bcc', 'c44_bcc', 'extr_stack_fault_energy_fcc']",-214.9397967031298,347.79336024937874
+1554,"['thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']",-215.05202121291086,232.49178483168785
+1479,"['c44_bcc', 'c44_fcc', 'thermal_expansion_coeff_fcc']",-215.26206843330516,311.02321290003204
+561,"['lattice_constant_fcc', 'c44_bcc', 'extr_stack_fault_energy_fcc']",-215.49935820152942,329.13447777966024
+1517,"['c44_fcc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-215.5850547995605,305.1851192927371
+349,"['lattice_constant_bcc', 'c11_sc', 'cohesive_energy_fcc']",-215.63008301000585,290.84872356887695
+377,"['lattice_constant_bcc', 'c12_sc', 'c44_fcc']",-215.68791542109093,268.0216370544738
+1310,"['c11_sc', 'c44_bcc', 'extr_stack_fault_energy_fcc']",-215.7953409623283,327.124177627308
+1487,"['c44_bcc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-216.00186920454792,354.96894600246844
+1297,"['c11_sc', 'c12_sc', 'c44_fcc']",-216.22729324832534,263.9735613665933
+1070,"['bulk_modulus_sc', 'c44_bcc', 'c44_fcc']",-216.4565913729042,301.5570309635748
+1144,"['c11_bcc', 'c12_fcc', 'c44_fcc']",-216.57124597240704,276.79362260923494
+1372,"['c12_bcc', 'c44_fcc', 'extr_stack_fault_energy_fcc']",-216.61512875086854,305.6460271077473
+1519,"['c44_fcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-216.6153250479723,303.3193701162918
+204,"['c44_fcc', 'cohesive_energy_fcc']",-216.63037289972166,277.77615069381653
+659,"['lattice_constant_sc', 'c11_fcc', 'c44_fcc']",-216.66231619392946,283.48139982081733
+1397,"['c12_fcc', 'c12_sc', 'c44_fcc']",-216.66549532611813,271.6799776460712
+612,"['lattice_constant_sc', 'bulk_modulus_fcc', 'c11_sc']",-216.78304369755625,269.2630347915844
+979,"['bulk_modulus_fcc', 'c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-216.90920313499626,274.6097544799232
+1320,"['c11_sc', 'c44_sc', 'cohesive_energy_fcc']",-216.96600470582985,295.9959586528699
+1249,"['c11_fcc', 'c44_fcc', 'thermal_expansion_coeff_fcc']",-216.98086396741732,298.09494433632545
+335,"['lattice_constant_bcc', 'c11_fcc', 'c44_fcc']",-217.1097611075407,272.8891599254195
+902,"['bulk_modulus_fcc', 'c11_bcc', 'c44_fcc']",-217.18182325111135,275.8844985507783
+1478,"['c44_bcc', 'c44_fcc', 'cohesive_energy_fcc']",-217.21403616735137,290.5998251672755
+563,"['lattice_constant_fcc', 'c44_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-217.349761996462,325.86305674014625
+387,"['lattice_constant_bcc', 'c44_bcc', 'cohesive_energy_fcc']",-217.3530456001085,306.6502723836956
+973,"['bulk_modulus_fcc', 'c44_fcc', 'c44_sc']",-217.36394764847844,254.56189771050694
+300,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-217.48621436634158,282.89841985192606
+724,"['lattice_constant_sc', 'c44_sc', 'cohesive_energy_fcc']",-217.5272976343354,284.6773382022082
+567,"['lattice_constant_fcc', 'c44_fcc', 'surface_energy_100_fcc']",-217.5628672472236,286.1320104816966
+406,"['lattice_constant_bcc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-217.6994504135335,303.6984046614379
+1506,"['c44_fcc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-217.78710976308693,291.388791873911
+1246,"['c11_fcc', 'c44_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-217.79182972595527,332.79560959772704
+854,"['bulk_modulus_bcc', 'c44_fcc', 'cohesive_energy_fcc']",-217.92920785102905,289.02781594077567
+1443,"['c12_sc', 'c44_bcc', 'cohesive_energy_fcc']",-217.9655089923369,303.55430259740086
+850,"['bulk_modulus_bcc', 'c44_bcc', 'extr_stack_fault_energy_fcc']",-218.00634891826047,348.93105563237407
+855,"['bulk_modulus_bcc', 'c44_fcc', 'thermal_expansion_coeff_fcc']",-218.04651335587477,312.6241514491794
+546,"['lattice_constant_fcc', 'c12_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-218.07182042768966,293.34390455431304
+407,"['lattice_constant_bcc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-218.09081099192645,307.22228468854024
+1455,"['c12_sc', 'c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-218.15316577384306,281.4208171651295
+344,"['lattice_constant_bcc', 'c11_sc', 'c12_fcc']",-218.3526237376942,279.3036176212293
+342,"['lattice_constant_bcc', 'c11_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-218.5224420280478,274.3492892651798
+1080,"['bulk_modulus_sc', 'c44_fcc', 'thermal_expansion_coeff_fcc']",-218.53810808738393,299.4434575589199
+1230,"['c11_fcc', 'c12_sc', 'c44_bcc']",-218.55348233847553,304.5089114124553
+1480,"['c44_bcc', 'c44_fcc', 'surface_energy_100_fcc']",-218.6136750108052,289.1701870196913
+358,"['lattice_constant_bcc', 'c12_bcc', 'c44_fcc']",-218.61945740003614,295.1667275351348
+1520,"['c44_fcc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-218.6289246573942,297.1861636591853
+1163,"['c11_bcc', 'c44_bcc', 'cohesive_energy_fcc']",-218.78361873428844,281.72077944860087
+389,"['lattice_constant_bcc', 'c44_bcc', 'surface_energy_100_fcc']",-218.82612527456973,340.80575585980586
+324,"['lattice_constant_bcc', 'c11_bcc', 'cohesive_energy_fcc']",-218.83124448808874,296.73830112127666
+566,"['lattice_constant_fcc', 'c44_fcc', 'thermal_expansion_coeff_fcc']",-218.86471863880948,302.1103018542168
+864,"['bulk_modulus_bcc', 'c44_sc', 'unstable_stack_energy_fcc']",-218.98076654337046,291.0467615594453
+277,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'c44_fcc']",-219.10955771393375,294.34892650731206
+807,"['bulk_modulus_bcc', 'c11_sc', 'c44_fcc']",-219.2199196531424,284.20778886437006
+490,"['lattice_constant_fcc', 'c11_bcc', 'c12_fcc']",-219.30110313999415,283.90659938390866
+1450,"['c12_sc', 'c44_fcc', 'cohesive_energy_fcc']",-219.773251667431,272.8985976354974
+1078,"['bulk_modulus_sc', 'c44_fcc', 'c44_sc']",-219.8060562920228,272.8933986810671
+1079,"['bulk_modulus_sc', 'c44_fcc', 'cohesive_energy_fcc']",-219.8344018474391,281.47535566268317
+560,"['lattice_constant_fcc', 'c44_bcc', 'surface_energy_100_fcc']",-219.83691419947135,321.42474137366287
+682,"['lattice_constant_sc', 'c12_bcc', 'c44_fcc']",-219.8911604274013,294.5101004759091
+1081,"['bulk_modulus_sc', 'c44_fcc', 'surface_energy_100_fcc']",-219.92032517450596,268.3341128665845
+351,"['lattice_constant_bcc', 'c11_sc', 'surface_energy_100_fcc']",-220.00301334629043,315.8916262107914
+471,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-220.0234563569085,273.2370654353268
+332,"['lattice_constant_bcc', 'c11_fcc', 'c12_fcc']",-220.06289424860654,280.6831091261415
+1484,"['c44_bcc', 'c44_sc', 'cohesive_energy_fcc']",-220.12362034181032,315.4278107470404
+1239,"['c11_fcc', 'c44_bcc', 'c44_fcc']",-220.169006937483,282.33037587147305
+124,"['bulk_modulus_sc', 'unstable_stack_energy_fcc']",-220.1702080232389,242.33117725332932
+394,"['lattice_constant_bcc', 'c44_fcc', 'cohesive_energy_fcc']",-220.74043517446927,277.6348951187713
+279,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'cohesive_energy_fcc']",-220.74128783883037,309.84893768342266
+1098,"['bulk_modulus_sc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-220.76002518125324,253.9933232698671
+1111,"['c11_bcc', 'c11_fcc', 'c44_fcc']",-220.83234049593548,279.45712014604317
+209,"['c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-220.83996973670438,283.6679169191311
+565,"['lattice_constant_fcc', 'c44_fcc', 'cohesive_energy_fcc']",-220.85717610027461,281.5519926078981
+1327,"['c11_sc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-220.90338371775928,299.3967073946511
+219,"['cohesive_energy_fcc', 'unstable_stack_energy_fcc']",-220.9480694060917,275.35731224244955
+207,"['c44_fcc', 'extr_stack_fault_energy_fcc']",-220.96709831287984,290.2096273440217
+52,"['lattice_constant_fcc', 'c44_fcc']",-220.9831096773055,284.6263812847214
+601,"['lattice_constant_sc', 'bulk_modulus_bcc', 'c44_fcc']",-221.01460424932137,294.30643927599516
+1413,"['c12_fcc', 'c44_fcc', 'c44_sc']",-221.05608129774444,259.81301103556115
+1032,"['bulk_modulus_sc', 'c11_sc', 'c44_fcc']",-221.28504733744367,268.6991043538538
+845,"['bulk_modulus_bcc', 'c44_bcc', 'c44_fcc']",-221.31975709938402,294.04555867789446
+1414,"['c12_fcc', 'c44_fcc', 'cohesive_energy_fcc']",-221.36015526640807,278.4903228460073
+1072,"['bulk_modulus_sc', 'c44_bcc', 'cohesive_energy_fcc']",-221.5180554826785,309.8929379609543
+720,"['lattice_constant_sc', 'c44_fcc', 'surface_energy_100_fcc']",-221.55341437380795,290.1879049221765
+138,"['c11_bcc', 'unstable_stack_energy_fcc']",-221.58084869490483,298.5814320992421
+1524,"['c44_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-221.58828758262976,278.37200017233357
+286,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'c11_bcc']",-221.64402172034872,294.23324376472397
+513,"['lattice_constant_fcc', 'c11_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-221.79188467640947,274.3891207654915
+577,"['lattice_constant_fcc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-221.80999154787756,298.98316557254685
+539,"['lattice_constant_fcc', 'c12_fcc', 'c44_fcc']",-221.8107615983712,275.9423622847145
+288,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'c11_sc']",-221.9036838511818,278.81791214463027
+1507,"['c44_fcc', 'c44_sc', 'surface_energy_100_fcc']",-221.99565135615845,256.7925113052815
+1172,"['c11_bcc', 'c44_fcc', 'surface_energy_100_fcc']",-222.0572518037001,285.8997689507955
+794,"['bulk_modulus_bcc', 'c11_fcc', 'c44_bcc']",-222.06036748501506,279.6413295507668
+19,['unstable_stack_energy_fcc'],-222.16312334167327,263.02829951113927
+242,"['lattice_constant_bcc', 'lattice_constant_fcc', 'c44_fcc']",-222.16875801740156,285.16534284642097
+157,"['c11_sc', 'c44_fcc']",-222.21348259241776,278.5305512790052
+1560,"['extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-222.21780735578093,252.9928092134913
+1451,"['c12_sc', 'c44_fcc', 'thermal_expansion_coeff_fcc']",-222.32562060723978,299.05884474673786
+1123,"['c11_bcc', 'c11_sc', 'c44_fcc']",-222.36819700948956,277.5533438963602
+1503,"['c44_bcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-222.53045875821985,340.50637790384116
+1020,"['bulk_modulus_sc', 'c11_fcc', 'c44_fcc']",-222.5941678317998,275.6899664618302
+965,"['bulk_modulus_fcc', 'c44_bcc', 'c44_fcc']",-222.69542797526427,286.1452317115836
+853,"['bulk_modulus_bcc', 'c44_fcc', 'c44_sc']",-222.786343808601,288.9241942562537
+392,"['lattice_constant_bcc', 'c44_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-222.83956903405291,338.4626582090544
+1491,"['c44_bcc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-222.95214461735765,326.4686775339294
+1452,"['c12_sc', 'c44_fcc', 'surface_energy_100_fcc']",-222.96992406483403,279.2550334548767
+578,"['lattice_constant_fcc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-223.1557721435509,298.06129086341383
+316,"['lattice_constant_bcc', 'c11_bcc', 'c11_fcc']",-223.1574835112085,284.55520984339347
+1405,"['c12_fcc', 'c44_bcc', 'c44_fcc']",-223.51649168270234,289.3519686223209
+1110,"['c11_bcc', 'c11_fcc', 'c44_bcc']",-223.81017010858284,270.9859029823298
+714,"['lattice_constant_sc', 'c44_bcc', 'extr_stack_fault_energy_fcc']",-223.8476210571255,338.22035878540555
+1241,"['c11_fcc', 'c44_bcc', 'cohesive_energy_fcc']",-223.94419670096408,300.01787465424286
+1189,"['c11_bcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-224.00492543350893,279.7267545176933
+1019,"['bulk_modulus_sc', 'c11_fcc', 'c44_bcc']",-224.05041162289712,313.3751204409173
+425,"['lattice_constant_fcc', 'lattice_constant_sc', 'c11_fcc']",-224.13885391877164,290.6871518889059
+464,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'c44_fcc']",-224.18888210135339,273.3541398629234
+195,"['c44_bcc', 'c44_fcc']",-224.19018584074814,292.59067481965684
+1211,"['c11_fcc', 'c12_bcc', 'c44_bcc']",-224.23905312838681,294.2034168830685
+445,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'c12_fcc']",-224.36019972493813,287.9240419397685
+1222,"['c11_fcc', 'c12_fcc', 'c44_fcc']",-224.52264873247452,272.48341192387954
+584,"['lattice_constant_fcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-224.54828027751637,253.4536679844033
+837,"['bulk_modulus_bcc', 'c12_sc', 'c44_fcc']",-224.55263687365056,290.225385646207
+1169,"['c11_bcc', 'c44_fcc', 'c44_sc']",-224.67881251614153,284.11596099114513
+422,"['lattice_constant_fcc', 'lattice_constant_sc', 'bulk_modulus_fcc']",-224.69881331465888,290.5148461794412
+379,"['lattice_constant_bcc', 'c12_sc', 'cohesive_energy_fcc']",-224.7159877982032,282.4103451809789
+1374,"['c12_bcc', 'c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-224.83131686000345,299.4000285489767
+1522,"['c44_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-224.8489033732584,292.5511267592104
+205,"['c44_fcc', 'thermal_expansion_coeff_fcc']",-224.86402677842963,304.9981223711079
+511,"['lattice_constant_fcc', 'c11_fcc', 'extr_stack_fault_energy_fcc']",-224.87222800059152,281.7386567597466
+859,"['bulk_modulus_bcc', 'c44_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-224.8883362146404,298.85650226183986
+1061,"['bulk_modulus_sc', 'c12_sc', 'c44_bcc']",-225.01851850083693,327.2028374268921
+487,"['lattice_constant_fcc', 'c11_bcc', 'c11_fcc']",-225.0512191891932,282.63780941779345
+321,"['lattice_constant_bcc', 'c11_bcc', 'c44_bcc']",-225.20045029018473,297.8163909119616
+375,"['lattice_constant_bcc', 'c12_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-225.21236610151732,300.248690645548
+287,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'c11_fcc']",-225.29941982263,284.58384011776747
+310,"['lattice_constant_bcc', 'bulk_modulus_sc', 'cohesive_energy_fcc']",-225.3414408222224,326.3811141943834
+529,"['lattice_constant_fcc', 'c12_bcc', 'c44_fcc']",-225.57425434716228,294.62660779443485
+716,"['lattice_constant_sc', 'c44_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-225.64995319799553,340.27021960374435
+1248,"['c11_fcc', 'c44_fcc', 'cohesive_energy_fcc']",-225.65855427886888,275.649895775729
+713,"['lattice_constant_sc', 'c44_bcc', 'surface_energy_100_fcc']",-225.8021056972583,331.2902478880561
+200,"['c44_bcc', 'extr_stack_fault_energy_fcc']",-225.8035621430066,343.6546202669256
+467,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'thermal_expansion_coeff_fcc']",-225.87517504635883,298.3365186171628
+457,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'c11_bcc']",-225.9629912252846,292.4897100695183
+448,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'c44_fcc']",-225.99873979206563,294.4645398421375
+974,"['bulk_modulus_fcc', 'c44_fcc', 'cohesive_energy_fcc']",-226.05653754343504,274.4214766528141
+298,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'extr_stack_fault_energy_fcc']",-226.08931538592665,299.59987016546523
+914,"['bulk_modulus_fcc', 'c11_fcc', 'c44_bcc']",-226.11490000123032,293.64135375941987
+27,"['lattice_constant_bcc', 'c11_fcc']",-226.13276518507334,279.596702493417
+290,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'c12_fcc']",-226.19989186549614,285.66061571912076
+1007,"['bulk_modulus_sc', 'c11_bcc', 'c44_fcc']",-226.23419512976346,276.64123930846034
+1369,"['c12_bcc', 'c44_fcc', 'cohesive_energy_fcc']",-226.25148873738928,295.9615679093353
+1296,"['c11_sc', 'c12_sc', 'c44_bcc']",-226.28796551818706,326.16857058121707
+495,"['lattice_constant_fcc', 'c11_bcc', 'cohesive_energy_fcc']",-226.28935713347323,304.1166660066433
+915,"['bulk_modulus_fcc', 'c11_fcc', 'c44_fcc']",-226.32378893136695,272.9777785088101
+1453,"['c12_sc', 'c44_fcc', 'extr_stack_fault_energy_fcc']",-226.43639162149438,288.8004425172513
+1278,"['c11_sc', 'c12_bcc', 'c44_fcc']",-226.49401044106702,291.1743598853759
+307,"['lattice_constant_bcc', 'bulk_modulus_sc', 'c44_bcc']",-226.52757496792714,334.0936191913877
+274,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'c12_fcc']",-226.60612732427137,304.9895249287049
+469,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'extr_stack_fault_energy_fcc']",-226.67684283007094,292.50494629309156
+1200,"['c11_fcc', 'c11_sc', 'c44_bcc']",-226.8965202210768,296.6828500444299
+339,"['lattice_constant_bcc', 'c11_fcc', 'surface_energy_100_fcc']",-226.90584067806992,295.7225634388007
+643,"['lattice_constant_sc', 'c11_bcc', 'c12_fcc']",-227.09673135796413,290.76414405451237
+795,"['bulk_modulus_bcc', 'c11_fcc', 'c44_fcc']",-227.1092526975921,288.3799374345431
+888,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'c44_fcc']",-227.23863916310876,276.30647573515375
+259,"['lattice_constant_bcc', 'lattice_constant_sc', 'c44_bcc']",-227.34436210502574,330.55436957306165
+1516,"['c44_fcc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-227.49372032104282,301.0763742151003
+753,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'c44_fcc']",-227.63930487621974,284.210422637915
+1501,"['c44_bcc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-227.70295882339684,352.0522502956783
+615,"['lattice_constant_sc', 'bulk_modulus_fcc', 'c12_sc']",-227.72525919943607,263.4677527938972
+1368,"['c12_bcc', 'c44_fcc', 'c44_sc']",-227.77001534818214,288.15922227214025
+937,"['bulk_modulus_fcc', 'c12_bcc', 'c44_bcc']",-227.77086158712595,294.9063873031333
+1180,"['c11_bcc', 'c44_sc', 'unstable_stack_energy_fcc']",-227.84015064285038,303.8949881998406
+1053,"['bulk_modulus_sc', 'c12_fcc', 'c44_fcc']",-227.89453478103118,277.64431175515466
+1494,"['c44_bcc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-227.92272677715619,335.26547819634845
+926,"['bulk_modulus_fcc', 'c11_sc', 'c44_bcc']",-227.97234329761056,302.16091432029236
+1362,"['c12_bcc', 'c44_bcc', 'cohesive_energy_fcc']",-228.01229948028572,305.66716410841514
+271,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'c11_fcc']",-228.0133827372588,303.5521321325294
+506,"['lattice_constant_fcc', 'c11_fcc', 'c44_fcc']",-228.01498912276188,273.971081920628
+473,"['lattice_constant_fcc', 'bulk_modulus_sc', 'c11_fcc']",-228.1685108757607,280.4864919443189
+338,"['lattice_constant_bcc', 'c11_fcc', 'thermal_expansion_coeff_fcc']",-228.1887983166988,296.8793338935905
+1496,"['c44_bcc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-228.30471974603964,349.14309794575024
+847,"['bulk_modulus_bcc', 'c44_bcc', 'cohesive_energy_fcc']",-228.33038834471265,294.08786524083513
+526,"['lattice_constant_fcc', 'c12_bcc', 'c12_fcc']",-228.35973668419317,294.4325528601098
+1360,"['c12_bcc', 'c44_bcc', 'c44_fcc']",-228.38642207846993,296.13269802874345
+544,"['lattice_constant_fcc', 'c12_fcc', 'extr_stack_fault_energy_fcc']",-228.3912691924099,305.9116506910105
+428,"['lattice_constant_fcc', 'lattice_constant_sc', 'c12_fcc']",-228.58089219020263,295.8551610680908
+241,"['lattice_constant_bcc', 'lattice_constant_fcc', 'c44_bcc']",-228.62360528363098,322.16886005602214
+542,"['lattice_constant_fcc', 'c12_fcc', 'thermal_expansion_coeff_fcc']",-228.629112048736,308.04484498245205
+223,"['thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-228.67522328635286,237.9118116126555
+648,"['lattice_constant_sc', 'c11_bcc', 'cohesive_energy_fcc']",-228.67549728793134,311.4676628752961
+1153,"['c11_bcc', 'c12_sc', 'c44_fcc']",-228.72660443642351,286.18249087703146
+439,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'bulk_modulus_fcc']",-228.76676440173344,292.80589939159944
+476,"['lattice_constant_fcc', 'bulk_modulus_sc', 'c12_fcc']",-228.93967991256505,310.7866028498956
+828,"['bulk_modulus_bcc', 'c12_fcc', 'c44_fcc']",-228.98795315138014,287.57150766983705
+251,"['lattice_constant_bcc', 'lattice_constant_sc', 'bulk_modulus_fcc']",-229.10697152114224,296.6614267167812
+450,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'cohesive_energy_fcc']",-229.29790870440453,302.865919291908
+462,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'c12_sc']",-229.3472221708755,260.6449704548014
+289,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'c12_bcc']",-229.35553187586692,305.4442272568405
+1221,"['c11_fcc', 'c12_fcc', 'c44_bcc']",-229.43212122533538,292.79987966456264
+1446,"['c12_sc', 'c44_bcc', 'extr_stack_fault_energy_fcc']",-229.43600495963693,339.1770043279844
+503,"['lattice_constant_fcc', 'c11_fcc', 'c12_fcc']",-229.4613780445337,280.84948310721495
+197,"['c44_bcc', 'cohesive_energy_fcc']",-229.48902733229752,307.92954770940634
+340,"['lattice_constant_bcc', 'c11_fcc', 'extr_stack_fault_energy_fcc']",-229.53390352134417,294.11832529266746
+603,"['lattice_constant_sc', 'bulk_modulus_bcc', 'cohesive_energy_fcc']",-229.5476001939297,309.6271143768105
+296,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'thermal_expansion_coeff_fcc']",-229.55184806857696,302.7439524367492
+355,"['lattice_constant_bcc', 'c12_bcc', 'c12_fcc']",-229.69269177812626,309.58071591683984
+948,"['bulk_modulus_fcc', 'c12_fcc', 'c44_fcc']",-229.72571650275128,271.9670300761361
+509,"['lattice_constant_fcc', 'c11_fcc', 'thermal_expansion_coeff_fcc']",-229.81641628372276,293.59971801591416
+442,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'c11_fcc']",-229.86238603952,293.34104737698425
+510,"['lattice_constant_fcc', 'c11_fcc', 'surface_energy_100_fcc']",-230.07621871979663,283.20495072551466
+492,"['lattice_constant_fcc', 'c11_bcc', 'c44_bcc']",-230.1192141761951,278.42831978342963
+145,"['c11_fcc', 'c44_fcc']",-230.13677548656665,271.3825893761443
+661,"['lattice_constant_sc', 'c11_fcc', 'cohesive_energy_fcc']",-230.23626594765423,288.38050084829047
+668,"['lattice_constant_sc', 'c11_sc', 'c12_fcc']",-230.30400755831258,276.7214659006351
+268,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'bulk_modulus_fcc']",-230.32720887471407,308.087138749219
+543,"['lattice_constant_fcc', 'c12_fcc', 'surface_energy_100_fcc']",-230.3337132926619,298.4058413997382
+1077,"['bulk_modulus_sc', 'c44_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-230.51171238472327,344.5988228105623
+1134,"['c11_bcc', 'c12_bcc', 'c44_fcc']",-230.54955980308122,292.38038890226005
+856,"['bulk_modulus_bcc', 'c44_fcc', 'surface_energy_100_fcc']",-230.59265278657617,289.92927438075037
+331,"['lattice_constant_bcc', 'c11_fcc', 'c12_bcc']",-230.63113068050274,304.78621825099816
+731,"['lattice_constant_sc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-230.6880003006726,306.73178485605456
+1527,"['c44_sc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-230.69260097905388,333.0908590749907
+581,"['lattice_constant_fcc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-230.7965977067207,296.1520037785125
+504,"['lattice_constant_fcc', 'c11_fcc', 'c12_sc']",-230.94925626775,267.5838800600106
+187,"['c12_sc', 'c44_fcc']",-230.95580611530443,277.89383383347064
+901,"['bulk_modulus_fcc', 'c11_bcc', 'c44_bcc']",-231.06112261453382,274.1951815355941
+972,"['bulk_modulus_fcc', 'c44_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-231.10851437666966,338.24325228805435
+664,"['lattice_constant_sc', 'c11_fcc', 'extr_stack_fault_energy_fcc']",-231.16499941297215,288.06428502386314
+657,"['lattice_constant_sc', 'c11_fcc', 'c12_sc']",-231.24103871049712,269.62358388274055
+550,"['lattice_constant_fcc', 'c12_sc', 'cohesive_energy_fcc']",-231.28702784153162,282.61240748607315
+370,"['lattice_constant_bcc', 'c12_fcc', 'cohesive_energy_fcc']",-231.3486731074155,293.4266008363838
+537,"['lattice_constant_fcc', 'c12_fcc', 'c12_sc']",-231.45585766644624,272.5018581871806
+1198,"['c11_fcc', 'c11_sc', 'c12_fcc']",-231.5516623876137,263.06985934506054
+373,"['lattice_constant_bcc', 'c12_fcc', 'extr_stack_fault_energy_fcc']",-231.57577394153145,316.7961147599926
+461,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'c12_fcc']",-231.60893535384236,283.9711984689988
+694,"['lattice_constant_sc', 'c12_fcc', 'cohesive_energy_fcc']",-231.61445846189696,284.9979451015901
+433,"['lattice_constant_fcc', 'lattice_constant_sc', 'cohesive_energy_fcc']",-231.62836876852816,306.49363878483916
+947,"['bulk_modulus_fcc', 'c12_fcc', 'c44_bcc']",-231.92152023394468,301.223536695556
+366,"['lattice_constant_bcc', 'c12_fcc', 'c12_sc']",-232.01484746324394,290.4205485370197
+502,"['lattice_constant_fcc', 'c11_fcc', 'c12_bcc']",-232.15381076669254,291.6448272828686
+35,"['lattice_constant_bcc', 'cohesive_energy_fcc']",-232.18225389874974,308.2347800048028
+291,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'c12_sc']",-232.21317754625954,275.31878127884886
+333,"['lattice_constant_bcc', 'c11_fcc', 'c12_sc']",-232.29076170470333,275.6623595926055
+478,"['lattice_constant_fcc', 'bulk_modulus_sc', 'c44_bcc']",-232.42595512102176,315.64872214622665
+690,"['lattice_constant_sc', 'c12_fcc', 'c12_sc']",-232.42638365625206,272.72959933876956
+752,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'c44_bcc']",-232.43269308820027,282.4655885687799
+645,"['lattice_constant_sc', 'c11_bcc', 'c44_bcc']",-232.45557575537924,283.7835252250601
+656,"['lattice_constant_sc', 'c11_fcc', 'c12_fcc']",-232.45925352820373,283.2010747662474
+327,"['lattice_constant_bcc', 'c11_bcc', 'extr_stack_fault_energy_fcc']",-232.52018482045852,313.1717404534808
+1312,"['c11_sc', 'c44_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-232.5520765437546,333.3484822526099
+302,"['lattice_constant_bcc', 'bulk_modulus_sc', 'c11_fcc']",-232.55231832495357,294.39314021327544
+1164,"['c11_bcc', 'c44_bcc', 'thermal_expansion_coeff_fcc']",-232.59960974112457,311.27964269864015
+1250,"['c11_fcc', 'c44_fcc', 'surface_energy_100_fcc']",-232.62696055032953,282.721003905304
+254,"['lattice_constant_bcc', 'lattice_constant_sc', 'c11_fcc']",-232.70666238136997,297.29613072312435
+371,"['lattice_constant_bcc', 'c12_fcc', 'thermal_expansion_coeff_fcc']",-232.85705974410678,315.2632590880947
+32,"['lattice_constant_bcc', 'c44_bcc']",-232.9960239509205,337.4795808815331
+1243,"['c11_fcc', 'c44_bcc', 'surface_energy_100_fcc']",-233.020342029852,326.0756887581934
+598,"['lattice_constant_sc', 'bulk_modulus_bcc', 'c12_fcc']",-233.08058136207097,298.3662795289087
+507,"['lattice_constant_fcc', 'c11_fcc', 'c44_sc']",-233.08263341572868,273.7789695022588
+468,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'surface_energy_100_fcc']",-233.08683883186052,290.9767836787635
+410,"['lattice_constant_bcc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-233.15553726851957,304.5490539661088
+262,"['lattice_constant_bcc', 'lattice_constant_sc', 'cohesive_energy_fcc']",-233.20707362621948,312.8545860540425
+13,['c44_fcc'],-233.3440891142352,289.72519902761786
+1352,"['c12_bcc', 'c12_sc', 'c44_fcc']",-233.3597087865392,291.6759566119538
+54,"['lattice_constant_fcc', 'cohesive_energy_fcc']",-233.42998178031118,296.3651594553889
+458,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'c11_fcc']",-233.4462525475037,282.02113441051586
+72,"['lattice_constant_sc', 'cohesive_energy_fcc']",-233.47542440847315,304.42533828979884
+1416,"['c12_fcc', 'c44_fcc', 'surface_energy_100_fcc']",-233.56660778712316,287.979717367683
+1326,"['c11_sc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-233.64037253081167,317.1268853380588
+336,"['lattice_constant_bcc', 'c11_fcc', 'c44_sc']",-233.8050916115581,290.4415311600745
+103,"['bulk_modulus_fcc', 'c44_fcc']",-233.8381338469917,270.988887004608
+297,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'surface_energy_100_fcc']",-233.94256968637862,304.5438326065311
+768,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'c44_fcc']",-234.03832145018364,284.9771224931846
+730,"['lattice_constant_sc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-234.05102567784692,307.55855849560004
+541,"['lattice_constant_fcc', 'c12_fcc', 'cohesive_energy_fcc']",-234.23630666576705,281.61783966227364
+1143,"['c11_bcc', 'c12_fcc', 'c44_bcc']",-234.25074060839734,276.5670487079364
+372,"['lattice_constant_bcc', 'c12_fcc', 'surface_energy_100_fcc']",-234.36983569448083,316.2287042940705
+666,"['lattice_constant_sc', 'c11_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-234.544819454471,281.9515942445598
+849,"['bulk_modulus_bcc', 'c44_bcc', 'surface_energy_100_fcc']",-234.55398517778193,328.11165804097936
+276,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'c44_bcc']",-234.60431658218454,317.2133046774002
+498,"['lattice_constant_fcc', 'c11_bcc', 'extr_stack_fault_energy_fcc']",-234.63109380417328,306.5912073174117
+1308,"['c11_sc', 'c44_bcc', 'thermal_expansion_coeff_fcc']",-234.68077040921233,340.35715200214213
+697,"['lattice_constant_sc', 'c12_fcc', 'extr_stack_fault_energy_fcc']",-234.7115425362561,314.3207461070316
+178,"['c12_fcc', 'c44_fcc']",-234.72021212954996,277.3603884886505
+976,"['bulk_modulus_fcc', 'c44_fcc', 'surface_energy_100_fcc']",-234.74114379727266,287.7074205868784
+456,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'bulk_modulus_sc']",-234.80196502551644,301.09877032534615
+663,"['lattice_constant_sc', 'c11_fcc', 'surface_energy_100_fcc']",-234.93538213571975,301.7253207949244
+522,"['lattice_constant_fcc', 'c11_sc', 'surface_energy_100_fcc']",-234.96460460746167,290.84763989392735
+956,"['bulk_modulus_fcc', 'c12_sc', 'c44_bcc']",-235.03562144377858,310.7581686927987
+64,"['lattice_constant_sc', 'c11_fcc']",-235.22523431078565,283.95694810333913
+447,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'c44_bcc']",-235.3624646874601,285.8845075288262
+46,"['lattice_constant_fcc', 'c11_fcc']",-235.5467286864591,274.6774356353895
+481,"['lattice_constant_fcc', 'bulk_modulus_sc', 'cohesive_energy_fcc']",-235.55684602583645,316.74248858814093
+887,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'c44_bcc']",-235.58900684149063,321.7093260832604
+360,"['lattice_constant_bcc', 'c12_bcc', 'cohesive_energy_fcc']",-235.59753303459206,318.81635202299464
+346,"['lattice_constant_bcc', 'c11_sc', 'c44_bcc']",-235.7157381831606,325.79976745057775
+517,"['lattice_constant_fcc', 'c11_sc', 'c44_bcc']",-235.75442953275717,308.5325371926542
+968,"['bulk_modulus_fcc', 'c44_bcc', 'thermal_expansion_coeff_fcc']",-235.85004130910963,341.40126540378174
+460,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'c12_bcc']",-236.0171283704222,292.50828246365546
+622,"['lattice_constant_sc', 'bulk_modulus_fcc', 'extr_stack_fault_energy_fcc']",-236.03402846684813,308.9045527425114
+660,"['lattice_constant_sc', 'c11_fcc', 'c44_sc']",-236.25754710561813,284.33895156317993
+626,"['lattice_constant_sc', 'bulk_modulus_sc', 'c11_fcc']",-236.33777576954154,301.2104339640491
+24,"['lattice_constant_bcc', 'bulk_modulus_fcc']",-236.3435598843934,295.93030481904196
+1073,"['bulk_modulus_sc', 'c44_bcc', 'thermal_expansion_coeff_fcc']",-236.3853397799562,351.1232898812955
+1212,"['c11_fcc', 'c12_bcc', 'c44_fcc']",-236.38810244517126,294.7628836138799
+782,"['bulk_modulus_bcc', 'c11_bcc', 'c44_fcc']",-236.5523606454299,294.66163010440846
+655,"['lattice_constant_sc', 'c11_fcc', 'c12_bcc']",-236.55818763806667,301.4085476753912
+579,"['lattice_constant_fcc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-236.6214076053689,300.1560048702133
+640,"['lattice_constant_sc', 'c11_bcc', 'c11_fcc']",-236.6776824879518,295.14103195087586
+969,"['bulk_modulus_fcc', 'c44_bcc', 'surface_energy_100_fcc']",-237.01498353002438,335.20196636758016
+1533,"['c44_sc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_fcc']",-237.132158153643,276.54417969854455
+1223,"['c11_fcc', 'c12_fcc', 'c44_sc']",-237.13687221727196,275.4227004988459
+670,"['lattice_constant_sc', 'c11_sc', 'c44_bcc']",-237.13766548912528,321.97519280104126
+465,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'c44_sc']",-237.15969825269335,282.76285052426687
+531,"['lattice_constant_fcc', 'c12_bcc', 'cohesive_energy_fcc']",-237.1948318887161,309.88017617079777
+132,"['c11_bcc', 'c44_fcc']",-237.29961392915516,287.5529502371581
+1165,"['c11_bcc', 'c44_bcc', 'surface_energy_100_fcc']",-237.37436783601558,316.5607037030687
+967,"['bulk_modulus_fcc', 'c44_bcc', 'cohesive_energy_fcc']",-237.38295769864692,307.6532926572084
+595,"['lattice_constant_sc', 'bulk_modulus_bcc', 'c11_fcc']",-237.4389554580197,304.4106316473875
+30,"['lattice_constant_bcc', 'c12_fcc']",-237.46271791549702,301.1652424196313
+210,"['c44_sc', 'cohesive_energy_fcc']",-237.5107181824167,295.8054442862628
+305,"['lattice_constant_bcc', 'bulk_modulus_sc', 'c12_fcc']",-237.60121567071033,324.20312947123887
+631,"['lattice_constant_sc', 'bulk_modulus_sc', 'c44_bcc']",-237.7234816600135,331.49780030469935
+430,"['lattice_constant_fcc', 'lattice_constant_sc', 'c44_bcc']",-237.87916299594912,287.881492705197
+610,"['lattice_constant_sc', 'bulk_modulus_fcc', 'c11_bcc']",-237.88399426143832,308.1136011203725
+1299,"['c11_sc', 'c12_sc', 'cohesive_energy_fcc']",-237.89058990828164,290.1151274486267
+629,"['lattice_constant_sc', 'bulk_modulus_sc', 'c12_fcc']",-237.93261905140497,319.92681462462156
+1407,"['c12_fcc', 'c44_bcc', 'cohesive_energy_fcc']",-237.94832066148587,303.22420335528346
+703,"['lattice_constant_sc', 'c12_sc', 'cohesive_energy_fcc']",-238.1344083302122,287.26227119783647
+559,"['lattice_constant_fcc', 'c44_bcc', 'thermal_expansion_coeff_fcc']",-238.18823214533649,321.6174509357879
+712,"['lattice_constant_sc', 'c44_bcc', 'thermal_expansion_coeff_fcc']",-238.366015753691,335.37199789784876
+624,"['lattice_constant_sc', 'bulk_modulus_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-238.39563834062062,291.5497365715663
+408,"['lattice_constant_bcc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-238.54839416559028,308.6754904351584
+1290,"['c11_sc', 'c12_fcc', 'cohesive_energy_fcc']",-238.77212811423024,283.4582725575802
+614,"['lattice_constant_sc', 'bulk_modulus_fcc', 'c12_fcc']",-238.8589064502989,291.2448388725191
+611,"['lattice_constant_sc', 'bulk_modulus_fcc', 'c11_fcc']",-238.90747400504196,286.3451338870527
+87,"['bulk_modulus_bcc', 'c44_fcc']",-238.92426724989178,295.63371412718675
+684,"['lattice_constant_sc', 'c12_bcc', 'cohesive_energy_fcc']",-239.07668898696173,312.129577566749
+434,"['lattice_constant_fcc', 'lattice_constant_sc', 'thermal_expansion_coeff_fcc']",-239.08668850635286,335.7363142683517
+1409,"['c12_fcc', 'c44_bcc', 'surface_energy_100_fcc']",-239.2106146448431,336.7025559811576
+257,"['lattice_constant_bcc', 'lattice_constant_sc', 'c12_fcc']",-239.27123192225326,308.87765376277423
+508,"['lattice_constant_fcc', 'c11_fcc', 'cohesive_energy_fcc']",-239.54548720438603,283.22878840592625
+1448,"['c12_sc', 'c44_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-239.5638618086848,346.9024815185757
+1240,"['c11_fcc', 'c44_bcc', 'c44_sc']",-239.76380851575885,325.51035834613725
+1412,"['c12_fcc', 'c44_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-239.81476744417571,338.19887605414436
+523,"['lattice_constant_fcc', 'c11_sc', 'extr_stack_fault_energy_fcc']",-240.1215377473131,330.37802218269087
+233,"['lattice_constant_bcc', 'lattice_constant_fcc', 'bulk_modulus_fcc']",-240.18384270744775,290.02740070488346
+679,"['lattice_constant_sc', 'c12_bcc', 'c12_fcc']",-240.18739276455673,301.44162171551005
+1371,"['c12_bcc', 'c44_fcc', 'surface_energy_100_fcc']",-240.50474255824943,294.41359202783764
+938,"['bulk_modulus_fcc', 'c12_bcc', 'c44_fcc']",-240.52698623122677,291.22107280711765
+357,"['lattice_constant_bcc', 'c12_bcc', 'c44_bcc']",-240.5677655572016,329.2213758061982
+294,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'c44_sc']",-240.58262123732095,301.07901453077824
+337,"['lattice_constant_bcc', 'c11_fcc', 'cohesive_energy_fcc']",-240.6102911492531,293.2605524442833
+1242,"['c11_fcc', 'c44_bcc', 'thermal_expansion_coeff_fcc']",-240.62245430642704,333.70823010259784
+317,"['lattice_constant_bcc', 'c11_bcc', 'c11_sc']",-240.73633933944032,308.3200463178276
+369,"['lattice_constant_bcc', 'c12_fcc', 'c44_sc']",-240.78073442237644,318.19184857898784
+818,"['bulk_modulus_bcc', 'c12_bcc', 'c44_fcc']",-240.8121903235806,304.4021983973165
+1427,"['c12_fcc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-240.82836342863422,299.4842032706709
+1490,"['c44_bcc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-240.90876834009748,327.0796735993565
+236,"['lattice_constant_bcc', 'lattice_constant_fcc', 'c11_fcc']",-240.96444699565726,286.7471979157776
+1220,"['c11_fcc', 'c12_fcc', 'c12_sc']",-241.13911281808612,261.26776774762544
+285,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'bulk_modulus_sc']",-241.20043546713237,309.5234315880665
+592,"['lattice_constant_sc', 'bulk_modulus_bcc', 'bulk_modulus_fcc']",-241.21368275366984,311.1863384545593
+600,"['lattice_constant_sc', 'bulk_modulus_bcc', 'c44_bcc']",-241.3497403685403,296.25518106814826
+540,"['lattice_constant_fcc', 'c12_fcc', 'c44_sc']",-241.39488674990068,304.4035441958953
+662,"['lattice_constant_sc', 'c11_fcc', 'thermal_expansion_coeff_fcc']",-241.43952900474088,299.2940043461399
+1456,"['c12_sc', 'c44_sc', 'cohesive_energy_fcc']",-241.51070358553736,299.47701131062524
+1486,"['c44_bcc', 'c44_sc', 'surface_energy_100_fcc']",-241.5246563027984,359.3840638088038
+1287,"['c11_sc', 'c12_fcc', 'c44_bcc']",-241.66355917155198,314.42305139448257
+619,"['lattice_constant_sc', 'bulk_modulus_fcc', 'cohesive_energy_fcc']",-241.6807044344878,302.6882593318287
+49,"['lattice_constant_fcc', 'c12_fcc']",-241.94509240137296,291.94973838877866
+206,"['c44_fcc', 'surface_energy_100_fcc']",-241.9784789748993,293.0315775540623
+1052,"['bulk_modulus_sc', 'c12_fcc', 'c44_bcc']",-242.45772506918632,333.23909906772695
+1489,"['c44_bcc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-242.52664125017105,362.67741383965745
+1495,"['c44_bcc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-242.5805948882932,354.3191513289234
+534,"['lattice_constant_fcc', 'c12_bcc', 'extr_stack_fault_energy_fcc']",-242.6114539514048,333.74362228450264
+363,"['lattice_constant_bcc', 'c12_bcc', 'extr_stack_fault_energy_fcc']",-242.63916289338218,344.2264805659477
+426,"['lattice_constant_fcc', 'lattice_constant_sc', 'c11_sc']",-242.72681356185905,281.21430297780114
+217,"['cohesive_energy_fcc', 'surface_energy_100_fcc']",-242.75687497024816,314.1390842352876
+388,"['lattice_constant_bcc', 'c44_bcc', 'thermal_expansion_coeff_fcc']",-242.76053423545315,336.52703764964554
+244,"['lattice_constant_bcc', 'lattice_constant_fcc', 'cohesive_energy_fcc']",-242.77030748704115,304.03500193740945
+734,"['lattice_constant_sc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-242.77638727673533,306.5294803579189
+237,"['lattice_constant_bcc', 'lattice_constant_fcc', 'c11_sc']",-242.99076942460272,301.2651564740951
+147,"['c11_fcc', 'cohesive_energy_fcc']",-243.06350889347027,294.65990308791436
+1074,"['bulk_modulus_sc', 'c44_bcc', 'surface_energy_100_fcc']",-243.20595466219038,337.8559430019283
+1343,"['c12_bcc', 'c12_fcc', 'c44_fcc']",-243.2660574550994,292.16420103856194
+295,"['lattice_constant_bcc', 'bulk_modulus_fcc', 'cohesive_energy_fcc']",-243.2715937720765,306.15284907481623
+1162,"['c11_bcc', 'c44_bcc', 'c44_sc']",-243.39354303243786,324.8960122092534
+525,"['lattice_constant_fcc', 'c11_sc', 'unstable_stack_energy_slip_fraction_fcc']",-243.50737402395035,316.8370489350437
+1225,"['c11_fcc', 'c12_fcc', 'thermal_expansion_coeff_fcc']",-243.57362798667216,294.76228701533233
+43,"['lattice_constant_fcc', 'bulk_modulus_fcc']",-243.6032803659453,289.3517065819395
+239,"['lattice_constant_bcc', 'lattice_constant_fcc', 'c12_fcc']",-243.64275845997832,297.5882231956567
+453,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'extr_stack_fault_energy_fcc']",-243.7862389304953,335.696195247219
+696,"['lattice_constant_sc', 'c12_fcc', 'surface_energy_100_fcc']",-243.85629636672337,313.18688726936495
+634,"['lattice_constant_sc', 'bulk_modulus_sc', 'cohesive_energy_fcc']",-243.90262669596717,324.35165973383573
+613,"['lattice_constant_sc', 'bulk_modulus_fcc', 'c12_bcc']",-243.9316442953806,304.74933479738974
+1399,"['c12_fcc', 'c12_sc', 'cohesive_energy_fcc']",-243.95670560002847,276.3942729613267
+1229,"['c11_fcc', 'c12_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-243.98588408967422,280.0879853882177
+1043,"['bulk_modulus_sc', 'c12_bcc', 'c44_fcc']",-244.01138370056367,293.2910034106874
+1306,"['c11_sc', 'c44_bcc', 'c44_sc']",-244.05047498815526,354.3059671055287
+1122,"['c11_bcc', 'c11_sc', 'c44_bcc']",-244.08110661503952,322.10067484473234
+1006,"['bulk_modulus_sc', 'c11_bcc', 'c44_bcc']",-244.1348478162853,312.1033172021786
+354,"['lattice_constant_bcc', 'c11_sc', 'unstable_stack_energy_slip_fraction_fcc']",-244.18501346753052,321.9365784793558
+699,"['lattice_constant_sc', 'c12_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-244.18954384363863,310.16820831387673
+1183,"['c11_bcc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-244.2508898498885,304.41275556996334
+521,"['lattice_constant_fcc', 'c11_sc', 'thermal_expansion_coeff_fcc']",-244.33216224903973,317.55191391558225
+51,"['lattice_constant_fcc', 'c44_bcc']",-244.38237682351001,287.11366680068573
+848,"['bulk_modulus_bcc', 'c44_bcc', 'thermal_expansion_coeff_fcc']",-244.48670524100703,335.59514010316286
+827,"['bulk_modulus_bcc', 'c12_fcc', 'c44_bcc']",-244.5400783229392,287.6530278779604
+651,"['lattice_constant_sc', 'c11_bcc', 'extr_stack_fault_energy_fcc']",-244.562618807202,315.0940244952507
+118,"['bulk_modulus_sc', 'c44_fcc']",-244.6559940893003,276.39318386376925
+1018,"['bulk_modulus_sc', 'c11_fcc', 'c12_sc']",-244.91100079233775,273.0294913083034
+1430,"['c12_fcc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-244.91778903201313,295.8612112625007
+1199,"['c11_fcc', 'c11_sc', 'c12_sc']",-244.99769102810748,274.6730888011632
+1426,"['c12_fcc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-245.01274796239542,299.4961395215217
+609,"['lattice_constant_sc', 'bulk_modulus_fcc', 'bulk_modulus_sc']",-245.01662040134684,318.7276203871357
+1364,"['c12_bcc', 'c44_bcc', 'surface_energy_100_fcc']",-245.21438008123891,339.93416344988816
+1342,"['c12_bcc', 'c12_fcc', 'c44_bcc']",-245.22750740949363,304.62799247285216
+1071,"['bulk_modulus_sc', 'c44_bcc', 'c44_sc']",-245.29162357907535,355.10421435156803
+621,"['lattice_constant_sc', 'bulk_modulus_fcc', 'surface_energy_100_fcc']",-245.33598876632925,310.8033364519744
+792,"['bulk_modulus_bcc', 'c11_fcc', 'c12_fcc']",-245.57247726238964,282.3470604091417
+255,"['lattice_constant_bcc', 'lattice_constant_sc', 'c11_sc']",-245.61160421417998,313.7474801350754
+1254,"['c11_fcc', 'c44_sc', 'cohesive_energy_fcc']",-245.66294333230226,294.2622750234386
+1168,"['c11_bcc', 'c44_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-245.69255851044574,337.0100893167585
+326,"['lattice_constant_bcc', 'c11_bcc', 'surface_energy_100_fcc']",-245.69616426932342,309.4858393433467
+1444,"['c12_sc', 'c44_bcc', 'thermal_expansion_coeff_fcc']",-245.71678764099252,345.9314793013428
+348,"['lattice_constant_bcc', 'c11_sc', 'c44_sc']",-245.74104155771676,314.73627319112967
+528,"['lattice_constant_fcc', 'c12_bcc', 'c44_bcc']",-245.7917553703543,291.766785378131
+1203,"['c11_fcc', 'c11_sc', 'cohesive_energy_fcc']",-245.81488047066188,293.8722387459699
+159,"['c11_sc', 'cohesive_energy_fcc']",-245.97591849845958,298.5983323226284
+536,"['lattice_constant_fcc', 'c12_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-246.0839470508466,342.73013736598864
+1408,"['c12_fcc', 'c44_bcc', 'thermal_expansion_coeff_fcc']",-246.1865648780758,340.88092341442473
+1428,"['c12_fcc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-246.28393865768555,308.2108741598877
+61,"['lattice_constant_sc', 'bulk_modulus_fcc']",-246.3802182757753,304.2539198564677
+245,"['lattice_constant_bcc', 'lattice_constant_fcc', 'thermal_expansion_coeff_fcc']",-246.4718291508447,343.81046642472097
+47,"['lattice_constant_fcc', 'c11_sc']",-246.556143224896,283.7808627430539
+168,"['c12_bcc', 'c44_fcc']",-246.67608574807088,305.40329424132494
+675,"['lattice_constant_sc', 'c11_sc', 'surface_energy_100_fcc']",-246.6787690931458,311.9539174938837
+1420,"['c12_fcc', 'c44_sc', 'cohesive_energy_fcc']",-246.73924550970904,289.70756602921983
+1108,"['c11_bcc', 'c11_fcc', 'c12_fcc']",-246.85331806551918,284.60334345563325
+144,"['c11_fcc', 'c44_bcc']",-246.8966196308839,313.4542844654627
+417,"['lattice_constant_bcc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-247.01110892868792,351.0063714589797
+202,"['c44_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-247.11187561844298,345.6305231276734
+1445,"['c12_sc', 'c44_bcc', 'surface_energy_100_fcc']",-247.11720680430892,346.2131214566191
+466,"['lattice_constant_fcc', 'bulk_modulus_fcc', 'cohesive_energy_fcc']",-247.1359547581942,292.0162559893124
+253,"['lattice_constant_bcc', 'lattice_constant_sc', 'c11_bcc']",-247.15223444250918,325.9852284432475
+272,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'c11_sc']",-247.18987610400643,323.9636319902951
+1146,"['c11_bcc', 'c12_fcc', 'cohesive_energy_fcc']",-247.2244731993007,295.22025174609865
+695,"['lattice_constant_sc', 'c12_fcc', 'thermal_expansion_coeff_fcc']",-247.4608551711332,331.3865147865032
+1113,"['c11_bcc', 'c11_fcc', 'cohesive_energy_fcc']",-247.493583722882,301.5758894998977
+1085,"['bulk_modulus_sc', 'c44_sc', 'cohesive_energy_fcc']",-247.51340412541867,325.3008932234641
+557,"['lattice_constant_fcc', 'c44_bcc', 'c44_sc']",-247.52611327330726,343.33313294856305
+1293,"['c11_sc', 'c12_fcc', 'extr_stack_fault_energy_fcc']",-247.55139645905578,321.1234189328376
+929,"['bulk_modulus_fcc', 'c11_sc', 'cohesive_energy_fcc']",-247.60553731529666,303.1081059031154
+1526,"['c44_sc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-247.61103556432272,320.24594483709876
+917,"['bulk_modulus_fcc', 'c11_fcc', 'cohesive_energy_fcc']",-247.7833441494409,291.45003144754895
+199,"['c44_bcc', 'surface_energy_100_fcc']",-247.8358653588504,353.43848463704904
+411,"['lattice_constant_bcc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-248.37288645562927,340.0725032576188
+281,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'surface_energy_100_fcc']",-248.42227839477584,330.1368131708676
+732,"['lattice_constant_sc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-248.4894406336679,309.99521649000843
+618,"['lattice_constant_sc', 'bulk_modulus_fcc', 'c44_sc']",-248.62891276563522,307.82549556517245
+839,"['bulk_modulus_bcc', 'c12_sc', 'cohesive_energy_fcc']",-248.63486660105593,298.076087643688
+1322,"['c11_sc', 'c44_sc', 'surface_energy_100_fcc']",-248.7628250744062,337.376407533226
+312,"['lattice_constant_bcc', 'bulk_modulus_sc', 'surface_energy_100_fcc']",-248.91127887311333,345.5021667151631
+1498,"['c44_bcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-249.38995513467876,346.1716896842111
+582,"['lattice_constant_fcc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-249.42518855341038,326.3127161006912
+966,"['bulk_modulus_fcc', 'c44_bcc', 'c44_sc']",-249.4378565938093,342.35944214098294
+809,"['bulk_modulus_bcc', 'c11_sc', 'cohesive_energy_fcc']",-249.55715634111573,314.42831219380037
+980,"['bulk_modulus_fcc', 'c44_sc', 'cohesive_energy_fcc']",-249.64560322074502,302.9179582891995
+1328,"['c11_sc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-249.6656632208707,322.1684934488251
+343,"['lattice_constant_bcc', 'c11_sc', 'c12_bcc']",-249.67230299613496,316.236025740807
+1261,"['c11_fcc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-249.71434481324,313.4852518118396
+284,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-249.72684077284273,372.24799861345093
+386,"['lattice_constant_bcc', 'c44_bcc', 'c44_sc']",-249.76912209979517,351.3952142370473
+264,"['lattice_constant_bcc', 'lattice_constant_sc', 'surface_energy_100_fcc']",-250.03764454440469,346.48396232936074
+350,"['lattice_constant_bcc', 'c11_sc', 'thermal_expansion_coeff_fcc']",-250.0868576100895,331.1397540798309
+1226,"['c11_fcc', 'c12_fcc', 'surface_energy_100_fcc']",-250.1664457860991,287.55734066788096
+1363,"['c12_bcc', 'c44_bcc', 'thermal_expansion_coeff_fcc']",-250.1923136312044,351.6632271826974
+142,"['c11_fcc', 'c12_fcc']",-250.26459950634495,278.59670298467006
+1354,"['c12_bcc', 'c12_sc', 'cohesive_energy_fcc']",-250.26675784356584,298.7746167477083
+1227,"['c11_fcc', 'c12_fcc', 'extr_stack_fault_energy_fcc']",-250.42627690209457,290.6985810581059
+1224,"['c11_fcc', 'c12_fcc', 'cohesive_energy_fcc']",-250.6118973618089,277.3861904961962
+246,"['lattice_constant_bcc', 'lattice_constant_fcc', 'surface_energy_100_fcc']",-250.77002540311673,340.34122805740003
+1109,"['c11_bcc', 'c11_fcc', 'c12_sc']",-250.94946838449914,284.0859279573835
+352,"['lattice_constant_bcc', 'c11_sc', 'extr_stack_fault_energy_fcc']",-250.9893275935269,332.7110977672107
+415,"['lattice_constant_bcc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-251.04075182229587,361.9850823848628
+67,"['lattice_constant_sc', 'c12_fcc']",-251.04309447043414,313.9783520288271
+1064,"['bulk_modulus_sc', 'c12_sc', 'cohesive_energy_fcc']",-251.32575066624034,281.8652225832607
+767,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'c44_bcc']",-251.420750333742,325.801205819977
+325,"['lattice_constant_bcc', 'c11_bcc', 'thermal_expansion_coeff_fcc']",-251.4629975389791,330.5243108419024
+852,"['bulk_modulus_bcc', 'c44_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-251.91622186752377,352.45040017880336
+1125,"['c11_bcc', 'c11_sc', 'cohesive_energy_fcc']",-251.9831342847489,308.64074366656513
+376,"['lattice_constant_bcc', 'c12_sc', 'c44_bcc']",-251.9883549294269,333.0738331130073
+1442,"['c12_sc', 'c44_bcc', 'c44_sc']",-252.05541866030893,343.80378859429857
+28,"['lattice_constant_bcc', 'c11_sc']",-252.12072330901523,310.0843606230891
+910,"['bulk_modulus_fcc', 'c11_fcc', 'c11_sc']",-252.13673026451073,274.8386403029532
+532,"['lattice_constant_fcc', 'c12_bcc', 'thermal_expansion_coeff_fcc']",-252.14759306056496,333.2319792651166
+710,"['lattice_constant_sc', 'c44_bcc', 'c44_sc']",-252.16450999741264,355.23952793884683
+1152,"['c11_bcc', 'c12_sc', 'c44_bcc']",-252.16760647412423,306.39685374469695
+1396,"['c12_fcc', 'c12_sc', 'c44_bcc']",-252.20857633548735,326.19862358915833
+620,"['lattice_constant_sc', 'bulk_modulus_fcc', 'thermal_expansion_coeff_fcc']",-252.41245877520637,322.89620869591596
+1367,"['c12_bcc', 'c44_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-252.42461533894485,350.7408219404817
+37,"['lattice_constant_bcc', 'surface_energy_100_fcc']",-252.61614265154736,348.23390792055153
+925,"['bulk_modulus_fcc', 'c11_sc', 'c12_sc']",-252.6525208519968,296.81449303981583
+867,"['bulk_modulus_bcc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-252.87460076607033,313.520575845775
+916,"['bulk_modulus_fcc', 'c11_fcc', 'c44_sc']",-252.89840649205357,297.5235438948028
+1264,"['c11_fcc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-253.25223500327706,303.74410756196227
+282,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'extr_stack_fault_energy_fcc']",-253.37651107080842,350.2198822219391
+180,"['c12_fcc', 'cohesive_energy_fcc']",-253.3869272605807,280.3661483041752
+868,"['bulk_modulus_bcc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-253.4301493400434,338.0835882976345
+1092,"['bulk_modulus_sc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-253.43291764227558,333.6427480886716
+693,"['lattice_constant_sc', 'c12_fcc', 'c44_sc']",-253.45530157572188,327.073550776253
+1545,"['cohesive_energy_fcc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-253.48410934690727,343.9274735439173
+797,"['bulk_modulus_bcc', 'c11_fcc', 'cohesive_energy_fcc']",-253.5212925917031,310.28978831925343
+452,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'surface_energy_100_fcc']",-253.52580321219227,304.1988747851811
+1383,"['c12_bcc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-253.74296964802056,341.4590345999926
+1541,"['cohesive_energy_fcc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-253.94292224977514,329.8175983554121
+988,"['bulk_modulus_fcc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-253.95598113184238,319.8309690675045
+56,"['lattice_constant_fcc', 'surface_energy_100_fcc']",-254.05008315356315,311.6872676366889
+904,"['bulk_modulus_fcc', 'c11_bcc', 'cohesive_energy_fcc']",-254.24387508609922,317.4888059724299
+931,"['bulk_modulus_fcc', 'c11_sc', 'surface_energy_100_fcc']",-254.32557436740353,303.78609779298637
+488,"['lattice_constant_fcc', 'c11_bcc', 'c11_sc']",-254.3480294006054,290.1333537790641
+496,"['lattice_constant_fcc', 'c11_bcc', 'thermal_expansion_coeff_fcc']",-254.42065369262403,332.44558246442426
+365,"['lattice_constant_bcc', 'c12_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-254.44713609479942,356.3817245007746
+1528,"['c44_sc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-254.74546908719853,346.5699480376481
+806,"['bulk_modulus_bcc', 'c11_sc', 'c44_bcc']",-254.83827464181016,329.01283242868044
+1232,"['c11_fcc', 'c12_sc', 'c44_sc']",-254.8698515433323,277.00509511371115
+362,"['lattice_constant_bcc', 'c12_bcc', 'surface_energy_100_fcc']",-255.0228659992441,336.1015601208642
+402,"['lattice_constant_bcc', 'c44_sc', 'surface_energy_100_fcc']",-255.11973796690123,378.5520000796087
+1463,"['c12_sc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-255.12370158067313,312.752788367743
+583,"['lattice_constant_fcc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-255.16038341195522,349.6807551305303
+990,"['bulk_modulus_fcc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-255.2555849673426,322.4097014113032
+1176,"['c11_bcc', 'c44_sc', 'cohesive_energy_fcc']",-255.31974501925313,314.17014244703296
+793,"['bulk_modulus_bcc', 'c11_fcc', 'c12_sc']",-255.33057282196333,279.6549576834629
+1210,"['c11_fcc', 'c12_bcc', 'c12_sc']",-255.48133567143435,280.59890197981235
+1031,"['bulk_modulus_sc', 'c11_sc', 'c44_bcc']",-255.66376964356763,328.91628660049884
+987,"['bulk_modulus_fcc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-255.6778972982266,319.0407184226392
+687,"['lattice_constant_sc', 'c12_bcc', 'extr_stack_fault_energy_fcc']",-255.67838578355403,354.5314648980947
+1280,"['c11_sc', 'c12_bcc', 'cohesive_energy_fcc']",-255.71863328059365,317.8921249036686
+1116,"['c11_bcc', 'c11_fcc', 'extr_stack_fault_energy_fcc']",-255.72296678607253,321.63877086542806
+574,"['lattice_constant_fcc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-255.739696473221,371.244173893333
+421,"['lattice_constant_fcc', 'lattice_constant_sc', 'bulk_modulus_bcc']",-255.83161141361168,307.23828661711565
+1155,"['c11_bcc', 'c12_sc', 'cohesive_energy_fcc']",-255.93663704723443,295.41803988584405
+586,"['lattice_constant_fcc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-256.007566360075,349.3279611357176
+483,"['lattice_constant_fcc', 'bulk_modulus_sc', 'surface_energy_100_fcc']",-256.1122046265747,329.21874517078226
+1017,"['bulk_modulus_sc', 'c11_fcc', 'c12_fcc']",-256.26233225070655,276.5375635437187
+846,"['bulk_modulus_bcc', 'c44_bcc', 'c44_sc']",-256.4791542630266,350.81900202405353
+55,"['lattice_constant_fcc', 'thermal_expansion_coeff_fcc']",-256.6350354373539,344.1172436727076
+572,"['lattice_constant_fcc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-256.6915911575689,343.2947045855329
+361,"['lattice_constant_bcc', 'c12_bcc', 'thermal_expansion_coeff_fcc']",-256.77726226837933,352.15288514178616
+424,"['lattice_constant_fcc', 'lattice_constant_sc', 'c11_bcc']",-256.8272018425688,303.5055447706367
+1,['lattice_constant_fcc'],-256.8367349837851,313.2167294291644
+1330,"['c11_sc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-256.85004787321236,314.8526474127211
+547,"['lattice_constant_fcc', 'c12_sc', 'c44_bcc']",-257.0417534534021,306.67762530808346
+681,"['lattice_constant_sc', 'c12_bcc', 'c44_bcc']",-257.0741124972182,313.6928076319885
+403,"['lattice_constant_bcc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-257.20585563889307,371.78513159447573
+250,"['lattice_constant_bcc', 'lattice_constant_sc', 'bulk_modulus_bcc']",-257.273510144513,350.9527778544618
+435,"['lattice_constant_fcc', 'lattice_constant_sc', 'surface_energy_100_fcc']",-257.3101004129255,308.26981860348627
+606,"['lattice_constant_sc', 'bulk_modulus_bcc', 'extr_stack_fault_energy_fcc']",-257.3559785128257,358.1259362348404
+1435,"['c12_fcc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-257.50142460924434,355.9910731805002
+102,"['bulk_modulus_fcc', 'c44_bcc']",-257.88253273336306,325.0543204652008
+451,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'thermal_expansion_coeff_fcc']",-257.9534456703697,328.4082127582249
+41,"['lattice_constant_fcc', 'lattice_constant_sc']",-258.0936919090332,312.9869996661671
+896,"['bulk_modulus_fcc', 'c11_bcc', 'c11_fcc']",-258.15588380528214,288.30835647767884
+23,"['lattice_constant_bcc', 'bulk_modulus_bcc']",-258.2097579005759,333.7103834375179
+280,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'thermal_expansion_coeff_fcc']",-258.266944514356,348.59457015076276
+1260,"['c11_fcc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-258.27505150777347,322.5267818525393
+912,"['bulk_modulus_fcc', 'c11_fcc', 'c12_fcc']",-258.3101961616639,276.78097641558253
+1262,"['c11_fcc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-258.3648137280016,320.3851391757102
+932,"['bulk_modulus_fcc', 'c11_sc', 'extr_stack_fault_energy_fcc']",-258.5005460174289,327.6719498308002
+427,"['lattice_constant_fcc', 'lattice_constant_sc', 'c12_bcc']",-258.5020153006641,301.9973620016197
+26,"['lattice_constant_bcc', 'c11_bcc']",-258.5513198681609,312.45648634587246
+1208,"['c11_fcc', 'c11_sc', 'unstable_stack_energy_slip_fraction_fcc']",-258.6268987417922,316.13209344308507
+455,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-258.83847917757345,356.6870317290212
+1042,"['bulk_modulus_sc', 'c12_bcc', 'c44_bcc']",-258.85740217172474,342.14283204913846
+1406,"['c12_fcc', 'c44_bcc', 'c44_sc']",-259.02786474504967,353.31064384421205
+830,"['bulk_modulus_bcc', 'c12_fcc', 'cohesive_energy_fcc']",-259.0998115875601,304.2610605867257
+134,"['c11_bcc', 'cohesive_energy_fcc']",-259.4006895129061,327.32946485656214
+105,"['bulk_modulus_fcc', 'cohesive_energy_fcc']",-259.4597897790983,310.81461953829444
+1238,"['c11_fcc', 'c12_sc', 'unstable_stack_energy_slip_fraction_fcc']",-259.5087278889949,273.92561016995955
+1034,"['bulk_modulus_sc', 'c11_sc', 'cohesive_energy_fcc']",-259.545513111893,298.37924880777024
+519,"['lattice_constant_fcc', 'c11_sc', 'c44_sc']",-259.57454457296785,304.20577212093787
+860,"['bulk_modulus_bcc', 'c44_sc', 'cohesive_energy_fcc']",-259.58206806023156,325.14024026008144
+1214,"['c11_fcc', 'c12_bcc', 'cohesive_energy_fcc']",-259.6540662786418,318.05227109875176
+1345,"['c12_bcc', 'c12_fcc', 'cohesive_energy_fcc']",-259.68973077202946,308.88917077807685
+156,"['c11_sc', 'c44_bcc']",-259.77497212094147,335.41552012978946
+886,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'c12_sc']",-259.87117923143427,296.58833093197256
+1015,"['bulk_modulus_sc', 'c11_fcc', 'c11_sc']",-259.87521169004714,283.7495708641742
+913,"['bulk_modulus_fcc', 'c11_fcc', 'c12_sc']",-259.9576832256595,272.59090232865987
+950,"['bulk_modulus_fcc', 'c12_fcc', 'cohesive_energy_fcc']",-260.0614095191877,288.42445345649446
+1209,"['c11_fcc', 'c12_bcc', 'c12_fcc']",-260.10130120706503,285.99651345564706
+1530,"['c44_sc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-260.1373714191463,319.10514034860404
+97,"['bulk_modulus_fcc', 'c11_fcc']",-260.2750667446695,285.0032001632138
+1292,"['c11_sc', 'c12_fcc', 'surface_energy_100_fcc']",-260.34218783482424,302.63574441314194
+323,"['lattice_constant_bcc', 'c11_bcc', 'c44_sc']",-260.3602437954426,337.0069398828652
+1055,"['bulk_modulus_sc', 'c12_fcc', 'cohesive_energy_fcc']",-260.36029145870583,312.0323225099065
+235,"['lattice_constant_bcc', 'lattice_constant_fcc', 'c11_bcc']",-260.37234076513187,318.44064187533087
+1437,"['c12_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-260.5119988667264,331.2560331044888
+1277,"['c11_sc', 'c12_bcc', 'c44_bcc']",-260.79205382123723,333.5008740869879
+443,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'c11_sc']",-260.8460433753414,287.80508070163626
+918,"['bulk_modulus_fcc', 'c11_fcc', 'thermal_expansion_coeff_fcc']",-260.8956073730982,321.2038034542393
+959,"['bulk_modulus_fcc', 'c12_sc', 'cohesive_energy_fcc']",-261.1242929461852,288.454906966727
+735,"['lattice_constant_sc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-261.1319709161837,349.93374409745337
+1217,"['c11_fcc', 'c12_bcc', 'extr_stack_fault_energy_fcc']",-261.1401566217498,345.9986755329088
+920,"['bulk_modulus_fcc', 'c11_fcc', 'extr_stack_fault_energy_fcc']",-261.2701771557581,312.2634253438421
+1273,"['c11_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-261.3725550591554,320.08752250273704
+700,"['lattice_constant_sc', 'c12_sc', 'c44_bcc']",-262.0902349105397,319.95830403510075
+1466,"['c12_sc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-262.2247777845274,290.57666751464853
+533,"['lattice_constant_fcc', 'c12_bcc', 'surface_energy_100_fcc']",-262.25103368236927,313.2318158456923
+781,"['bulk_modulus_bcc', 'c11_bcc', 'c44_bcc']",-262.30324728853645,322.43056171835286
+419,"['lattice_constant_bcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-262.3221605901907,345.00972365978146
+484,"['lattice_constant_fcc', 'bulk_modulus_sc', 'extr_stack_fault_energy_fcc']",-262.3712257483129,359.68358846982227
+514,"['lattice_constant_fcc', 'c11_sc', 'c12_bcc']",-262.38006199662567,279.90885265370935
+131,"['c11_bcc', 'c44_bcc']",-262.47888539000974,316.26398068632835
+588,"['lattice_constant_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-262.6546827196848,334.3468966693869
+89,"['bulk_modulus_bcc', 'cohesive_energy_fcc']",-262.6578195564937,327.0342121234157
+186,"['c12_sc', 'c44_bcc']",-262.68267189668444,346.1214159253303
+497,"['lattice_constant_fcc', 'c11_bcc', 'surface_energy_100_fcc']",-262.78711050242464,294.101143524755
+117,"['bulk_modulus_sc', 'c44_bcc']",-262.823965091209,349.48671386709276
+69,"['lattice_constant_sc', 'c44_bcc']",-262.8581535477835,311.48974479687234
+907,"['bulk_modulus_fcc', 'c11_bcc', 'extr_stack_fault_energy_fcc']",-262.9694154016049,330.8289776833098
+256,"['lattice_constant_bcc', 'lattice_constant_sc', 'c12_bcc']",-262.98190822792446,350.0501916233534
+345,"['lattice_constant_bcc', 'c11_sc', 'c12_sc']",-263.03153412970147,314.71173176224846
+1022,"['bulk_modulus_sc', 'c11_fcc', 'cohesive_energy_fcc']",-263.141438034896,325.4148065607499
+986,"['bulk_modulus_fcc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-263.2153869334737,328.08445022889083
+1206,"['c11_fcc', 'c11_sc', 'extr_stack_fault_energy_fcc']",-263.42273217008926,321.5891565175254
+573,"['lattice_constant_fcc', 'c44_sc', 'surface_energy_100_fcc']",-263.53912599403014,376.22439165060194
+999,"['bulk_modulus_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-263.59563213633965,334.9651147168102
+866,"['bulk_modulus_bcc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-263.6689848779283,347.0556528827281
+676,"['lattice_constant_sc', 'c11_sc', 'extr_stack_fault_energy_fcc']",-263.8823670625145,349.975884593404
+1382,"['c12_bcc', 'cohesive_energy_fcc', 'surface_energy_100_fcc']",-263.8858165423725,327.51099618655934
+1236,"['c11_fcc', 'c12_sc', 'extr_stack_fault_energy_fcc']",-263.97286270244064,306.628185591243
+261,"['lattice_constant_bcc', 'lattice_constant_sc', 'c44_sc']",-264.1399277077758,381.41592946229264
+1323,"['c11_sc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-264.4551884415982,357.5999075483691
+551,"['lattice_constant_fcc', 'c12_sc', 'thermal_expansion_coeff_fcc']",-264.6535781364602,361.669525087316
+800,"['bulk_modulus_bcc', 'c11_fcc', 'extr_stack_fault_energy_fcc']",-264.8555157748346,341.52885713061386
+36,"['lattice_constant_bcc', 'thermal_expansion_coeff_fcc']",-265.26307894851067,362.82974526139907
+726,"['lattice_constant_sc', 'c44_sc', 'surface_energy_100_fcc']",-265.3318475361428,388.4780131256125
+303,"['lattice_constant_bcc', 'bulk_modulus_sc', 'c11_sc']",-265.52580464194693,314.20669576413263
+958,"['bulk_modulus_fcc', 'c12_sc', 'c44_sc']",-265.5334312536958,307.50572695479275
+231,"['lattice_constant_bcc', 'lattice_constant_fcc', 'lattice_constant_sc']",-265.6047433811636,342.32229407571873
+590,"['lattice_constant_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-265.6682581946057,334.4387436519339
+755,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'cohesive_energy_fcc']",-265.7396290881215,328.77218281486216
+1233,"['c11_fcc', 'c12_sc', 'cohesive_energy_fcc']",-265.8501972553239,286.578012371571
+1542,"['cohesive_energy_fcc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-265.86548049773603,329.21326653840674
+650,"['lattice_constant_sc', 'c11_bcc', 'surface_energy_100_fcc']",-265.9799111008121,311.22538811297574
+177,"['c12_fcc', 'c44_bcc']",-265.98153388056903,334.51565102136306
+1051,"['bulk_modulus_sc', 'c12_fcc', 'c12_sc']",-266.02683666474695,311.65121091597274
+1184,"['c11_bcc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-266.1487053448587,325.57393495729974
+1381,"['c12_bcc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-266.1971251654457,354.848413505533
+553,"['lattice_constant_fcc', 'c12_sc', 'extr_stack_fault_energy_fcc']",-266.215319818172,337.8911432418133
+922,"['bulk_modulus_fcc', 'c11_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-266.2681552664178,294.49677726971953
+500,"['lattice_constant_fcc', 'c11_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-266.3642837766707,338.9323413877034
+412,"['lattice_constant_bcc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-266.397876218739,361.69331556321487
+552,"['lattice_constant_fcc', 'c12_sc', 'surface_energy_100_fcc']",-266.54998426448697,319.99139546592943
+1133,"['c11_bcc', 'c12_bcc', 'c44_bcc']",-266.65587116413195,324.27677582515366
+919,"['bulk_modulus_fcc', 'c11_fcc', 'surface_energy_100_fcc']",-266.7635173926702,297.5488054490448
+1182,"['c11_bcc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-266.9109630195543,343.98413453029707
+1485,"['c44_bcc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-267.14029733827357,364.58499210071915
+414,"['lattice_constant_bcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-267.15882298034404,366.67858673576893
+0,['lattice_constant_bcc'],-267.5026173583317,370.8686026662346
+1535,"['c44_sc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-267.5873826358769,401.66888898834793
+585,"['lattice_constant_fcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-267.60997660402336,355.5061619049895
+216,"['cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-267.81456465936355,321.56401714618977
+232,"['lattice_constant_bcc', 'lattice_constant_fcc', 'bulk_modulus_bcc']",-267.83297727049546,339.33146715884845
+313,"['lattice_constant_bcc', 'bulk_modulus_sc', 'extr_stack_fault_energy_fcc']",-267.89309605367913,371.7353587515975
+1549,"['cohesive_energy_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-267.9021847430345,319.87764410533265
+1001,"['bulk_modulus_sc', 'c11_bcc', 'c11_fcc']",-268.0887350397545,318.09866502469714
+252,"['lattice_constant_bcc', 'lattice_constant_sc', 'bulk_modulus_sc']",-268.6040563982932,369.3811643535849
+836,"['bulk_modulus_bcc', 'c12_sc', 'c44_bcc']",-268.64900118771806,342.0430838311966
+15,['cohesive_energy_fcc'],-268.68284781987535,322.94322970663535
+1286,"['c11_sc', 'c12_fcc', 'c12_sc']",-268.76233713985414,308.1901590892743
+381,"['lattice_constant_bcc', 'c12_sc', 'surface_energy_100_fcc']",-268.78928256057463,340.0276595367205
+1375,"['c12_bcc', 'c44_sc', 'cohesive_energy_fcc']",-268.84684009210997,328.5494842537292
+329,"['lattice_constant_bcc', 'c11_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-268.8777783183658,347.7881204500781
+605,"['lattice_constant_sc', 'bulk_modulus_bcc', 'surface_energy_100_fcc']",-268.9384108033034,325.57528165952294
+100,"['bulk_modulus_fcc', 'c12_fcc']",-268.93851860317636,285.9956922264675
+482,"['lattice_constant_fcc', 'bulk_modulus_sc', 'thermal_expansion_coeff_fcc']",-268.94084965607436,343.86000633683653
+951,"['bulk_modulus_fcc', 'c12_fcc', 'thermal_expansion_coeff_fcc']",-269.04926142881226,334.95260803630237
+924,"['bulk_modulus_fcc', 'c11_sc', 'c12_fcc']",-269.30193971975825,281.28886441088025
+196,"['c44_bcc', 'c44_sc']",-269.32099555632175,357.9886277461893
+143,"['c11_fcc', 'c12_sc']",-269.46499049618257,281.70617266310984
+249,"['lattice_constant_bcc', 'lattice_constant_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-269.53914037046826,350.1434162602733
+962,"['bulk_modulus_fcc', 'c12_sc', 'extr_stack_fault_energy_fcc']",-270.0162350673327,312.9577106332992
+45,"['lattice_constant_fcc', 'c11_bcc']",-270.042706970824,302.8396675233874
+784,"['bulk_modulus_bcc', 'c11_bcc', 'cohesive_energy_fcc']",-270.0492137972173,335.11791889864026
+727,"['lattice_constant_sc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-270.49995437345325,393.9988700205197
+311,"['lattice_constant_bcc', 'bulk_modulus_sc', 'thermal_expansion_coeff_fcc']",-270.6857359084273,354.5403932872755
+40,"['lattice_constant_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-270.76077379252195,360.40542519569715
+1202,"['c11_fcc', 'c11_sc', 'c44_sc']",-270.80962888388746,317.65925712925764
+263,"['lattice_constant_bcc', 'lattice_constant_sc', 'thermal_expansion_coeff_fcc']",-270.88573874373463,374.77822626799366
+234,"['lattice_constant_bcc', 'lattice_constant_fcc', 'bulk_modulus_sc']",-270.9402334462847,363.02804191696924
+380,"['lattice_constant_bcc', 'c12_sc', 'thermal_expansion_coeff_fcc']",-270.9488908231751,382.5269018601813
+890,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'cohesive_energy_fcc']",-271.00253158169505,343.91944046291843
+170,"['c12_bcc', 'cohesive_energy_fcc']",-271.0158886657906,324.70107320113317
+1149,"['c11_bcc', 'c12_fcc', 'extr_stack_fault_energy_fcc']",-271.1771967151072,332.1696321470791
+1216,"['c11_fcc', 'c12_bcc', 'surface_energy_100_fcc']",-271.276816532846,323.0872104950467
+741,"['lattice_constant_sc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-271.34463752969896,349.0186979396924
+995,"['bulk_modulus_fcc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-271.43879320170885,369.99641125257097
+243,"['lattice_constant_bcc', 'lattice_constant_fcc', 'c44_sc']",-271.5298299961642,371.71532059016516
+1128,"['c11_bcc', 'c11_sc', 'extr_stack_fault_energy_fcc']",-271.58431872796234,354.06164846304165
+1547,"['cohesive_energy_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-271.6023796009664,339.5798631721459
+57,"['lattice_constant_fcc', 'extr_stack_fault_energy_fcc']",-271.6133477752837,339.8518498616994
+86,"['bulk_modulus_bcc', 'c44_bcc']",-271.7932266457116,337.17387445177667
+1283,"['c11_sc', 'c12_bcc', 'extr_stack_fault_energy_fcc']",-271.9044110381296,365.35044772965597
+739,"['lattice_constant_sc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-271.9668384045683,358.6172938896803
+21,"['lattice_constant_bcc', 'lattice_constant_fcc']",-272.0235388519044,355.8752955118273
+1462,"['c12_sc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-272.027480069587,308.88073735347825
+1256,"['c11_fcc', 'c44_sc', 'surface_energy_100_fcc']",-272.10640124761784,362.5046139842845
+940,"['bulk_modulus_fcc', 'c12_bcc', 'cohesive_energy_fcc']",-272.2093741469052,333.4707482242558
+436,"['lattice_constant_fcc', 'lattice_constant_sc', 'extr_stack_fault_energy_fcc']",-272.3874038440352,351.16017964025934
+964,"['bulk_modulus_fcc', 'c12_sc', 'unstable_stack_energy_slip_fraction_fcc']",-272.39814511456416,275.4266299866038
+1385,"['c12_bcc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-272.4380782613097,350.07240792383
+1204,"['c11_fcc', 'c11_sc', 'thermal_expansion_coeff_fcc']",-272.61911061768063,320.1277316015407
+74,"['lattice_constant_sc', 'surface_energy_100_fcc']",-272.70657209190176,332.6621321530426
+799,"['bulk_modulus_bcc', 'c11_fcc', 'surface_energy_100_fcc']",-272.7431947228619,308.0177242963435
+636,"['lattice_constant_sc', 'bulk_modulus_sc', 'surface_energy_100_fcc']",-272.7904759678606,349.30803106375987
+42,"['lattice_constant_fcc', 'bulk_modulus_bcc']",-272.9290003229383,307.95965526296754
+674,"['lattice_constant_sc', 'c11_sc', 'thermal_expansion_coeff_fcc']",-272.9471577130167,339.08219970394623
+238,"['lattice_constant_bcc', 'lattice_constant_fcc', 'c12_bcc']",-272.9521518383834,337.2031763997311
+1091,"['bulk_modulus_sc', 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc']",-272.98234496313404,356.23453583055317
+1361,"['c12_bcc', 'c44_bcc', 'c44_sc']",-272.9835381967154,367.62268781382437
+758,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'extr_stack_fault_energy_fcc']",-272.99125587835204,362.1083997625125
+382,"['lattice_constant_bcc', 'c12_sc', 'extr_stack_fault_energy_fcc']",-273.0549957968888,359.0929777959002
+1402,"['c12_fcc', 'c12_sc', 'extr_stack_fault_energy_fcc']",-273.08412208008673,330.4086720357066
+943,"['bulk_modulus_fcc', 'c12_bcc', 'extr_stack_fault_energy_fcc']",-273.22397474153115,367.54735539489025
+1439,"['c12_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-273.4934644562845,355.0724421010635
+1544,"['cohesive_energy_fcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-273.6086968833226,327.69077065732415
+423,"['lattice_constant_fcc', 'lattice_constant_sc', 'bulk_modulus_sc']",-273.617536610265,337.2069126882432
+270,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'c11_bcc']",-273.7304596881695,313.4669411525538
+1178,"['c11_bcc', 'c44_sc', 'surface_energy_100_fcc']",-273.8079146609942,356.3494856786679
+817,"['bulk_modulus_bcc', 'c12_bcc', 'c44_bcc']",-273.83332190039016,337.28933903591593
+870,"['bulk_modulus_bcc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-273.9541656222611,350.44164292902855
+278,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'c44_sc']",-273.9563756095005,356.5696492817255
+953,"['bulk_modulus_fcc', 'c12_fcc', 'extr_stack_fault_energy_fcc']",-273.9900725420746,332.67190191691043
+747,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'c11_fcc']",-274.14199865731763,292.2282003417613
+1191,"['c11_bcc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-274.24218045871066,338.83458800158394
+955,"['bulk_modulus_fcc', 'c12_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-274.28538974979534,315.9982550270386
+401,"['lattice_constant_bcc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-274.2965379795567,362.10665945187094
+198,"['c44_bcc', 'thermal_expansion_coeff_fcc']",-274.59309952175505,352.8308877259939
+1186,"['c11_bcc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-274.83155082532306,338.94806656854286
+267,"['lattice_constant_bcc', 'lattice_constant_sc', 'unstable_stack_energy_slip_fraction_fcc']",-274.99900934387097,367.9951386307303
+1348,"['c12_bcc', 'c12_fcc', 'extr_stack_fault_energy_fcc']",-275.01079629504216,368.21597498580917
+306,"['lattice_constant_bcc', 'bulk_modulus_sc', 'c12_sc']",-275.0538750632684,318.8061628742237
+1301,"['c11_sc', 'c12_sc', 'surface_energy_100_fcc']",-275.12251788614634,316.97481985665576
+527,"['lattice_constant_fcc', 'c12_bcc', 'c12_sc']",-275.26987438245277,305.13235814285986
+432,"['lattice_constant_fcc', 'lattice_constant_sc', 'c44_sc']",-275.38505107609296,364.4059300131644
+685,"['lattice_constant_sc', 'c12_bcc', 'thermal_expansion_coeff_fcc']",-275.44135799022723,351.8174009675363
+438,"['lattice_constant_fcc', 'lattice_constant_sc', 'unstable_stack_energy_slip_fraction_fcc']",-275.55948828349534,352.6706098187859
+475,"['lattice_constant_fcc', 'bulk_modulus_sc', 'c12_bcc']",-275.6514939591664,324.3370071820356
+911,"['bulk_modulus_fcc', 'c11_fcc', 'c12_bcc']",-275.7848845670068,293.4987206673395
+812,"['bulk_modulus_bcc', 'c11_sc', 'extr_stack_fault_energy_fcc']",-275.8195008385449,368.7948591190683
+1115,"['c11_bcc', 'c11_fcc', 'surface_energy_100_fcc']",-275.85532284360147,290.48439738344103
+882,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'c11_fcc']",-275.92188961805545,301.13047626207964
+1337,"['c11_sc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-276.1088404665781,344.99800175499894
+883,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'c11_sc']",-276.23904940277066,310.82148333112144
+247,"['lattice_constant_bcc', 'lattice_constant_fcc', 'extr_stack_fault_energy_fcc']",-276.442758952324,349.7576834454016
+150,"['c11_fcc', 'extr_stack_fault_energy_fcc']",-276.6490214188898,343.52179197908384
+22,"['lattice_constant_bcc', 'lattice_constant_sc']",-276.66508717793846,369.6743802624859
+301,"['lattice_constant_bcc', 'bulk_modulus_sc', 'c11_bcc']",-276.75720437468715,332.59821516730585
+304,"['lattice_constant_bcc', 'bulk_modulus_sc', 'c12_bcc']",-276.77068043171164,346.61993810602183
+1386,"['c12_bcc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-276.89585389051047,363.8185104004637
+934,"['bulk_modulus_fcc', 'c11_sc', 'unstable_stack_energy_slip_fraction_fcc']",-277.2860521321326,338.87786094275646
+833,"['bulk_modulus_bcc', 'c12_fcc', 'extr_stack_fault_energy_fcc']",-277.37839748755846,361.76740603731395
+1458,"['c12_sc', 'c44_sc', 'surface_energy_100_fcc']",-277.43460842346394,357.68941667824095
+1351,"['c12_bcc', 'c12_sc', 'c44_bcc']",-277.4392335537941,348.4588389348965
+1257,"['c11_fcc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-277.525234682086,340.38018054635376
+1537,"['c44_sc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-277.54337991519014,393.4720867538388
+946,"['bulk_modulus_fcc', 'c12_fcc', 'c12_sc']",-277.5938398835921,279.9328526944225
+686,"['lattice_constant_sc', 'c12_bcc', 'surface_energy_100_fcc']",-277.6426997927481,327.6877282447326
+1205,"['c11_fcc', 'c11_sc', 'surface_energy_100_fcc']",-277.6908900233143,310.92312405203023
+875,"['bulk_modulus_bcc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-277.7696256558977,362.79836693356987
+899,"['bulk_modulus_fcc', 'c11_bcc', 'c12_fcc']",-277.82967324604414,294.88327376233474
+265,"['lattice_constant_bcc', 'lattice_constant_sc', 'extr_stack_fault_energy_fcc']",-277.9542983602084,368.30283371881467
+820,"['bulk_modulus_bcc', 'c12_bcc', 'cohesive_energy_fcc']",-277.9737369979142,333.1786225252404
+1148,"['c11_bcc', 'c12_fcc', 'surface_energy_100_fcc']",-278.00041368264885,300.45569900934805
+356,"['lattice_constant_bcc', 'c12_bcc', 'c12_sc']",-278.1113673313943,340.137399641939
+29,"['lattice_constant_bcc', 'c12_bcc']",-278.1550019083906,347.50903589470084
+705,"['lattice_constant_sc', 'c12_sc', 'surface_energy_100_fcc']",-278.1787970630631,324.72539191115123
+38,"['lattice_constant_bcc', 'extr_stack_fault_energy_fcc']",-278.2103364721721,361.0781449377549
+1266,"['c11_fcc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-278.55729344056937,357.08214163725074
+34,"['lattice_constant_bcc', 'c44_sc']",-278.5916824643211,378.8792560476015
+770,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'cohesive_energy_fcc']",-278.7165572682882,345.1778774613432
+736,"['lattice_constant_sc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-278.71955600799544,377.5064497664149
+1009,"['bulk_modulus_sc', 'c11_bcc', 'cohesive_energy_fcc']",-278.7509053780468,335.3016318025453
+576,"['lattice_constant_fcc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-278.90280846449815,368.2289089733057
+750,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'c12_fcc']",-279.0434809943511,290.247411909637
+269,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'bulk_modulus_sc']",-279.08305576907804,346.56450960518936
+949,"['bulk_modulus_fcc', 'c12_fcc', 'c44_sc']",-279.19001990002397,328.47991483508997
+275,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'c12_sc']",-279.2318465526228,344.61597925071595
+1431,"['c12_fcc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-279.2673445851362,362.1999201684261
+1215,"['c11_fcc', 'c12_bcc', 'thermal_expansion_coeff_fcc']",-279.36125545081836,342.46786698292834
+440,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'bulk_modulus_sc']",-279.42471494683406,325.9983851077322
+1025,"['bulk_modulus_sc', 'c11_fcc', 'extr_stack_fault_energy_fcc']",-279.47013507643493,370.52026838735577
+446,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'c12_sc']",-279.5140379973941,301.8595828986563
+486,"['lattice_constant_fcc', 'bulk_modulus_sc', 'unstable_stack_energy_slip_fraction_fcc']",-279.5335021174846,356.20206151853284
+1271,"['c11_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-279.6075658228458,321.7646413039293
+743,"['lattice_constant_sc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-279.76283362331446,356.6194548927397
+1467,"['c12_sc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-279.80476090569067,343.1752418755146
+59,"['lattice_constant_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-280.0304042503515,345.16158586997886
+273,"['lattice_constant_bcc', 'bulk_modulus_bcc', 'c12_bcc']",-280.28070025189703,337.1278890391438
+378,"['lattice_constant_bcc', 'c12_sc', 'c44_sc']",-280.5290658416534,360.5214624079571
+1335,"['c11_sc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-280.5543755528192,363.8867874469949
+678,"['lattice_constant_sc', 'c11_sc', 'unstable_stack_energy_slip_fraction_fcc']",-280.68286224174466,337.2007331398113
+315,"['lattice_constant_bcc', 'bulk_modulus_sc', 'unstable_stack_energy_slip_fraction_fcc']",-280.79862975444564,367.5694578851566
+405,"['lattice_constant_bcc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-280.80810404929963,376.3393501608796
+1339,"['c11_sc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-280.93223080284923,353.27942337572347
+477,"['lattice_constant_fcc', 'bulk_modulus_sc', 'c12_sc']",-280.98222131947153,283.0134869972562
+494,"['lattice_constant_fcc', 'c11_bcc', 'c44_sc']",-281.0764335390895,328.6863067443777
+1378,"['c12_bcc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-281.14793979895154,410.4172489603134
+48,"['lattice_constant_fcc', 'c12_bcc']",-281.17055079714,310.53265615886033
+1473,"['c12_sc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-281.25905263927046,340.2857999644122
+1269,"['c11_fcc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-281.67359897817346,361.3233402530823
+1295,"['c11_sc', 'c12_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-281.67625414803973,337.79693565821725
+25,"['lattice_constant_bcc', 'bulk_modulus_sc']",-281.7115680135794,359.5863382437065
+101,"['bulk_modulus_fcc', 'c12_sc']",-281.7343900918059,297.92382582012067
+928,"['bulk_modulus_fcc', 'c11_sc', 'c44_sc']",-281.88507951244344,326.73033780932946
+183,"['c12_fcc', 'extr_stack_fault_energy_fcc']",-281.8902875383278,367.01958063392027
+1066,"['bulk_modulus_sc', 'c12_sc', 'surface_energy_100_fcc']",-281.9311694928786,319.0253242545747
+1471,"['c12_sc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-281.9507000424126,345.89773702335157
+863,"['bulk_modulus_bcc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-281.9966672888769,416.4854639254386
+218,"['cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-282.0546446029661,342.0865580135367
+384,"['lattice_constant_bcc', 'c12_sc', 'unstable_stack_energy_slip_fraction_fcc']",-282.2335890253205,370.3134604866039
+220,"['cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-282.30179465086496,330.5439774738367
+189,"['c12_sc', 'cohesive_energy_fcc']",-282.43765059668834,307.19954450683076
+240,"['lattice_constant_bcc', 'lattice_constant_fcc', 'c12_sc']",-282.49919473743273,345.21892231478137
+790,"['bulk_modulus_bcc', 'c11_fcc', 'c11_sc']",-282.5079675309942,313.9775228948273
+1012,"['bulk_modulus_sc', 'c11_bcc', 'extr_stack_fault_energy_fcc']",-282.6585217093846,375.2984868232803
+832,"['bulk_modulus_bcc', 'c12_fcc', 'surface_energy_100_fcc']",-282.9181303196457,304.6598755375041
+842,"['bulk_modulus_bcc', 'c12_sc', 'extr_stack_fault_energy_fcc']",-283.10728334211996,402.1407672385051
+1157,"['c11_bcc', 'c12_sc', 'surface_energy_100_fcc']",-283.19733537172596,321.4916928309518
+706,"['lattice_constant_sc', 'c12_sc', 'extr_stack_fault_energy_fcc']",-283.3146384141133,358.489697336957
+952,"['bulk_modulus_fcc', 'c12_fcc', 'surface_energy_100_fcc']",-283.35948402379756,303.6749397874209
+441,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'c11_bcc']",-283.395932295436,296.687452683282
+1356,"['c12_bcc', 'c12_sc', 'surface_energy_100_fcc']",-283.4226032631517,346.1648645530445
+1235,"['c11_fcc', 'c12_sc', 'surface_energy_100_fcc']",-283.48037317095554,303.29451084356316
+862,"['bulk_modulus_bcc', 'c44_sc', 'surface_energy_100_fcc']",-283.48934149858985,377.75633873267407
+31,"['lattice_constant_bcc', 'c12_sc']",-283.57811465211034,356.0639713372974
+900,"['bulk_modulus_fcc', 'c11_bcc', 'c12_sc']",-283.6466497922412,312.4977479808895
+1422,"['c12_fcc', 'c44_sc', 'surface_energy_100_fcc']",-283.7774436635616,390.0689384223131
+872,"['bulk_modulus_bcc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-284.0246228579878,404.45069834431433
+1136,"['c11_bcc', 'c12_bcc', 'cohesive_energy_fcc']",-284.1036130679161,339.5002178961342
+871,"['bulk_modulus_bcc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-284.18374310488804,357.20297313206777
+152,"['c11_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-284.45054978282803,320.1724740195847
+1387,"['c12_bcc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-284.45327479076104,395.649501205653
+320,"['lattice_constant_bcc', 'c11_bcc', 'c12_sc']",-284.58831221599075,334.9651792758951
+997,"['bulk_modulus_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-284.7559733733933,342.17038347031456
+1106,"['c11_bcc', 'c11_fcc', 'c11_sc']",-284.7911977405407,308.9932195002493
+1555,"['thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-284.8462284971864,365.92414943603217
+1139,"['c11_bcc', 'c12_bcc', 'extr_stack_fault_energy_fcc']",-284.87378866097174,392.79397821229367
+516,"['lattice_constant_fcc', 'c11_sc', 'c12_sc']",-285.01698693843326,289.82287931184266
+75,"['lattice_constant_sc', 'extr_stack_fault_energy_fcc']",-285.1360622587681,374.1660003905157
+318,"['lattice_constant_bcc', 'c11_bcc', 'c12_bcc']",-285.2049607381429,322.8810554905366
+1036,"['bulk_modulus_sc', 'c11_sc', 'surface_energy_100_fcc']",-285.2769008984424,328.08686322428224
+1045,"['bulk_modulus_sc', 'c12_bcc', 'cohesive_energy_fcc']",-285.4561776590635,349.78585578224744
+1197,"['c11_fcc', 'c11_sc', 'c12_bcc']",-285.5585179204435,312.7348648575098
+773,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'extr_stack_fault_energy_fcc']",-285.62440202745404,400.29215175739006
+1027,"['bulk_modulus_sc', 'c11_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-285.796500702569,352.08098566758633
+1394,"['c12_bcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-286.0191925451889,397.09537432268127
+444,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'c12_bcc']",-286.1771733448264,310.9826816673042
+1404,"['c12_fcc', 'c12_sc', 'unstable_stack_energy_slip_fraction_fcc']",-286.4236840571478,312.59281604454276
+983,"['bulk_modulus_fcc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-286.45957274377037,388.88004498138787
+1464,"['c12_sc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-286.4860524792069,318.1302811822846
+359,"['lattice_constant_bcc', 'c12_bcc', 'c44_sc']",-286.508179534043,356.40688731208394
+751,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'c12_sc']",-286.61861003259975,307.6249520219607
+1048,"['bulk_modulus_sc', 'c12_bcc', 'extr_stack_fault_energy_fcc']",-286.6730720411304,399.44281840888186
+893,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'extr_stack_fault_energy_fcc']",-286.7726304246766,398.94577256627355
+12,['c44_bcc'],-286.7914912874146,350.46540894965676
+982,"['bulk_modulus_fcc', 'c44_sc', 'surface_energy_100_fcc']",-286.9018841466008,397.65852426046905
+108,"['bulk_modulus_fcc', 'extr_stack_fault_energy_fcc']",-287.13914179291316,376.7403305234887
+1357,"['c12_bcc', 'c12_sc', 'extr_stack_fault_energy_fcc']",-287.2038944849525,383.9857953846079
+44,"['lattice_constant_fcc', 'bulk_modulus_sc']",-287.25365154194793,325.0837423702283
+649,"['lattice_constant_sc', 'c11_bcc', 'thermal_expansion_coeff_fcc']",-287.50349810832336,340.9514528327182
+1390,"['c12_bcc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-287.53984489246545,370.95358926948893
+1057,"['bulk_modulus_sc', 'c12_fcc', 'surface_energy_100_fcc']",-287.6078739935444,355.3147822789616
+772,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'surface_energy_100_fcc']",-287.62499104273996,343.16346010383717
+1398,"['c12_fcc', 'c12_sc', 'c44_sc']",-287.6885505131533,345.98879747990526
+841,"['bulk_modulus_bcc', 'c12_sc', 'surface_energy_100_fcc']",-287.74321825139657,343.2442177853317
+935,"['bulk_modulus_fcc', 'c12_bcc', 'c12_fcc']",-287.9029860253876,294.22420665998567
+1377,"['c12_bcc', 'c44_sc', 'surface_energy_100_fcc']",-288.0454895050046,384.5456390871573
+961,"['bulk_modulus_fcc', 'c12_sc', 'surface_energy_100_fcc']",-288.0568855423196,312.1163753234421
+1268,"['c11_fcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-288.11436242040554,347.3891403498105
+1219,"['c11_fcc', 'c12_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-288.28797066386016,331.7885701261816
+140,"['c11_fcc', 'c11_sc']",-288.63860242591204,308.9822338825198
+549,"['lattice_constant_fcc', 'c12_sc', 'c44_sc']",-288.776148832689,325.9809253452568
+1234,"['c11_fcc', 'c12_sc', 'thermal_expansion_coeff_fcc']",-288.8084605202836,314.7684684186321
+1347,"['c12_bcc', 'c12_fcc', 'surface_energy_100_fcc']",-289.1043812216998,315.0068827235597
+1423,"['c12_fcc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-289.3764443520437,400.69790605096426
+689,"['lattice_constant_sc', 'c12_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-289.58167001526516,368.11950403184613
+120,"['bulk_modulus_sc', 'cohesive_energy_fcc']",-289.6391794245935,338.7516262488385
+802,"['bulk_modulus_bcc', 'c11_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-289.6723042096181,334.28824113119157
+112,"['bulk_modulus_sc', 'c11_fcc']",-289.6895826430251,341.83256098649196
+604,"['lattice_constant_sc', 'bulk_modulus_bcc', 'thermal_expansion_coeff_fcc']",-289.7528144670088,357.04153889309794
+309,"['lattice_constant_bcc', 'bulk_modulus_sc', 'c44_sc']",-289.7544843346115,372.9218909924401
+725,"['lattice_constant_sc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-289.9043044855749,368.96138329370575
+173,"['c12_bcc', 'extr_stack_fault_energy_fcc']",-289.9069328540983,411.5909990759582
+1331,"['c11_sc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-289.977617903148,343.7009384022525
+167,"['c12_bcc', 'c44_bcc']",-290.16469802672924,351.84198771853846
+1179,"['c11_bcc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-290.6104670228447,420.8500541320159
+811,"['bulk_modulus_bcc', 'c11_sc', 'surface_energy_100_fcc']",-290.76851638872785,329.6802997908481
+1087,"['bulk_modulus_sc', 'c44_sc', 'surface_energy_100_fcc']",-291.0031979466459,396.94564377249236
+7,['c11_fcc'],-291.1079173071452,308.7918072457058
+1558,"['surface_energy_100_fcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-291.1739795065364,360.6504654668492
+489,"['lattice_constant_fcc', 'c11_bcc', 'c12_bcc']",-291.2832584694048,302.0035223733802
+555,"['lattice_constant_fcc', 'c12_sc', 'unstable_stack_energy_slip_fraction_fcc']",-291.3660816536086,345.56031875504505
+1401,"['c12_fcc', 'c12_sc', 'surface_energy_100_fcc']",-291.39665945220105,320.70221705846825
+823,"['bulk_modulus_bcc', 'c12_bcc', 'extr_stack_fault_energy_fcc']",-291.4213997396326,417.6596203919771
+637,"['lattice_constant_sc', 'bulk_modulus_sc', 'extr_stack_fault_energy_fcc']",-291.5099459021511,385.7993456994402
+474,"['lattice_constant_fcc', 'bulk_modulus_sc', 'c11_sc']",-291.58149961590095,294.2911382811313
+1095,"['bulk_modulus_sc', 'cohesive_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-291.6322528684001,347.87951200495513
+449,"['lattice_constant_fcc', 'bulk_modulus_bcc', 'c44_sc']",-291.77467145674746,342.24021846509333
+942,"['bulk_modulus_fcc', 'c12_bcc', 'surface_energy_100_fcc']",-291.8609816472715,321.813828843149
+258,"['lattice_constant_bcc', 'lattice_constant_sc', 'c12_sc']",-292.38810537064876,367.90493360484004
+1539,"['c44_sc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-292.51294449819153,398.412445892979
+1259,"['c11_fcc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-292.60717858808766,314.9001811262628
+1102,"['bulk_modulus_sc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-292.703340076697,377.1384018483838
+530,"['lattice_constant_fcc', 'c12_bcc', 'c44_sc']",-292.89961763962157,340.7832995480907
+879,"['bulk_modulus_bcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-292.96772364742446,414.51822095156336
+480,"['lattice_constant_fcc', 'bulk_modulus_sc', 'c44_sc']",-293.0768270341737,357.0619666457083
+936,"['bulk_modulus_fcc', 'c12_bcc', 'c12_sc']",-293.31814648815543,309.081254577204
+149,"['c11_fcc', 'surface_energy_100_fcc']",-293.92257821529944,320.9189077172017
+892,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'surface_energy_100_fcc']",-294.3359214865812,371.4043869181947
+1118,"['c11_bcc', 'c11_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-294.67361129830914,327.98880273052356
+1551,"['thermal_expansion_coeff_fcc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-294.9279366273038,383.58350234628904
+1011,"['bulk_modulus_sc', 'c11_bcc', 'surface_energy_100_fcc']",-295.0248580324088,321.3636831323301
+992,"['bulk_modulus_fcc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-295.15341121951934,385.9982262808552
+1325,"['c11_sc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-295.1569892680431,366.1579129449894
+1187,"['c11_bcc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-295.1600324562671,347.46324266410176
+50,"['lattice_constant_fcc', 'c12_sc']",-295.2413367363278,322.5614585112689
+762,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'c11_fcc']",-295.3258089398122,337.5352594896048
+1531,"['c44_sc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-295.62768130973757,407.54512660351674
+787,"['bulk_modulus_bcc', 'c11_bcc', 'extr_stack_fault_energy_fcc']",-295.6303554663976,404.31642967766487
+960,"['bulk_modulus_fcc', 'c12_sc', 'thermal_expansion_coeff_fcc']",-295.74136103456215,340.6397949104361
+1058,"['bulk_modulus_sc', 'c12_fcc', 'extr_stack_fault_energy_fcc']",-296.0840255232579,391.39233699267373
+126,"['c11_bcc', 'c11_fcc']",-296.08685575217817,310.0643542456941
+53,"['lattice_constant_fcc', 'c44_sc']",-296.31704232121695,346.91213413475157
+1213,"['c11_fcc', 'c12_bcc', 'c44_sc']",-296.4841757348688,318.1902845262685
+92,"['bulk_modulus_bcc', 'extr_stack_fault_energy_fcc']",-296.5408720560548,422.4700320953008
+1093,"['bulk_modulus_sc', 'cohesive_energy_fcc', 'extr_stack_fault_energy_fcc']",-297.28267246878175,349.2301240524129
+1432,"['c12_fcc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-297.31437104507415,376.006981738183
+146,"['c11_fcc', 'c44_sc']",-297.48094207326983,310.9164638169911
+906,"['bulk_modulus_fcc', 'c11_bcc', 'surface_energy_100_fcc']",-297.48687192019366,305.6803249609215
+1126,"['c11_bcc', 'c11_sc', 'thermal_expansion_coeff_fcc']",-297.61802800817185,370.5472144832639
+1158,"['c11_bcc', 'c12_sc', 'extr_stack_fault_energy_fcc']",-297.7001481700989,424.2918857560597
+1147,"['c11_bcc', 'c12_fcc', 'thermal_expansion_coeff_fcc']",-297.73757355370066,382.4965948134921
+1114,"['c11_bcc', 'c11_fcc', 'thermal_expansion_coeff_fcc']",-297.7815583078953,348.0502774440517
+704,"['lattice_constant_sc', 'c12_sc', 'thermal_expansion_coeff_fcc']",-298.00111537570444,371.34054527279227
+1023,"['bulk_modulus_sc', 'c11_fcc', 'thermal_expansion_coeff_fcc']",-298.1553874131783,354.91395042864144
+796,"['bulk_modulus_bcc', 'c11_fcc', 'c44_sc']",-298.16448388852837,314.93708760580944
+176,"['c12_fcc', 'c12_sc']",-298.42321778921,328.4883195657882
+1021,"['bulk_modulus_sc', 'c11_fcc', 'c44_sc']",-298.44705730654334,362.3764189751837
+1107,"['c11_bcc', 'c11_fcc', 'c12_bcc']",-298.5869138224207,326.6824917300476
+798,"['bulk_modulus_bcc', 'c11_fcc', 'thermal_expansion_coeff_fcc']",-298.8567719780435,349.6143123248118
+608,"['lattice_constant_sc', 'bulk_modulus_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-299.0498287844442,387.74730782552916
+653,"['lattice_constant_sc', 'c11_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-299.0984363891812,361.32516464951135
+885,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'c12_fcc']",-299.155306284272,320.481942285536
+738,"['lattice_constant_sc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-299.387649766326,379.95744640620313
+141,"['c11_fcc', 'c12_bcc']",-299.38977368639274,320.591541552369
+1112,"['c11_bcc', 'c11_fcc', 'c44_sc']",-299.43263243443016,309.8305496454316
+81,"['bulk_modulus_bcc', 'c11_fcc']",-299.44829064745977,319.19730619070464
+994,"['bulk_modulus_fcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-299.50990053334056,377.0613148263442
+472,"['lattice_constant_fcc', 'bulk_modulus_sc', 'c11_bcc']",-299.5674161790201,331.7281519969466
+1188,"['c11_bcc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-299.7923538346369,392.26619500294055
+429,"['lattice_constant_fcc', 'lattice_constant_sc', 'c12_sc']",-299.84164043824705,324.69450823992395
+491,"['lattice_constant_fcc', 'c11_bcc', 'c12_sc']",-299.86230349625674,308.21564470138196
+757,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'surface_energy_100_fcc']",-299.88044472365533,312.6489205394809
+191,"['c12_sc', 'surface_energy_100_fcc']",-299.92774437345554,343.4007020769536
+1400,"['c12_fcc', 'c12_sc', 'thermal_expansion_coeff_fcc']",-300.2650833764256,353.3006582250069
+1100,"['bulk_modulus_sc', 'surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-300.2761799338435,396.04214543329135
+1016,"['bulk_modulus_sc', 'c11_fcc', 'c12_bcc']",-300.2980317931058,341.13168113328885
+877,"['bulk_modulus_bcc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-300.5321308022873,380.4676191934315
+1298,"['c11_sc', 'c12_sc', 'c44_sc']",-301.0267011283963,365.45938971377046
+1142,"['c11_bcc', 'c12_fcc', 'c12_sc']",-301.2103864206856,321.08118926157675
+182,"['c12_fcc', 'surface_energy_100_fcc']",-301.25086108045025,323.71158318506104
+212,"['c44_sc', 'surface_energy_100_fcc']",-301.43069924240257,399.529537913882
+641,"['lattice_constant_sc', 'c11_bcc', 'c11_sc']",-302.8331870899612,340.12621542345687
+1104,"['bulk_modulus_sc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-303.0104823083611,379.71819242329866
+1332,"['c11_sc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-303.0133448594981,376.96541885490933
+1281,"['c11_sc', 'c12_bcc', 'thermal_expansion_coeff_fcc']",-303.3486361644754,373.4740531983797
+1255,"['c11_fcc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-303.42578750682,352.42055423194324
+1193,"['c11_bcc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-303.53919151168344,360.4469311480161
+148,"['c11_fcc', 'thermal_expansion_coeff_fcc']",-303.59345936462705,342.4024459058867
+672,"['lattice_constant_sc', 'c11_sc', 'c44_sc']",-303.69882578472414,338.8634403901152
+776,"['bulk_modulus_bcc', 'c11_bcc', 'c11_fcc']",-303.7309559425656,324.9444030724264
+941,"['bulk_modulus_fcc', 'c12_bcc', 'thermal_expansion_coeff_fcc']",-303.91383155046066,395.7557378210234
+930,"['bulk_modulus_fcc', 'c11_sc', 'thermal_expansion_coeff_fcc']",-304.37193919407963,349.03380555501104
+895,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'unstable_stack_energy_slip_fraction_fcc']",-304.66677630631034,388.410667214774
+1392,"['c12_bcc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-304.84460425532774,385.6308469464285
+73,"['lattice_constant_sc', 'thermal_expansion_coeff_fcc']",-304.8685297642273,370.4678377853846
+1029,"['bulk_modulus_sc', 'c11_sc', 'c12_fcc']",-305.0946841785042,311.67829726936174
+644,"['lattice_constant_sc', 'c11_bcc', 'c12_sc']",-305.2290587181079,301.01090104647466
+1282,"['c11_sc', 'c12_bcc', 'surface_energy_100_fcc']",-305.5316247038059,339.16724985853847
+1434,"['c12_fcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-305.79129309857376,398.1088725222684
+185,"['c12_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-306.0678942528559,389.82615483139347
+1553,"['thermal_expansion_coeff_fcc', 'surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-306.1989162887176,374.1843537131135
+1195,"['c11_bcc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-306.4642951335951,421.9345428787598
+1291,"['c11_sc', 'c12_fcc', 'thermal_expansion_coeff_fcc']",-306.4963794062345,342.9349512318097
+905,"['bulk_modulus_fcc', 'c11_bcc', 'thermal_expansion_coeff_fcc']",-306.76137589397655,385.65502781636707
+1120,"['c11_bcc', 'c11_sc', 'c12_fcc']",-306.84003411252104,344.5607614149727
+225,"['surface_energy_100_fcc', 'extr_stack_fault_energy_fcc']",-307.29606530548546,386.4650289750494
+881,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'c11_bcc']",-307.54469242101777,348.96951461775984
+1088,"['bulk_modulus_sc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-307.5550136345992,421.6354415760104
+1334,"['c11_sc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-307.6049827326178,369.81704129285606
+756,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'thermal_expansion_coeff_fcc']",-307.62114821432925,391.7296820089309
+1302,"['c11_sc', 'c12_sc', 'extr_stack_fault_energy_fcc']",-307.7070335213872,369.1779111714066
+1265,"['c11_fcc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-307.76700775218313,350.95460070441396
+985,"['bulk_modulus_fcc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-308.4888447296673,372.90463663687717
+923,"['bulk_modulus_fcc', 'c11_sc', 'c12_bcc']",-308.57482071950926,331.627971586142
+991,"['bulk_modulus_fcc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-308.7190885099224,379.11568557187195
+708,"['lattice_constant_sc', 'c12_sc', 'unstable_stack_energy_slip_fraction_fcc']",-308.7201929314975,368.23493427640676
+729,"['lattice_constant_sc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-309.0599124243125,400.8196426985661
+1289,"['c11_sc', 'c12_fcc', 'c44_sc']",-309.4567636022748,340.40948185955403
+791,"['bulk_modulus_bcc', 'c11_fcc', 'c12_bcc']",-309.8172408978021,327.8008418157731
+1047,"['bulk_modulus_sc', 'c12_bcc', 'surface_energy_100_fcc']",-310.0427061250336,358.15166853749656
+826,"['bulk_modulus_bcc', 'c12_fcc', 'c12_sc']",-310.3519909707812,326.87521803617943
+63,"['lattice_constant_sc', 'c11_bcc']",-310.4308306124522,324.6143190203425
+1145,"['c11_bcc', 'c12_fcc', 'c44_sc']",-310.90777233354055,376.4735960468869
+1127,"['c11_bcc', 'c11_sc', 'surface_energy_100_fcc']",-310.9802915283984,337.7419751814491
+835,"['bulk_modulus_bcc', 'c12_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-311.4339958141646,391.1587106603802
+1475,"['c12_sc', 'extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-311.65032560277524,378.0536491852427
+810,"['bulk_modulus_bcc', 'c11_sc', 'thermal_expansion_coeff_fcc']",-311.7432032270133,379.8404505668418
+10,['c12_fcc'],-312.0817723922549,366.5978718179254
+77,"['lattice_constant_sc', 'unstable_stack_energy_slip_fraction_fcc']",-312.0906894459059,376.07258533758255
+1065,"['bulk_modulus_sc', 'c12_sc', 'thermal_expansion_coeff_fcc']",-312.18378687522454,375.3814341658808
+137,"['c11_bcc', 'extr_stack_fault_energy_fcc']",-312.41162695674706,422.6648904279286
+1151,"['c11_bcc', 'c12_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-312.4796322329399,377.50203356210903
+667,"['lattice_constant_sc', 'c11_sc', 'c12_bcc']",-312.5141639250048,319.22011766499867
+161,"['c11_sc', 'surface_energy_100_fcc']",-312.69343014516693,347.85948022026946
+1024,"['bulk_modulus_sc', 'c11_fcc', 'surface_energy_100_fcc']",-312.79518378171485,353.1510518209621
+1341,"['c12_bcc', 'c12_fcc', 'c12_sc']",-312.9419018341304,332.301233272732
+639,"['lattice_constant_sc', 'bulk_modulus_sc', 'unstable_stack_energy_slip_fraction_fcc']",-313.2697326478557,379.9793432932424
+596,"['lattice_constant_sc', 'bulk_modulus_bcc', 'c11_sc']",-313.50403189653224,332.91016116913335
+110,"['bulk_modulus_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-313.8688611720705,386.83998943119826
+1321,"['c11_sc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-314.02845563115693,369.5595030261666
+889,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'c44_sc']",-314.351035586446,400.91457581051566
+1096,"['bulk_modulus_sc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-314.4599009368191,393.01740030991624
+181,"['c12_fcc', 'thermal_expansion_coeff_fcc']",-314.64924052966717,397.13112931192273
+1033,"['bulk_modulus_sc', 'c11_sc', 'c44_sc']",-314.72147662212086,369.12846021634215
+831,"['bulk_modulus_bcc', 'c12_fcc', 'thermal_expansion_coeff_fcc']",-315.0232098324399,388.81124560792534
+65,"['lattice_constant_sc', 'c11_sc']",-315.1150752794264,325.42567268739253
+594,"['lattice_constant_sc', 'bulk_modulus_bcc', 'c11_bcc']",-315.20464876990115,302.81642412036706
+748,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'c11_sc']",-315.35024588628994,337.0041452399772
+814,"['bulk_modulus_bcc', 'c11_sc', 'unstable_stack_energy_slip_fraction_fcc']",-315.76307599603723,372.39022995742675
+597,"['lattice_constant_sc', 'bulk_modulus_bcc', 'c12_bcc']",-316.1698462181803,328.455294154983
+122,"['bulk_modulus_sc', 'surface_energy_100_fcc']",-316.43716449558957,372.07748500077963
+642,"['lattice_constant_sc', 'c11_bcc', 'c12_bcc']",-316.7356734522834,308.626167373619
+1124,"['c11_bcc', 'c11_sc', 'c44_sc']",-316.9109814025455,358.5789852679284
+1346,"['c12_bcc', 'c12_fcc', 'thermal_expansion_coeff_fcc']",-317.3204065786608,399.09206346985775
+680,"['lattice_constant_sc', 'c12_bcc', 'c12_sc']",-317.44527241107426,320.8146953957242
+1067,"['bulk_modulus_sc', 'c12_sc', 'extr_stack_fault_energy_fcc']",-317.4472918766915,357.88518254827767
+107,"['bulk_modulus_fcc', 'surface_energy_100_fcc']",-317.642127309012,347.02672426764457
+227,"['surface_energy_100_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-317.69752204879336,376.8392150353574
+1063,"['bulk_modulus_sc', 'c12_sc', 'c44_sc']",-317.7252127800206,357.17136100070945
+1090,"['bulk_modulus_sc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-317.86346626966025,414.1708224014314
+66,"['lattice_constant_sc', 'c12_bcc']",-318.2040336877581,339.73311801156854
+162,"['c11_sc', 'extr_stack_fault_energy_fcc']",-318.37476968476705,379.8257912768448
+1035,"['bulk_modulus_sc', 'c11_sc', 'thermal_expansion_coeff_fcc']",-318.5103148626534,374.6835977897877
+1285,"['c11_sc', 'c12_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-318.63659106676636,368.4079280842158
+1350,"['c12_bcc', 'c12_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-319.05746990226714,396.87318156682795
+945,"['bulk_modulus_fcc', 'c12_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-319.113627891198,384.2706586836816
+1060,"['bulk_modulus_sc', 'c12_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-319.2698729045367,392.2140783218654
+1355,"['c12_bcc', 'c12_sc', 'thermal_expansion_coeff_fcc']",-319.347990012122,388.7698755999957
+1300,"['c11_sc', 'c12_sc', 'thermal_expansion_coeff_fcc']",-319.40339389118856,387.4851122335297
+229,"['extr_stack_fault_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-319.5142890454506,380.40202359267596
+840,"['bulk_modulus_bcc', 'c12_sc', 'thermal_expansion_coeff_fcc']",-319.5273380134443,400.0462660384264
+909,"['bulk_modulus_fcc', 'c11_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-319.5776776768142,375.83545236665987
+1130,"['c11_bcc', 'c11_sc', 'unstable_stack_energy_slip_fraction_fcc']",-320.04609558386363,368.87290618975237
+221,"['thermal_expansion_coeff_fcc', 'surface_energy_100_fcc']",-320.5075386567911,370.8282965585133
+160,"['c11_sc', 'thermal_expansion_coeff_fcc']",-320.5663992710522,382.9308137966589
+669,"['lattice_constant_sc', 'c11_sc', 'c12_sc']",-320.99218908027535,310.33388638219026
+1425,"['c12_fcc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-321.3176213341292,410.59370653659715
+804,"['bulk_modulus_bcc', 'c11_sc', 'c12_fcc']",-321.3501661158031,340.3381656273309
+981,"['bulk_modulus_fcc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-321.36063759600427,421.9242322093365
+154,"['c11_sc', 'c12_fcc']",-321.49979669396527,324.89689921980636
+647,"['lattice_constant_sc', 'c11_bcc', 'c44_sc']",-321.5040319553234,367.1558664964512
+903,"['bulk_modulus_fcc', 'c11_bcc', 'c44_sc']",-321.53680635291175,351.76263418844877
+683,"['lattice_constant_sc', 'c12_bcc', 'c44_sc']",-321.8405959416759,383.28867328351254
+628,"['lattice_constant_sc', 'bulk_modulus_sc', 'c12_bcc']",-322.24886718860176,359.67574929388854
+158,"['c11_sc', 'c44_sc']",-322.3102538986353,372.1553460277433
+635,"['lattice_constant_sc', 'bulk_modulus_sc', 'thermal_expansion_coeff_fcc']",-322.3595211736396,369.50166354137264
+104,"['bulk_modulus_fcc', 'c44_sc']",-322.801178805942,400.0390749252632
+760,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-322.92558432014744,389.1367356820511
+1037,"['bulk_modulus_sc', 'c11_sc', 'extr_stack_fault_energy_fcc']",-323.086610203053,373.6350788872867
+745,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'bulk_modulus_sc']",-323.24690164270385,365.90926307517543
+1459,"['c12_sc', 'c44_sc', 'extr_stack_fault_energy_fcc']",-324.453968505054,467.373304124744
+98,"['bulk_modulus_fcc', 'c11_sc']",-324.5352412086395,332.64648269267843
+702,"['lattice_constant_sc', 'c12_sc', 'c44_sc']",-324.67384642679605,330.67115539377505
+897,"['bulk_modulus_fcc', 'c11_bcc', 'c11_sc']",-324.96482452850597,340.70807687608516
+1421,"['c12_fcc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-325.71630146716166,421.9342566895603
+106,"['bulk_modulus_fcc', 'thermal_expansion_coeff_fcc']",-325.95828672762127,392.88910483660356
+808,"['bulk_modulus_bcc', 'c11_sc', 'c44_sc']",-326.5121827983002,372.86083621424547
+2,['lattice_constant_sc'],-326.6123612615506,359.3542587204793
+754,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'c44_sc']",-326.9800352650653,370.3006325844818
+891,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'thermal_expansion_coeff_fcc']",-327.1524092177013,405.5326527665269
+1389,"['c12_bcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-327.26138468506826,435.1951555721157
+599,"['lattice_constant_sc', 'bulk_modulus_bcc', 'c12_sc']",-327.2767647393741,319.2679422114822
+1279,"['c11_sc', 'c12_bcc', 'c44_sc']",-327.590946415111,376.5148096306571
+1359,"['c12_bcc', 'c12_sc', 'unstable_stack_energy_slip_fraction_fcc']",-328.2320600276843,378.7588559208425
+1156,"['c11_bcc', 'c12_sc', 'thermal_expansion_coeff_fcc']",-328.60278830590187,397.4503842501775
+1275,"['c11_sc', 'c12_bcc', 'c12_fcc']",-328.7561150562029,339.95881565160755
+630,"['lattice_constant_sc', 'bulk_modulus_sc', 'c12_sc']",-329.2609233779673,301.2663080967535
+822,"['bulk_modulus_bcc', 'c12_bcc', 'surface_energy_100_fcc']",-330.019105911148,346.583566656583
+602,"['lattice_constant_sc', 'bulk_modulus_bcc', 'c44_sc']",-330.3159144083326,385.37315019024004
+68,"['lattice_constant_sc', 'c12_sc']",-330.45382678859187,338.56859779756314
+1138,"['c11_bcc', 'c12_bcc', 'surface_energy_100_fcc']",-330.99960796163236,338.94797124492277
+844,"['bulk_modulus_bcc', 'c12_sc', 'unstable_stack_energy_slip_fraction_fcc']",-331.4824390165473,425.55369906101566
+1097,"['bulk_modulus_sc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-331.6637084373094,417.40137076003947
+213,"['c44_sc', 'extr_stack_fault_energy_fcc']",-331.7118653615466,452.88479148221006
+874,"['bulk_modulus_bcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-331.7168120004736,432.7682937802741
+1470,"['c12_sc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-332.89139339583346,412.8572662297327
+1008,"['bulk_modulus_sc', 'c11_bcc', 'c44_sc']",-333.1165244661105,392.23923521996414
+771,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'thermal_expansion_coeff_fcc']",-333.33109517868724,407.3733109952869
+1532,"['c44_sc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-333.40430955490535,449.7397847113796
+939,"['bulk_modulus_fcc', 'c12_bcc', 'c44_sc']",-333.60956083074166,380.70800210807954
+172,"['c12_bcc', 'surface_energy_100_fcc']",-333.8992352114639,354.7100430536191
+593,"['lattice_constant_sc', 'bulk_modulus_bcc', 'bulk_modulus_sc']",-334.26687335611246,362.05544190888116
+1039,"['bulk_modulus_sc', 'c11_sc', 'unstable_stack_energy_slip_fraction_fcc']",-334.5629479884891,369.2460672766639
+785,"['bulk_modulus_bcc', 'c11_bcc', 'thermal_expansion_coeff_fcc']",-334.7173279960279,401.7158309824679
+179,"['c12_fcc', 'c44_sc']",-335.1791755634275,407.77157479411727
+1137,"['c11_bcc', 'c12_bcc', 'thermal_expansion_coeff_fcc']",-335.4107216268168,399.3556816487972
+786,"['bulk_modulus_bcc', 'c11_bcc', 'surface_energy_100_fcc']",-335.4893451851813,330.8344332227115
+90,"['bulk_modulus_bcc', 'thermal_expansion_coeff_fcc']",-335.91204049460305,421.50429817851983
+829,"['bulk_modulus_bcc', 'c12_fcc', 'c44_sc']",-336.12459105982725,394.13998629598524
+1010,"['bulk_modulus_sc', 'c11_bcc', 'thermal_expansion_coeff_fcc']",-336.14806437664276,391.51267546673944
+766,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'c12_sc']",-336.23390147043057,361.45554927260775
+1190,"['c11_bcc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-336.8905840733031,401.5569135680114
+1054,"['bulk_modulus_sc', 'c12_fcc', 'c44_sc']",-337.49542204963234,401.3798769864789
+1468,"['c12_sc', 'thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-337.6256676453518,422.4701803493427
+1056,"['bulk_modulus_sc', 'c12_fcc', 'thermal_expansion_coeff_fcc']",-337.8939823279628,398.3039174069563
+136,"['c11_bcc', 'surface_energy_100_fcc']",-338.17585631444757,320.7558359132246
+91,"['bulk_modulus_bcc', 'surface_energy_100_fcc']",-338.3358551439894,339.1627289331111
+164,"['c11_sc', 'unstable_stack_energy_slip_fraction_fcc']",-339.16983802376376,362.45066470234684
+1344,"['c12_bcc', 'c12_fcc', 'c44_sc']",-339.2537683206874,405.7235194421058
+1046,"['bulk_modulus_sc', 'c12_bcc', 'thermal_expansion_coeff_fcc']",-339.3226206757934,415.6060282483335
+1004,"['bulk_modulus_sc', 'c11_bcc', 'c12_fcc']",-340.53712682001424,364.7742918189153
+627,"['lattice_constant_sc', 'bulk_modulus_sc', 'c11_sc']",-341.1352369531904,322.8357452140259
+633,"['lattice_constant_sc', 'bulk_modulus_sc', 'c44_sc']",-341.5649188079798,394.324677129975
+60,"['lattice_constant_sc', 'bulk_modulus_bcc']",-341.78034133261116,342.7623546132912
+1177,"['c11_bcc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-342.00191320138924,417.45669935502065
+1380,"['c12_bcc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-342.0564017731081,446.5217850385987
+1099,"['bulk_modulus_sc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-342.3847597252271,417.66055686118403
+222,"['thermal_expansion_coeff_fcc', 'extr_stack_fault_energy_fcc']",-342.59929606651247,417.5743139991208
+171,"['c12_bcc', 'thermal_expansion_coeff_fcc']",-342.88178214354065,422.5573207155927
+861,"['bulk_modulus_bcc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-343.78744629224497,429.7666556098515
+1014,"['bulk_modulus_sc', 'c11_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-343.78973710980836,406.9117649574027
+96,"['bulk_modulus_fcc', 'c11_bcc']",-343.99322854279626,365.8289491253284
+17,['surface_energy_100_fcc'],-344.16541356809523,376.3441639520555
+84,"['bulk_modulus_bcc', 'c12_fcc']",-344.63876351425284,356.7769162707626
+99,"['bulk_modulus_fcc', 'c12_bcc']",-345.19103211111803,362.49292963398483
+1069,"['bulk_modulus_sc', 'c12_sc', 'unstable_stack_energy_slip_fraction_fcc']",-345.4351064677747,364.1302983953122
+1304,"['c11_sc', 'c12_sc', 'unstable_stack_energy_slip_fraction_fcc']",-345.7361821244395,372.35576387030085
+1534,"['c44_sc', 'thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-345.86872275342597,423.4376861795117
+224,"['thermal_expansion_coeff_fcc', 'unstable_stack_energy_slip_fraction_fcc']",-346.00869473727874,422.9337693400684
+78,"['bulk_modulus_bcc', 'bulk_modulus_fcc']",-346.0281532597159,365.5503326171282
+765,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'c12_fcc']",-346.7932919762222,367.35543878405605
+1041,"['bulk_modulus_sc', 'c12_bcc', 'c12_sc']",-346.841121862682,360.27706834854735
+4,['bulk_modulus_fcc'],-347.1574256274314,366.9920963509408
+1050,"['bulk_modulus_sc', 'c12_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-347.63637881395306,417.4194649717915
+62,"['lattice_constant_sc', 'bulk_modulus_sc']",-348.12129017743064,351.61847959764503
+884,"['bulk_modulus_fcc', 'bulk_modulus_sc', 'c12_bcc']",-348.7640285052963,384.5544047388613
+1376,"['c12_bcc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-349.0529187509223,422.2328722855689
+769,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'c44_sc']",-349.4398110531817,406.9212988018174
+749,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'c12_bcc']",-349.94783258198174,361.60945388073645
+95,"['bulk_modulus_fcc', 'bulk_modulus_sc']",-350.28593480399775,386.8200363109766
+821,"['bulk_modulus_bcc', 'c12_bcc', 'thermal_expansion_coeff_fcc']",-350.68049757488643,413.0307436110433
+775,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'unstable_stack_energy_slip_fraction_fcc']",-351.00185540906296,421.70003703300773
+121,"['bulk_modulus_sc', 'thermal_expansion_coeff_fcc']",-351.3015292450892,421.3746554205117
+1005,"['bulk_modulus_sc', 'c11_bcc', 'c12_sc']",-351.4342396524456,343.24201762474627
+746,"['bulk_modulus_bcc', 'bulk_modulus_fcc', 'c11_bcc']",-351.48071485575605,368.3091457000444
+115,"['bulk_modulus_sc', 'c12_fcc']",-351.8208150395963,367.91916533669735
+1121,"['c11_bcc', 'c11_sc', 'c12_sc']",-352.2488920028047,350.72681893222403
+777,"['bulk_modulus_bcc', 'c11_bcc', 'c11_sc']",-352.94835178107814,353.84587267255705
+119,"['bulk_modulus_sc', 'c44_sc']",-353.8639592949548,423.11628733230924
+865,"['bulk_modulus_bcc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-354.1251786674285,463.0002415897967
+815,"['bulk_modulus_bcc', 'c12_bcc', 'c12_fcc']",-354.2144302026002,358.8146921839952
+1457,"['c12_sc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-354.25947589833936,434.6947389155357
+898,"['bulk_modulus_fcc', 'c11_bcc', 'c12_bcc']",-354.48026297355966,372.2316184973465
+1086,"['bulk_modulus_sc', 'c44_sc', 'thermal_expansion_coeff_fcc']",-354.73572062193483,427.0835202517411
+135,"['c11_bcc', 'thermal_expansion_coeff_fcc']",-354.7891638348592,414.8242462543431
+1353,"['c12_bcc', 'c12_sc', 'c44_sc']",-355.18332954545446,408.59020844436566
+129,"['c11_bcc', 'c12_fcc']",-355.2294351748692,367.9765775688254
+805,"['bulk_modulus_bcc', 'c11_sc', 'c12_sc']",-355.53135202512726,371.91995158835385
+838,"['bulk_modulus_bcc', 'c12_sc', 'c44_sc']",-355.5571225010499,426.331262500561
+1276,"['c11_sc', 'c12_bcc', 'c12_sc']",-357.0138441554262,362.67858815848336
+155,"['c11_sc', 'c12_sc']",-358.06226393924993,378.47771441738166
+1044,"['bulk_modulus_sc', 'c12_bcc', 'c44_sc']",-358.3021737471354,413.8651673025564
+1002,"['bulk_modulus_sc', 'c11_bcc', 'c11_sc']",-358.3814461033996,353.10050451734327
+190,"['c12_sc', 'thermal_expansion_coeff_fcc']",-358.51085829472845,428.96275980274027
+1141,"['c11_bcc', 'c12_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-358.5380964297634,427.70707898927066
+1119,"['c11_bcc', 'c11_sc', 'c12_bcc']",-358.7404454212489,352.9917106578632
+1132,"['c11_bcc', 'c12_bcc', 'c12_sc']",-358.9737741934643,353.54512053736164
+1160,"['c11_bcc', 'c12_sc', 'unstable_stack_energy_slip_fraction_fcc']",-358.97873678421666,452.9293050501343
+789,"['bulk_modulus_bcc', 'c11_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-359.7371883303159,441.28342097597294
+1030,"['bulk_modulus_sc', 'c11_sc', 'c12_sc']",-359.86874790031817,378.1598279702644
+1461,"['c12_sc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-359.9552940940023,479.6907732377411
+625,"['lattice_constant_sc', 'bulk_modulus_sc', 'c11_bcc']",-360.5223978893808,359.26861931706276
+94,"['bulk_modulus_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-361.43146759005873,462.5926127955129
+1131,"['c11_bcc', 'c12_bcc', 'c12_fcc']",-362.13337614204465,372.76227166754734
+71,"['lattice_constant_sc', 'c44_sc']",-363.1575676186853,396.23767419778767
+215,"['c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-365.0034501000989,478.2638641342863
+16,['thermal_expansion_coeff_fcc'],-365.06733881334156,421.833142164715
+779,"['bulk_modulus_bcc', 'c11_bcc', 'c12_fcc']",-365.0696363063792,377.010743014742
+1181,"['c11_bcc', 'c44_sc', 'unstable_stack_energy_slip_fraction_fcc']",-365.5403596160803,457.15131732069335
+211,"['c44_sc', 'thermal_expansion_coeff_fcc']",-365.6941476164287,439.94888577506055
+825,"['bulk_modulus_bcc', 'c12_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-365.83601432624954,453.3613207120448
+165,"['c12_bcc', 'c12_fcc']",-365.8746752582424,370.85409979708925
+780,"['bulk_modulus_bcc', 'c11_bcc', 'c12_sc']",-366.8613310958612,371.59482168893373
+803,"['bulk_modulus_bcc', 'c11_sc', 'c12_bcc']",-366.97265253041877,362.9261454850024
+783,"['bulk_modulus_bcc', 'c11_bcc', 'c44_sc']",-367.1766399138283,414.3400222870764
+139,"['c11_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-367.6217904779826,466.821604170693
+175,"['c12_bcc', 'unstable_stack_energy_slip_fraction_fcc']",-367.8024991960324,442.66998574984825
+127,"['c11_bcc', 'c11_sc']",-369.3299714674063,371.15975232569497
+1135,"['c11_bcc', 'c12_bcc', 'c44_sc']",-370.9392746419506,408.41635272830143
+1154,"['c11_bcc', 'c12_sc', 'c44_sc']",-373.1090716477796,417.0370281673367
+763,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'c11_sc']",-373.59376284663955,357.8699288458165
+1028,"['bulk_modulus_sc', 'c11_sc', 'c12_bcc']",-375.2167921956737,354.9518470143102
+116,"['bulk_modulus_sc', 'c12_sc']",-375.47541518580744,365.6702257755058
+166,"['c12_bcc', 'c12_sc']",-377.3452351852019,374.0200524604346
+123,"['bulk_modulus_sc', 'extr_stack_fault_energy_fcc']",-377.6982117042612,418.4596489709988
+153,"['c11_sc', 'c12_bcc']",-378.7304451467253,370.50212678506296
+188,"['c12_sc', 'c44_sc']",-379.4381624418623,472.09613821089204
+1003,"['bulk_modulus_sc', 'c11_bcc', 'c12_bcc']",-380.06761704929215,364.11978648516055
+1040,"['bulk_modulus_sc', 'c12_bcc', 'c12_fcc']",-380.26600031235614,382.9767556736825
+819,"['bulk_modulus_bcc', 'c12_bcc', 'c44_sc']",-381.35907176720144,423.4203646084261
+816,"['bulk_modulus_bcc', 'c12_bcc', 'c12_sc']",-381.7076454431502,375.48213271007467
+133,"['c11_bcc', 'c44_sc']",-381.8766669543076,429.9634827678799
+761,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'c11_bcc']",-382.7060225990368,365.5347188786123
+125,"['bulk_modulus_sc', 'unstable_stack_energy_slip_fraction_fcc']",-383.6602566479547,423.5246531573898
+8,['c11_sc'],-384.0403930438961,374.0341144706767
+82,"['bulk_modulus_bcc', 'c11_sc']",-384.175729339147,370.62673550439604
+113,"['bulk_modulus_sc', 'c11_sc']",-384.37985761019917,358.5536821282539
+88,"['bulk_modulus_bcc', 'c44_sc']",-385.2097673684346,443.6826992333808
+85,"['bulk_modulus_bcc', 'c12_sc']",-385.3981718323199,408.42339442823504
+169,"['c12_bcc', 'c44_sc']",-386.780030326509,437.89756258381163
+14,['c44_sc'],-393.25519862334625,457.83387352846535
+130,"['c11_bcc', 'c12_sc']",-396.8066872368864,416.4602089311487
+194,"['c12_sc', 'unstable_stack_energy_slip_fraction_fcc']",-407.9123213938597,435.64986716917025
+764,"['bulk_modulus_bcc', 'bulk_modulus_sc', 'c12_bcc']",-411.1771220479225,392.3602618594081
+79,"['bulk_modulus_bcc', 'bulk_modulus_sc']",-411.3574981328213,403.8563809043464
+111,"['bulk_modulus_sc', 'c11_bcc']",-412.5174826628897,394.8313215128506
+20,['unstable_stack_energy_slip_fraction_fcc'],-416.36666316818014,434.5116374296605
+128,"['c11_bcc', 'c12_bcc']",-418.701118495011,408.4420642310775
+80,"['bulk_modulus_bcc', 'c11_bcc']",-421.17075048274995,411.21025413622795
+114,"['bulk_modulus_sc', 'c12_bcc']",-424.57434107079655,401.05266713714974
+778,"['bulk_modulus_bcc', 'c11_bcc', 'c12_bcc']",-425.79180542432186,414.71857165581764
+83,"['bulk_modulus_bcc', 'c12_bcc']",-432.9859657736905,426.77148209642473
+3,['bulk_modulus_bcc'],-435.64478975814285,440.8019164557007
+6,['c11_bcc'],-440.2099386644641,440.90413828550146
+5,['bulk_modulus_sc'],-440.6262270884324,409.5679941650326
+18,['extr_stack_fault_energy_fcc'],-442.1497026567078,418.00635825866755
+11,['c12_sc'],-443.4923300689853,469.1258852700845
+9,['c12_bcc'],-443.60732968119896,432.73955216242393
+192,"['c12_sc', 'extr_stack_fault_energy_fcc']",-458.20358161860344,433.0957122267045

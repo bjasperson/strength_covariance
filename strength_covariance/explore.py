@@ -25,6 +25,7 @@ def correlation_plot(df, title, figsize=(10, 10), annot=False):
     colors = sns.color_palette("vlag", as_cmap=True)
     ax = sns.heatmap(df_corr, vmin=-1, vmax=1, cmap=colors, annot=annot)
     fig.add_axes(ax)
+    fig.subplots_adjust(left=0.3,bottom=0.3)
     fig.savefig(f"./strength_covariance/data_ays/{title}.png", dpi=300)
 
 
@@ -77,7 +78,7 @@ def main():
                       ['extr_stack_fault_energy_fcc',
                        'intr_stack_fault_energy_fcc',
                        'unstable_stack_energy_fcc',
-                          'unstable_twinning_energy_fcc'],
+                        'unstable_twinning_energy_fcc'],
                       'stack_twin')
 
     pairplot_selected(df_clean,
@@ -127,6 +128,12 @@ def main():
                        'bulk_modulus_fcc',
                        'bulk_modulus_sc'],
                       'bulk')
+    
+    pairplot_selected(df_clean,
+                      ['c44_fcc',
+                       'unstable_stack_energy_fcc',
+                       'unstable_stack_energy_slip_fraction_fcc'],
+                      '230805')
 
     pairplot_selected(df_clean,
                       ['intr_stack_fault_energy_fcc',
@@ -142,6 +149,7 @@ def main():
     corr_plot_list = ['strength_MPa',
                       'intr_stack_fault_energy_fcc',
                       'unstable_stack_energy_fcc',
+                      'unstable_stack_energy_slip_fraction_fcc',
                       'unstable_twinning_energy_fcc',
                       'surface_energy_111_fcc',
                       'lattice_constant_sc',

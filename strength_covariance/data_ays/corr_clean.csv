@@ -21,6 +21,8 @@ c44_bcc,0.4256171765459879
 thermal_expansion_coeff_fcc,0.4214940330544948
 bulk_modulus_sc,0.40163977920696636
 c44_sc,0.2471568216290132
+unrelaxed_formation_potential_energy_fcc,0.17336989124977084
+relaxed_formation_potential_energy_fcc,0.16788468793097716
 intr_stack_fault_energy_fcc,0.15972318276300587
 extr_stack_fault_energy_fcc,0.14752427437325152
 c12_bcc,0.1301720132573267
@@ -29,3 +31,10 @@ c12_sc,0.11302842371081856
 bulk_modulus_bcc,0.10974103182940378
 unstable_stack_energy_slip_fraction_fcc,0.09496058726740432
 c11_bcc,0.06828056571824642
+relaxation_volume_fcc,0.032741054888594405
+relaxed_formation_potential_energy_bcc,
+relaxed_formation_potential_energy_hcp,
+unrelaxed_formation_potential_energy_bcc,
+unrelaxed_formation_potential_energy_hcp,
+relaxation_volume_bcc,
+relaxation_volume_hcp,
