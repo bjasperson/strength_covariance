@@ -74,7 +74,7 @@ def boostrap_plot(df, y_pred, r2_adj, filename):
 
 
 def main():
-    df_in = pd.read_csv("./strength_covariance/data/models_w_props.csv")
+    df_in = pd.read_csv("./data/models_w_props.csv")
     df_in = df_in.drop([i for i in df_in.columns if 'diamond' in i],axis=1)
 
 

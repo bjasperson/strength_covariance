@@ -81,7 +81,7 @@ def factor_select_cv(X, y, pipe, n_factor_max=2, cv=5, scoring='r2'):
 
 
 def main():
-    df_in = pd.read_csv("./strength_covariance/data/models_w_props.csv")
+    df_in = pd.read_csv("./data/models_w_props.csv")
 
     df_in =  df_in.drop([i for i in df_in.columns if 'diamond' in i],axis=1)
     df_in = df_in.sample(frac=1) #shuffle

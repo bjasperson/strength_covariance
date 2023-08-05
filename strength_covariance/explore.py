@@ -35,7 +35,7 @@ def save_corr_values(df, title):
 
 def main():
     # import data
-    df_in = pd.read_csv('./strength_covariance/data/models_w_props.csv')
+    df_in = pd.read_csv('./data/models_w_props.csv')
 
     save_corr_values(df_in,'corr_initial')
     # cleanup data
