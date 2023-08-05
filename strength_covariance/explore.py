@@ -9,7 +9,7 @@ def pairplot_selected(df, factors, title):
     factors.extend(['strength_MPa', 'species'])
     X = df[factors]
     fig = sns.pairplot(X, hue='species')
-    fig.savefig(f"./strength_covariance/data_ays/{title}.png",dpi=300)
+    fig.savefig(f"./strength_covariance/data_ays/{title}.png", dpi=300)
     return
 
 
@@ -23,13 +23,14 @@ def correlation_plot(df, title, figsize=(10, 10), annot=False):
     df_corr = df.corr().round(2)
     fig = plt.figure(figsize=(figsize[0], figsize[1]))
     colors = sns.color_palette("vlag", as_cmap=True)
-    ax =  sns.heatmap(df_corr, vmin=-1, vmax=1, cmap=colors, annot=annot)
+    ax = sns.heatmap(df_corr, vmin=-1, vmax=1, cmap=colors, annot=annot)
     fig.add_axes(ax)
-    fig.savefig(f"./strength_covariance/data_ays/{title}.png",dpi=300)
+    fig.savefig(f"./strength_covariance/data_ays/{title}.png", dpi=300)
 
 
 def save_corr_values(df, title):
-    values = df.corr(numeric_only=True)['strength_MPa'].abs().sort_values(ascending=False)
+    values = df.corr(numeric_only=True)[
+        'strength_MPa'].abs().sort_values(ascending=False)
     values.to_csv(f"./strength_covariance/data_ays/{title}.csv")
 
 
@@ -37,7 +38,7 @@ def main():
     # import data
     df_in = pd.read_csv('./data/models_w_props.csv')
 
-    save_corr_values(df_in,'corr_initial')
+    save_corr_values(df_in, 'corr_initial')
     # cleanup data
     if 'disqualified' in df_in.columns:
         df_in = df_in.drop('disqualified', axis=1)
@@ -51,10 +52,20 @@ def main():
 
     # remove extreme outliers
     df_clean = basic_outlier_removal(df_in)
-    save_corr_values(df_in,'corr_clean')
+    save_corr_values(df_in, 'corr_clean')
 
+    df_clean['c11-c12-c44'] = df_clean['c11_fcc'] - \
+        df_clean['c12_fcc'] - df_clean['c44_fcc']
 
     # create pairplots
+
+    pairplot_selected(df_clean,
+                      ['c11_fcc',
+                       'c12_fcc',
+                       'c44_fcc',
+                       'c11-c12-c44'],
+                      'elastic_const_combos')
+
     pairplot_selected(df_clean,
                       ['surface_energy_100_fcc',
                        'surface_energy_110_fcc',
