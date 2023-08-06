@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from model_selection import basic_outlier_removal
 from sklearn.impute import KNNImputer
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.compose import TransformedTargetRegressor
 from sklearn.decomposition import PCA
 from sklearn.pipeline import Pipeline
@@ -23,6 +23,7 @@ def uncert_bootstrap(X,y,pipe,n_iter):
     y_pred_lower = []
     y_pred_upper = []
     for i in range(len(y)):
+        print(f"data point {i} of {len(y)}")
         available_indexes = [j for j in range(len(y)) if j != i]
         X_available = X.loc[available_indexes]
         y_available = y.loc[available_indexes]

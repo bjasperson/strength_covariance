@@ -13,7 +13,6 @@ from ast import literal_eval
 import seaborn as sns
 
 
-
 def basic_outlier_removal(df):
     """remove extreme canonical property predictions
 
@@ -38,11 +37,12 @@ def basic_outlier_removal(df):
     df[elastic_const_list] = df[elastic_const_list][df[elastic_const_list] < 60000]
     df[cohesive_energy_list] = df[cohesive_energy_list][df[cohesive_energy_list] < 45]
     df[stack_energy_list] = df[stack_energy_list][df[stack_energy_list] < 0.45]
-    return  df
+    return df
+
 
 def filter_param_list(df, base_labels, specific_items=""):
     """generate filtered list of parameters
-        
+
     :param df pd.DataFrame: dataframe with columns to consider
     :param base_labels list: base label strings to consider
     :param specific_items list: specific strings to include
@@ -62,30 +62,31 @@ def factor_select_cv(X, y, pipe, n_factor_max=2, cv=5, scoring='r2'):
     # return list of parameters w/ cv score
     factor_list = X.columns.to_list()
     subsets = []
-    for n in range(1,(n_factor_max+1)):
+    for n in range(1, (n_factor_max+1)):
         for subset in combinations(factor_list, n):
             subsets.append(list(subset))
 
     cv_score_mean = []
     cv_score_std = []
     for subset in subsets:
-        print('current subset: ',subset)
-        score = cross_val_score(pipe, X[subset], y, cv=cv, scoring = scoring)
-        print('score mean: ',np.mean(score))
+        print('current subset: ', subset)
+        score = cross_val_score(pipe, X[subset], y, cv=cv, scoring=scoring)
+        print('score mean: ', np.mean(score))
         cv_score_mean.append(np.mean(score))
         cv_score_std.append(np.std(score))
-    
-    df_results = pd.DataFrame({'factors':subsets,
-                       'cv_score':cv_score_mean,
-                       'cv_score_std':cv_score_std})
+
+    df_results = pd.DataFrame({'factors': subsets,
+                               'cv_score': cv_score_mean,
+                               'cv_score_std': cv_score_std})
     df_results = df_results.sort_values('cv_score', ascending=False)
 
     return df_results
 
 
 def factor_percent_usage(df_results, N_lines, title):
-    factor_list = df_results['factors'].iloc[:N_lines]
-    factor_list = [literal_eval(i) for i in factor_list]
+    factor_list_in = df_results['factors'].iloc[:N_lines]
+    #factor_list = [literal_eval(i) for i in factor_list_in] #only needed when importing a csv
+    factor_list = [i for i in factor_list_in]
     factor_list_combined = [j for i in factor_list for j in i]
     df_factors = pd.DataFrame(factor_list_combined)
     fig = plt.figure()
@@ -99,16 +100,16 @@ def factor_percent_usage(df_results, N_lines, title):
 def main():
     df_in = pd.read_csv("./data/models_w_props.csv")
 
-    df_in =  df_in.drop([i for i in df_in.columns if 'diamond' in i],axis=1)
-    df_in = df_in.sample(frac=1) #shuffle
+    df_in = df_in.drop([i for i in df_in.columns if 'diamond' in i], axis=1)
+    df_in = df_in.sample(frac=1)  # shuffle
 
     params_list = ['lattice_constant',
-            'bulk_modulus','c11','c12','c44',
-            'cohesive_energy_fcc','thermal_expansion_coeff_fcc',
-            'surface_energy_100_fcc',
-            'extr_stack_fault_energy',
-            'unstable_stack_energy']
-    
+                   'bulk_modulus', 'c11', 'c12', 'c44',
+                   'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc',
+                   'surface_energy_100_fcc',
+                   'extr_stack_fault_energy',
+                   'unstable_stack_energy']
+
     params_list_full = filter_param_list(df_in, params_list)
 
     df_clean = basic_outlier_removal(df_in)
@@ -116,35 +117,36 @@ def main():
     X = df_clean[params_list_full]
     y = df_clean['strength_MPa']
 
-
-    imput = KNNImputer(n_neighbors=2, weights="uniform", keep_empty_features=True)
+    imput = KNNImputer(n_neighbors=2, weights="uniform",
+                       keep_empty_features=True)
     pca = PCA()
     #model = linear_model.LinearRegression()
     model = svm.SVR(kernel='rbf')
 
-    pipe = Pipeline(steps=[('scale',StandardScaler()),
-                            ('imp',imput),
-                            ('pca',pca),
-                            ('lr',model)])
-    pipe = TransformedTargetRegressor(regressor = pipe,
-                                            transformer = StandardScaler())
-    
+    pipe = Pipeline(steps=[('scale', StandardScaler()),
+                           ('imp', imput),
+                           ('pca', pca),
+                           ('lr', model)])
+    pipe = TransformedTargetRegressor(regressor=pipe,
+                                      transformer=StandardScaler())
 
     n_factor_max = 3
 
     cv = RepeatedKFold(n_splits=10, n_repeats=3)
-    df_results = factor_select_cv(X, y, pipe, n_factor_max = n_factor_max, cv = cv, scoring='neg_root_mean_squared_error')
+    df_results = factor_select_cv(
+        X, y, pipe, n_factor_max=n_factor_max, cv=cv, scoring='neg_root_mean_squared_error')
     df_results.to_csv("./strength_covariance/model_ays/kfold_models.csv")
     # df_results = pd.read_csv("./strength_covariance/model_ays/kfold_models.csv")
     factor_percent_usage(df_results, 100, 'kfold_factor_usage')
 
-    loocv = LeaveOneOut()
-    df_results_loocv = factor_select_cv(X, y, pipe, n_factor_max = n_factor_max, cv = loocv, scoring='neg_root_mean_squared_error')
-    df_results_loocv.to_csv("./strength_covariance/model_ays/loocv_models.csv")
-    # df_results_loocv = pd.read_csv("./strength_covariance/model_ays/loocv_models.csv")
-    factor_percent_usage(df_results_loocv, 100, 'loocv_factor_usage')
+    # loocv = LeaveOneOut()
+    # df_results_loocv = factor_select_cv(
+    #     X, y, pipe, n_factor_max=n_factor_max, cv=loocv, scoring='neg_root_mean_squared_error')
+    # df_results_loocv.to_csv("./strength_covariance/model_ays/loocv_models.csv")
+    # # df_results_loocv = pd.read_csv("./strength_covariance/model_ays/loocv_models.csv")
+    # factor_percent_usage(df_results_loocv, 100, 'loocv_factor_usage')
     return
+
 
 if __name__ == "__main__":
     main()
-
