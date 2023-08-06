@@ -96,6 +96,7 @@ def main():
     # params_list_full = ['c44_sc', 'surface_energy_111_fcc', 'unstable_stack_energy_fcc']
     # params_list_full = ['c44_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']
     # params_list_full = ['c44_fcc','c11_fcc', 'c12_fcc']
+    # params_list_full = ['c11_fcc', 'unstable_stack_energy_fcc', 'unstable_twinning_energy_fcc']
     X = df_clean[params_list_full]
     y = df_clean['strength_MPa']
 

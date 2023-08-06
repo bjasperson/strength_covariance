@@ -108,7 +108,11 @@ def main():
                    'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc',
                    'surface_energy_100_fcc',
                    'extr_stack_fault_energy',
-                   'unstable_stack_energy']
+                   'intr_stack_fault_energy',
+                   'unstable_stack_energy', 'unstable_twinning_energy',
+                   'relaxed_formation_potential_energy_fcc', 'unrelaxed_formation_potential_energy_fcc',
+                   'relaxation_volume_fcc'
+                   ]
 
     params_list_full = filter_param_list(df_in, params_list)
 
