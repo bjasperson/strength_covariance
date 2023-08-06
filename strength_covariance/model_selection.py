@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 from itertools import combinations
 from sklearn.model_selection import train_test_split, RepeatedKFold, cross_val_score, LeaveOneOut, GridSearchCV
 from sklearn.impute import KNNImputer
@@ -8,6 +9,8 @@ from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.decomposition import PCA
 from sklearn import linear_model, svm
+from ast import literal_eval
+import seaborn as sns
 
 
 
@@ -80,6 +83,19 @@ def factor_select_cv(X, y, pipe, n_factor_max=2, cv=5, scoring='r2'):
     return df_results
 
 
+def factor_percent_usage(df_results, N_lines, title):
+    factor_list = df_results['factors'].iloc[:N_lines]
+    factor_list = [literal_eval(i) for i in factor_list]
+    factor_list_combined = [j for i in factor_list for j in i]
+    df_factors = pd.DataFrame(factor_list_combined)
+    fig = plt.figure()
+    ax = df_factors.value_counts().plot.bar()
+    fig.add_axes(ax)
+    fig.subplots_adjust(bottom=0.6)
+    fig.savefig(f"./strength_covariance/model_ays/{title}.png", dpi=300)
+    return
+
+
 def main():
     df_in = pd.read_csv("./data/models_w_props.csv")
 
@@ -119,10 +135,14 @@ def main():
     cv = RepeatedKFold(n_splits=10, n_repeats=3)
     df_results = factor_select_cv(X, y, pipe, n_factor_max = n_factor_max, cv = cv, scoring='neg_root_mean_squared_error')
     df_results.to_csv("./strength_covariance/model_ays/kfold_models.csv")
+    # df_results = pd.read_csv("./strength_covariance/model_ays/kfold_models.csv")
+    factor_percent_usage(df_results, 100, 'kfold_factor_usage')
 
     loocv = LeaveOneOut()
     df_results_loocv = factor_select_cv(X, y, pipe, n_factor_max = n_factor_max, cv = loocv, scoring='neg_root_mean_squared_error')
     df_results_loocv.to_csv("./strength_covariance/model_ays/loocv_models.csv")
+    # df_results_loocv = pd.read_csv("./strength_covariance/model_ays/loocv_models.csv")
+    factor_percent_usage(df_results_loocv, 100, 'loocv_factor_usage')
     return
 
 if __name__ == "__main__":

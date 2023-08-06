@@ -35,30 +35,7 @@ def save_corr_values(df, title):
     values.to_csv(f"./strength_covariance/data_ays/{title}.csv")
 
 
-def main():
-    # import data
-    df_in = pd.read_csv('./data/models_w_props.csv')
-
-    save_corr_values(df_in, 'corr_initial')
-    # cleanup data
-    if 'disqualified' in df_in.columns:
-        df_in = df_in.drop('disqualified', axis=1)
-
-    df_in = df_in.drop([i for i in df_in.columns if 'diamond' in i], axis=1)
-    df_in = df_in.drop(['thermal_expansion_coeff_bcc',
-                        'surface_energy_100_bcc',
-                        'surface_energy_110_bcc',
-                        'surface_energy_111_bcc',
-                        'surface_energy_121_bcc'], axis=1)
-
-    # remove extreme outliers
-    df_clean = basic_outlier_removal(df_in)
-    save_corr_values(df_in, 'corr_clean')
-
-    df_clean['c11-c12-c44'] = df_clean['c11_fcc'] - \
-        df_clean['c12_fcc'] - df_clean['c44_fcc']
-
-    # create pairplots
+def run_pairplots(df_clean):
 
     pairplot_selected(df_clean,
                       ['c11_fcc',
@@ -145,6 +122,34 @@ def main():
                        'cohesive_energy_fcc',
                        'c44_fcc'],
                       'big')
+
+
+def main():
+    # import data
+    df_in = pd.read_csv('./data/models_w_props.csv')
+
+    save_corr_values(df_in, 'corr_initial')
+    # cleanup data
+    if 'disqualified' in df_in.columns:
+        df_in = df_in.drop('disqualified', axis=1)
+
+    df_in = df_in.drop([i for i in df_in.columns if 'diamond' in i], axis=1)
+    df_in = df_in.drop(['thermal_expansion_coeff_bcc',
+                        'surface_energy_100_bcc',
+                        'surface_energy_110_bcc',
+                        'surface_energy_111_bcc',
+                        'surface_energy_121_bcc'], axis=1)
+
+    # remove extreme outliers
+    df_clean = basic_outlier_removal(df_in)
+    save_corr_values(df_in, 'corr_clean')
+
+    df_clean['c11-c12-c44'] = df_clean['c11_fcc'] - \
+        df_clean['c12_fcc'] - df_clean['c44_fcc']
+
+    # uncomment to create pairplots
+    # run_pairplots(df_clean)
+    
 
     corr_plot_list = ['strength_MPa',
                       'intr_stack_fault_energy_fcc',
