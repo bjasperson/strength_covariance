@@ -41,7 +41,8 @@ def run_pairplots(df_clean):
                       ['c11_fcc',
                        'c12_fcc',
                        'c44_fcc',
-                       'c11-c12-c44'],
+                       'c11-c12-c44',
+                       'c11-c12+c44'],
                       'elastic_const_combos')
 
     pairplot_selected(df_clean,
@@ -146,9 +147,12 @@ def main():
 
     df_clean['c11-c12-c44'] = df_clean['c11_fcc'] - \
         df_clean['c12_fcc'] - df_clean['c44_fcc']
+    
+    df_clean['c11-c12+c44'] = df_clean['c11_fcc'] - \
+        df_clean['c12_fcc'] + df_clean['c44_fcc']
 
     # uncomment to create pairplots
-    # run_pairplots(df_clean)
+    run_pairplots(df_clean)
     
 
     corr_plot_list = ['strength_MPa',
