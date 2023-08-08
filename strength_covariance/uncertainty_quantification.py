@@ -63,8 +63,8 @@ def boostrap_plot(df, y_pred, r2_adj, filename):
     y_pred_limits = np.array([y_pred_lower,y_pred_upper])
     p = sns.scatterplot(data=df, x='strength_MPa',y='strength_pred',hue='species')
     p.errorbar(y,y_pred_mean, yerr=y_pred_limits, fmt='.',markersize=0.001, alpha=0.75)
-    p.plot(np.arange(min(y),max(y),50),
-           np.arange(min(y),max(y),50))
+    p.plot(np.linspace(min(y),max(y),50),
+           np.linspace(min(y),max(y),50))
     p.set_xlabel("actual strength [MPa]")
     p.set_ylabel("predicted strength [MPa]")
     p.set_title(f"Bootstrap uncertainty results\n95% CI (actual point withheld during calculation)\nAdjusted r2 using mean = {r2_adj:.3f}")
