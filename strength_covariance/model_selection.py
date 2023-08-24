@@ -110,7 +110,9 @@ def main():
                    'extr_stack_fault_energy',
                    'intr_stack_fault_energy',
                    'unstable_stack_energy', 'unstable_twinning_energy',
-                   'relaxed_formation_potential_energy_fcc', 'unrelaxed_formation_potential_energy_fcc',
+                   'relaxed_formation_potential_energy_fcc',
+                   'unrelaxed_formation_potential_energy_fcc',
+                   'vacancy_migration_energy_fcc',
                    'relaxation_volume_fcc'
                    ]
 

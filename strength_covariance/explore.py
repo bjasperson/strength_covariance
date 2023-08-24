@@ -123,6 +123,13 @@ def run_pairplots(df_clean):
                        'cohesive_energy_fcc',
                        'c44_fcc'],
                       'big')
+    
+    pairplot_selected(df_clean,
+                      ['relaxed_formation_potential_energy_fcc',
+                       'unrelaxed_formation_potential_energy_fcc',
+                       'vacancy_migration_energy_fcc',
+                       'relaxation_volume_fcc'],
+                       'formation energies')
 
 
 def main():
