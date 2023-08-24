@@ -130,6 +130,13 @@ def run_pairplots(df_clean):
                        'vacancy_migration_energy_fcc',
                        'relaxation_volume_fcc'],
                        'formation energies')
+    
+    pairplot_selected(df_clean,
+                      ['unstable_stack_energy_fcc',
+                       'vacancy_migration_energy_fcc',
+                       'c44_fcc',
+                       'intr_stack_fault_energy_fcc'],
+                       'top4_w_formation')
 
 
 def main():
