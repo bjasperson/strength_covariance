@@ -55,7 +55,11 @@ def r2_adj_fun(r2,n,k):
     return (1 - ((1-r2)*(n-1)/(n-k-1)))
 
 
-def boostrap_plot(df, y_pred, r2_adj, filename):
+def boostrap_plot(df, y_pred, r2_adj, filename, params):
+    params_string = ""
+    for param in params:
+        params_string += (param + ", ")
+    params_string = params_string[:-2]
     y_pred_lower = y_pred['y_pred_lower']
     y_pred_upper = y_pred['y_pred_upper']
     y_pred_mean = y_pred['y_pred_mean']
@@ -67,7 +71,7 @@ def boostrap_plot(df, y_pred, r2_adj, filename):
            np.linspace(min(y),max(y),50))
     p.set_xlabel("actual strength [MPa]")
     p.set_ylabel("predicted strength [MPa]")
-    p.set_title(f"Bootstrap uncertainty results\n95% CI (actual point withheld during calculation)\nAdjusted r2 using mean = {r2_adj:.3f}")
+    p.set_title(f"Bootstrap uncertainty results, 95% CI (point withheld)\n{params_string}\nAdjusted r2 using mean = {r2_adj:.3f}",fontsize=10)
     #fig = plt.figure()
     #fig.add_axes(p)
     plt.savefig(f"./strength_covariance/model_ays/{filename}.png",dpi=300)
@@ -91,8 +95,9 @@ def main():
     
     df_clean = basic_outlier_removal(df_in)
 
-    # set parameters
-    params_list_full = ['c44_fcc','extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc']
+    # set parameters 
+    params_list_full = ['c44_fcc','extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc'] # best
+    # params_list_full = ['c44_fcc', 'unstable_stack_energy_fcc', 'unrelaxed_formation_potential_energy_fcc'] # best w/ vac form
     # params_list_full = ['c44_sc', 'surface_energy_111_fcc', 'unstable_stack_energy_fcc']
     # params_list_full = ['c44_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']
     # params_list_full = ['c44_fcc','c11_fcc', 'c12_fcc']
@@ -122,7 +127,7 @@ def main():
 
     df_clean['strength_pred'] = y_pred['y_pred_mean']
 
-    boostrap_plot(df_clean, y_pred, r2_adj, 'bootstrap')
+    boostrap_plot(df_clean, y_pred, r2_adj, 'bootstrap', params_list_full)
 
 
 if __name__ == "__main__":
