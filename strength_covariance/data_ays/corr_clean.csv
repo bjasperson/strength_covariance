@@ -10,12 +10,16 @@ c11_fcc,0.6347135171734567
 surface_energy_100_fcc,0.6269694018165616
 lattice_constant_sc,0.6247084620225108
 unrelaxed_formation_potential_energy_fcc,0.6230626641838998
+ideal_surface_energy_100_fcc,0.6171365965820041
 surface_energy_121_fcc,0.6153558728434959
+ideal_surface_energy_110_fcc,0.6140282078432525
 unstable_twinning_energy_fcc,0.6050107488496606
+ideal_surface_energy_121_fcc,0.5944525662982533
 cohesive_energy_fcc,0.588784006406997
 c11_sc,0.5863614848279844
 unstable_stack_energy_fcc,0.5829498725373932
 surface_energy_111_fcc,0.579350491058017
+ideal_surface_energy_111_fcc,0.5741578906305818
 cohesive_energy_bcc,0.5738745371379527
 bulk_modulus_fcc,0.548407360261016
 relaxation_volume_fcc,0.5461384964209061
@@ -33,6 +37,10 @@ c12_sc,0.11302842371081856
 bulk_modulus_bcc,0.10974103182940378
 unstable_stack_energy_slip_fraction_fcc,0.09496058726740432
 c11_bcc,0.06828056571824642
+ideal_surface_energy_100_bcc,
+ideal_surface_energy_110_bcc,
+ideal_surface_energy_111_bcc,
+ideal_surface_energy_121_bcc,
 relaxed_formation_potential_energy_bcc,
 relaxed_formation_potential_energy_hcp,
 unrelaxed_formation_potential_energy_bcc,

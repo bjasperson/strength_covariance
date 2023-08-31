@@ -10,7 +10,8 @@ def main():
     df_strength[df_strength.isna().any(axis=1)]
 
     openkim_props = ['lattice_const', 'bulk_modulus', 'elastic_const', 
-                    'cohesive_energy', 'thermal_expansion_coeff', 'surface_energy',
+                    'cohesive_energy', 'thermal_expansion_coeff', 
+                    'surface_energy', 'ideal_surface_energy',
                     'extr_stack_fault_energy','intr_stack_fault_energy',
                     'unstable_stack_energy','unstable_twinning_energy',
                     'monovacancy_relaxed_formation_potential_energy',

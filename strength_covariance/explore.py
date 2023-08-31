@@ -65,6 +65,18 @@ def run_pairplots(df_clean, label_dict):
                        'surface_energy_121_fcc'],
                       'surface_energies',
                       label_dict)
+    
+    pairplot_selected(df_clean,
+                      ['surface_energy_100_fcc',
+                       'ideal_surface_energy_100_fcc',
+                       'surface_energy_110_fcc',
+                       'ideal_surface_energy_110_fcc',
+                       'surface_energy_111_fcc',
+                       'ideal_surface_energy_111_fcc',
+                       'surface_energy_121_fcc',
+                       'ideal_surface_energy_121_fcc'],
+                      'surface_energies_w_ideal',
+                      label_dict)
 
     pairplot_selected(df_clean,
                       ['extr_stack_fault_energy_fcc',

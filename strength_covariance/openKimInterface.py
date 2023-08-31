@@ -100,17 +100,18 @@ def property_details(prop, query, fields, colm_rename):
         colm_rename["miller-indices.source-value"] = 'surface_energy_surface'
         colm_rename['meta.runner.kimcode'] = 'testname_surface_energy'
 
-    # if prop == 'surface_energy':
-    #     #ideal-cubic-crystal
-    #     query["property-id"] = "tag:staff@noreply.openkim.org,2014-05-21:property/surface-energy-ideal-cubic-crystal"
-    #     query["meta.runner.driver.short-id"] = "TD_955413365818_004"
-    #     fields["ideal-surface-energy.source-value"] = 1
-    #     fields["ideal-surface-energy.source-unit"] = 1
-    #     fields["miller-indices.source-value"] = 1
-    #     colm_rename["ideal-surface-energy.source-value"] = "surface_energy"
-    #     colm_rename["ideal-surface-energy.source-unit"] = "surface_energy_unit"
-    #     colm_rename["miller-indices.source-value"] = 'surface_energy_surface'
-    #     colm_rename['meta.runner.kimcode'] = 'testname_surface_energy'
+    if prop == 'ideal_surface_energy':
+        #cubic crystal
+        query["property-id"] = "tag:staff@noreply.openkim.org,2014-05-21:property/surface-energy-ideal-cubic-crystal"
+        # query["meta.runner.driver.short-id"] = "TD_955413365818_004"
+        query["meta.runner.driver.shortcode"] = "TD_955413365818"
+        fields["ideal-surface-energy.source-value"] = 1
+        fields["ideal-surface-energy.source-unit"] = 1
+        fields["miller-indices.source-value"] = 1
+        colm_rename["ideal-surface-energy.source-value"] = "ideal_surface_energy"
+        colm_rename["ideal-surface-energy.source-unit"] = "ideal_surface_energy_unit"
+        colm_rename["miller-indices.source-value"] = 'ideal_surface_energy_surface'
+        colm_rename['meta.runner.kimcode'] = 'testname_ideal_surface_energy'
 
     if prop == 'extr_stack_fault_energy':
         query["property-id"] = "tag:staff@noreply.openkim.org,2015-05-26:property/extrinsic-stacking-fault-relaxed-energy-fcc-crystal-npt"
@@ -248,8 +249,22 @@ def get_tests(props):
                 df1 = df1.drop_duplicates()
                 df2 = df.pivot(index = ['crystal_type','species','model'],columns = 'surface_energy_surface',values='surface_energy').reset_index()
                 df = df1.merge(df2, how='outer',on=['crystal_type','species','model'])
-                rename = {'[1, 1, 0]':'surface_energy_110', '[1, 1, 1]':'surface_energy_111','[1, 2, 1]':'surface_energy_121','[1, 0, 0]':'surface_energy_100'}
+                rename = {'[1, 1, 0]':'surface_energy_110',
+                          '[1, 1, 1]':'surface_energy_111',
+                          '[1, 2, 1]':'surface_energy_121',
+                          '[1, 0, 0]':'surface_energy_100'}
                 df.rename(rename, inplace=True,axis=1)
+            if current == 'ideal_surface_energy':
+                df['ideal_surface_energy_surface'] = [str(i) for i in df['ideal_surface_energy_surface']]
+                df1  = df[list(df.columns.drop(['ideal_surface_energy_surface','ideal_surface_energy']))]
+                df1 = df1.drop_duplicates()
+                df2 = df.pivot(index = ['crystal_type','species','model'],columns = 'ideal_surface_energy_surface',values='ideal_surface_energy').reset_index()
+                df = df1.merge(df2, how='outer',on=['crystal_type','species','model'])
+                rename = {'[1, 1, 0]':'ideal_surface_energy_110',
+                          '[1, 1, 1]':'ideal_surface_energy_111',
+                          '[1, 2, 1]':'ideal_surface_energy_121',
+                          '[1, 0, 0]':'ideal_surface_energy_100'}
+                df.rename(rename, inplace=True,axis=1)            
             df_list.append(df)
         else:
             print(f"no results for {current}, skipping")
