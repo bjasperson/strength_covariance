@@ -176,6 +176,15 @@ def run_pairplots(df_clean, label_dict):
                        'intr_stack_fault_energy_fcc'],
                        'top4_w_formation',
                        label_dict)
+    
+    pairplot_selected(df_clean,
+                      ['bulk_modulus_fcc',
+                       'c44_fcc',
+                       'surface_energy_111_fcc',
+                       'unstable_stack_energy_fcc',
+                       'intr_stack_fault_energy_fcc'],
+                       'DFT_indicator_properties',
+                      label_dict)
 
 
 def main():
