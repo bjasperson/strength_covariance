@@ -174,7 +174,7 @@ def run_pairplots(df_clean, label_dict):
                        'vacancy_migration_energy_fcc',
                        'c44_fcc',
                        'intr_stack_fault_energy_fcc'],
-                       'top4_w_formation',
+                       'pairplot_top_factors',
                        label_dict)
     
     pairplot_selected(df_clean,

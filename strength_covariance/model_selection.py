@@ -12,7 +12,6 @@ from sklearn.decomposition import PCA
 from sklearn import linear_model, svm
 from ast import literal_eval
 import seaborn as sns
-import explore
 
 
 def basic_outlier_removal(df):
@@ -168,8 +167,10 @@ def factor_select_plotting(df, label_dict, filename, width = 0.125):
     return
 
 def main():
+    from explore import import_label_dict
+
     df_in = pd.read_csv("./data/models_w_props.csv")
-    label_dict = explore.import_label_dict()
+    label_dict = import_label_dict()
 
 
     df_in = df_in.drop([i for i in df_in.columns if 'diamond' in i], axis=1)
