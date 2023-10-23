@@ -25,7 +25,7 @@ def pairplot_selected(df, factors, title, label_dict):
     return
 
 
-def correlation_plot(df, title, figsize=(10, 10), annot=False):
+def correlation_plot(df, title, label_dict, figsize=(10, 10), annot=False):
     """plots correlation heatmap of df variables
 
     :param df pd.DataFrame: dataframe with labels to consider
@@ -33,6 +33,17 @@ def correlation_plot(df, title, figsize=(10, 10), annot=False):
     "param annot: boolean, if annotated with correlation value
     """
     df_corr = df.corr().round(2)
+    columns = df_corr.columns.to_list()
+    columns = [label_dict[x] for x in columns]
+    df_corr.columns = columns
+    
+    df_index = df_corr.index.to_list()
+    df_index = [label_dict[x] for x in df_index]
+    df_corr.index = df_index
+
+    order = df_corr['Strength MPa'].sort_values(ascending=False).index.to_list()
+    df_corr = df_corr[order].reindex(order)
+
     fig = plt.figure(figsize=(figsize[0], figsize[1]))
     colors = sns.color_palette("vlag", as_cmap=True)
     ax = sns.heatmap(df_corr, vmin=-1, vmax=1, cmap=colors, annot=annot)
@@ -233,6 +244,7 @@ def main():
 
     correlation_plot(df_clean[corr_plot_list],
                      "corr_plot",
+                     label_dict,
                      annot=True)
 
     return
