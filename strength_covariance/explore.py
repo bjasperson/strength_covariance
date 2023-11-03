@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from model_selection import basic_outlier_removal
+from model_selection import basic_outlier_removal, filter_param_list
 import seaborn as sns
 import matplotlib.pyplot as plt
 import csv
@@ -246,6 +246,28 @@ def main():
                      "corr_plot",
                      label_dict,
                      annot=True)
+    
+    params_list = ['lattice_constant', 
+                'bulk_modulus', 'c11', 'c12', 'c44',
+                'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc',
+                'surface_energy_100_fcc',
+                'extr_stack_fault_energy', 
+                'intr_stack_fault_energy',
+                'unstable_stack_energy', 'unstable_twinning_energy',
+                'relaxed_formation_potential_energy_fcc', #includes unrelaxed
+                'vacancy_migration_energy_fcc',
+                'relaxation_volume_fcc']
+
+    params_list_full = filter_param_list(
+        df_clean, params_list, ['strength_MPa'])
+    
+    params_list_full = [i for n, i in enumerate(params_list_full) if i not in params_list_full[:n]]
+
+    
+    correlation_plot(df_clean[params_list_full],
+                    "corr_plot_full",
+                    label_dict,
+                    annot=False)
 
     return
 
