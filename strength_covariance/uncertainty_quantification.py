@@ -16,12 +16,14 @@ from scipy import stats
 
 
 
-def uncert_bootstrap(X,y,pipe,n_iter):
+def uncert_bootstrap(X,y,pipe,n_iter,readme):
 
     y_pred_data = []
     y_pred_mean = []
     y_pred_lower = []
     y_pred_upper = []
+    ci_range = 95.0
+    readme.append(f"CI range: {ci_range}\n")
     for i in range(len(y)):
         print(f"data point {i} of {len(y)}")
         available_indexes = [j for j in range(len(y)) if j != i]
@@ -48,7 +50,7 @@ def uncert_bootstrap(X,y,pipe,n_iter):
               'y_pred_lower':y_pred_lower,
               'y_pred_upper':y_pred_upper}
 
-    return y_pred
+    return y_pred, readme
 
 
 def r2_adj_fun(r2,n,k):
@@ -76,6 +78,30 @@ def boostrap_plot(df, y_pred, r2_adj, filename, params):
     #fig.add_axes(p)
     plt.savefig(f"./strength_covariance/model_ays/{filename}.png",dpi=300)
 
+
+def perform_bootstrap(df, params_list_in, pipe, n_bootstrap, filename):
+    readme = []
+    readme.append(f"factor list: {params_list_in}\n")
+    X = df[params_list_in]
+    y = df['strength_MPa']
+
+    y_pred, readme = uncert_bootstrap(X,y,pipe,n_bootstrap,readme)
+
+    r2 = r2_score(y, y_pred['y_pred_mean'])
+    k = len(X.columns)
+    n = len(y)
+    r2_adj = r2_adj_fun(r2, n, k)
+
+    df['strength_pred'] = y_pred['y_pred_mean']
+
+    boostrap_plot(df, y_pred, r2_adj, filename, params_list_in)
+
+    with open(f"./strength_covariance/model_ays/{filename}_readme.txt", "w") as text_file:
+        for line in readme:
+            text_file.write(line)
+    
+    df = pd.concat([df,pd.DataFrame(y_pred)], axis=1)
+    df.to_csv(f"./strength_covariance/model_ays/{filename}_data.csv")
 
 
 def main():
@@ -118,16 +144,8 @@ def main():
     pipe = TransformedTargetRegressor(regressor = pipe,
                                             transformer = StandardScaler())
 
-    y_pred = uncert_bootstrap(X,y,pipe,100)
-
-    r2 = r2_score(y, y_pred['y_pred_mean'])
-    k = len(X.columns)
-    n = len(y)
-    r2_adj = r2_adj_fun(r2, n, k)
-
-    df_clean['strength_pred'] = y_pred['y_pred_mean']
-
-    boostrap_plot(df_clean, y_pred, r2_adj, 'bootstrap', params_list_full)
+    n_bootstrap = 30
+    perform_bootstrap(df_clean, params_list_full, pipe, n_bootstrap, "bootstrap")
 
 
 if __name__ == "__main__":
