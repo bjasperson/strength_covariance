@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from model_selection import basic_outlier_removal
+from model_selection import basic_outlier_removal, filter_param_list
 from sklearn.impute import KNNImputer
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.compose import TransformedTargetRegressor
@@ -57,7 +57,7 @@ def r2_adj_fun(r2,n,k):
     return (1 - ((1-r2)*(n-1)/(n-k-1)))
 
 
-def boostrap_plot(df, y_pred, r2_adj, filename, params):
+def boostrap_plot(df, y_pred, r2_adj, filename, params, title=True):
     params_string = ""
     for param in params:
         params_string += (param + ", ")
@@ -73,13 +73,17 @@ def boostrap_plot(df, y_pred, r2_adj, filename, params):
            np.linspace(min(y),max(y),50))
     p.set_xlabel("actual strength [MPa]")
     p.set_ylabel("predicted strength [MPa]")
-    p.set_title(f"Bootstrap uncertainty results, 95% CI (point withheld)\n{params_string}\nAdjusted r2 using mean = {r2_adj:.3f}",fontsize=10)
+    if title==True:
+        p.set_title(f"Bootstrap uncertainty results, 95% CI (point withheld)\n{params_string}\nAdjusted r2 using mean = {r2_adj:.3f}",fontsize=10)
+    p.text(0.95, 0.01, f"Adjusted R\N{SUPERSCRIPT TWO} using mean = {r2_adj:.3f}",
+           verticalalignment='bottom', horizontalalignment='right',
+           transform=p.transAxes, fontsize=10)
     #fig = plt.figure()
     #fig.add_axes(p)
     plt.savefig(f"./strength_covariance/model_ays/{filename}.png",dpi=300)
 
 
-def perform_bootstrap(df, params_list_in, pipe, n_bootstrap, filename):
+def perform_bootstrap(df, params_list_in, pipe, n_bootstrap, filename, title=True):
     readme = []
     readme.append(f"factor list: {params_list_in}\n")
     X = df[params_list_in]
@@ -94,7 +98,7 @@ def perform_bootstrap(df, params_list_in, pipe, n_bootstrap, filename):
 
     df['strength_pred'] = y_pred['y_pred_mean']
 
-    boostrap_plot(df, y_pred, r2_adj, filename, params_list_in)
+    boostrap_plot(df, y_pred, r2_adj, filename, params_list_in, title=title)
 
     with open(f"./strength_covariance/model_ays/{filename}_readme.txt", "w") as text_file:
         for line in readme:
@@ -121,16 +125,6 @@ def main():
     
     df_clean = basic_outlier_removal(df_in)
 
-    # set parameters 
-    params_list_full = ['c44_fcc','extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc'] # best
-    # params_list_full = ['c44_fcc', 'unstable_stack_energy_fcc', 'unrelaxed_formation_potential_energy_fcc'] # best w/ vac form
-    # params_list_full = ['c44_sc', 'surface_energy_111_fcc', 'unstable_stack_energy_fcc']
-    # params_list_full = ['c44_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']
-    # params_list_full = ['c44_fcc','c11_fcc', 'c12_fcc']
-    # params_list_full = ['c11_fcc', 'unstable_stack_energy_fcc', 'unstable_twinning_energy_fcc']
-    X = df_clean[params_list_full]
-    y = df_clean['strength_MPa']
-
     # create pipeline
     imput = KNNImputer(n_neighbors=2, weights="uniform", keep_empty_features=True)
     pca = PCA()
@@ -145,7 +139,28 @@ def main():
                                             transformer = StandardScaler())
 
     n_bootstrap = 30
-    perform_bootstrap(df_clean, params_list_full, pipe, n_bootstrap, "bootstrap")
+
+    if False:
+        # set parameters 
+        params_list_full = ['c44_fcc','extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc'] # best
+        # params_list_full = ['c44_fcc', 'unstable_stack_energy_fcc', 'unrelaxed_formation_potential_energy_fcc'] # best w/ vac form
+        # params_list_full = ['c44_sc', 'surface_energy_111_fcc', 'unstable_stack_energy_fcc']
+        # params_list_full = ['c44_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc']
+        # params_list_full = ['c44_fcc','c11_fcc', 'c12_fcc']
+        # params_list_full = ['c11_fcc', 'unstable_stack_energy_fcc', 'unstable_twinning_energy_fcc']
+        perform_bootstrap(df_clean, params_list_full, pipe, n_bootstrap, "bootstrap", title=False)
+
+    # full model, all parameters
+    if False:
+        params_list = ['lattice_constant','bulk_modulus','c44','c11','c12',
+                'cohesive_energy','thermal_expansion_coeff_fcc','surface_energy_100_fcc',
+                'extr_stack_fault_energy','intr_stack_fault_energy','unstable_stack_energy',
+                'unstable_twinning_energy','relaxed_formation_potential_energy_fcc',
+                'unrelaxed_formation_potential_energy_fcc','relaxation_volume_fcc']
+    
+        params_list_full = filter_param_list(df_in, params_list)
+        perform_bootstrap(df_clean, params_list_full, pipe, n_bootstrap, 'bootstrap_svr_all_props', title=False)
+
 
 
 if __name__ == "__main__":
