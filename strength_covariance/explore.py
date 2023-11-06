@@ -64,9 +64,19 @@ def run_pairplots(df_clean, label_dict):
                       ['c11_fcc',
                        'c12_fcc',
                        'c44_fcc',
-                       'c11-c12-c44',
+                       #'c11-c12-c44',
                        'c11-c12+c44'],
                       'elastic_const_combos',
+                      label_dict)
+    
+    pairplot_selected(df_clean,
+                      ['c11_fcc',
+                       'c12_fcc',
+                       'c44_fcc',
+                       'lattice_constant_sc',
+                       'lattice_constant_fcc',
+                       'lattice_constant_bcc'],
+                       'elastic_lattice_const',
                       label_dict)
 
     pairplot_selected(df_clean,
@@ -219,8 +229,8 @@ def main():
     df_clean = basic_outlier_removal(df_in)
     save_corr_values(df_in, 'corr_clean')
 
-    df_clean['c11-c12-c44'] = df_clean['c11_fcc'] - \
-        df_clean['c12_fcc'] - df_clean['c44_fcc']
+    # df_clean['c11-c12-c44'] = df_clean['c11_fcc'] - \
+    #     df_clean['c12_fcc'] - df_clean['c44_fcc']
     
     df_clean['c11-c12+c44'] = df_clean['c11_fcc'] - \
         df_clean['c12_fcc'] + df_clean['c44_fcc']
@@ -234,7 +244,7 @@ def main():
                       'unstable_stack_energy_fcc',
                       'unstable_stack_energy_slip_fraction_fcc',
                       'unstable_twinning_energy_fcc',
-                      'surface_energy_111_fcc',
+                      'surface_energy_110_fcc',
                       'lattice_constant_sc',
                       'lattice_constant_fcc',
                       'cohesive_energy_fcc',
@@ -251,6 +261,9 @@ def main():
                 'bulk_modulus', 'c11', 'c12', 'c44',
                 'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc',
                 'surface_energy_100_fcc',
+                'surface_energy_110_fcc',
+                'surface_energy_111_fcc',
+                'surface_energy_121_fcc',
                 'extr_stack_fault_energy', 
                 'intr_stack_fault_energy',
                 'unstable_stack_energy', 'unstable_twinning_energy',

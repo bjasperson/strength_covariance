@@ -108,10 +108,10 @@ def perform_bootstrap(df, params_list_in, pipe, n_bootstrap, filename, title=Tru
     df.to_csv(f"./strength_covariance/model_ays/{filename}_data.csv")
 
 
-def main():
-    df_in = pd.read_csv("./data/models_w_props.csv")
+def data_import(clean=True,
+                data_path = "./data/models_w_props.csv"):
+    df_in = pd.read_csv(data_path)
     df_in = df_in.drop([i for i in df_in.columns if 'diamond' in i],axis=1)
-
 
     if 'disqualified' in df_in.columns:
         df_in = df_in.drop('disqualified', axis=1)
@@ -122,14 +122,21 @@ def main():
                         'surface_energy_110_bcc',
                         'surface_energy_111_bcc',
                         'surface_energy_121_bcc'], axis=1)
-    
-    df_clean = basic_outlier_removal(df_in)
+    if clean==True:
+        df_in = basic_outlier_removal(df_in)
 
+    return df_in
+
+
+def model_create(model_type = "svr"):
     # create pipeline
     imput = KNNImputer(n_neighbors=2, weights="uniform", keep_empty_features=True)
     pca = PCA()
-    #model = linear_model.LinearRegression()
-    model = svm.SVR(kernel='rbf')
+    
+    if model_type == "svr":
+        model = svm.SVR(kernel='rbf')
+    elif model_type == "linear":
+        model = linear_model.LinearRegression()
 
     pipe = Pipeline(steps=[('scale',StandardScaler()),
                             ('imp',imput),
@@ -138,9 +145,14 @@ def main():
     pipe = TransformedTargetRegressor(regressor = pipe,
                                             transformer = StandardScaler())
 
-    n_bootstrap = 30
+    return pipe
 
+
+def main():
+    n_bootstrap = 30
     if False:
+        df_clean = data_import()
+        pipe = model_create(model_type = "svr")
         # set parameters 
         params_list_full = ['c44_fcc','extr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc'] # best
         # params_list_full = ['c44_fcc', 'unstable_stack_energy_fcc', 'unrelaxed_formation_potential_energy_fcc'] # best w/ vac form
@@ -152,6 +164,8 @@ def main():
 
     # full model, all parameters
     if False:
+        df_clean = data_import()
+        pipe = model_create(model_type = "svr")
         params_list = ['lattice_constant','bulk_modulus','c44','c11','c12',
                 'cohesive_energy','thermal_expansion_coeff_fcc','surface_energy_100_fcc',
                 'extr_stack_fault_energy','intr_stack_fault_energy','unstable_stack_energy',
@@ -163,6 +177,8 @@ def main():
 
     # full model, working up to all parameters
     if True:
+        df_clean = data_import()
+        pipe = model_create(model_type = "svr")
         params_list = ['c44_fcc', 'extr_stack_fault_energy', 'unstable_stack_energy', #adding in c44_bcc makes it much worse!
                        'lattice_constant_fcc']#,'bulk_modulus','c11','c12'] #same with lattice constant...why?
                 # 'cohesive_energy','thermal_expansion_coeff_fcc','surface_energy_100_fcc',
@@ -170,9 +186,8 @@ def main():
                 # 'unstable_twinning_energy','relaxed_formation_potential_energy_fcc',
                 # 'unrelaxed_formation_potential_energy_fcc','relaxation_volume_fcc']
     
-        params_list_full = filter_param_list(df_in, params_list)
+        params_list_full = filter_param_list(df_clean, params_list)
         perform_bootstrap(df_clean, params_list_full, pipe, n_bootstrap, 'bootstrap_svr_explore', title=False)
-
 
 
 if __name__ == "__main__":
