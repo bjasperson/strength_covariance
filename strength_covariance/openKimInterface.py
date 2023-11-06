@@ -310,6 +310,7 @@ def get_prop_df(props, df_ref):
 
 def flatten_crystal_type(df_list):
     for i,df in enumerate(df_list):
+        df = df.drop_duplicates()
         df = df.pivot(index=['species','model'],columns = ['crystal_type'])
         df.columns = [f'{i}_{j}' for i,j in df.columns]
         df = df.reset_index()

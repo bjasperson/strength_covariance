@@ -150,7 +150,7 @@ def model_create(model_type = "svr"):
 
 def main():
     n_bootstrap = 30
-    if False:
+    if True:
         df_clean = data_import()
         pipe = model_create(model_type = "svr")
         # set parameters 
@@ -176,7 +176,7 @@ def main():
         perform_bootstrap(df_clean, params_list_full, pipe, n_bootstrap, 'bootstrap_svr_all_props', title=False)
 
     # full model, working up to all parameters
-    if True:
+    if False:
         df_clean = data_import()
         pipe = model_create(model_type = "svr")
         params_list = ['c44_fcc', 'extr_stack_fault_energy', 'unstable_stack_energy', #adding in c44_bcc makes it much worse!
