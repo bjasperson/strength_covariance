@@ -161,6 +161,18 @@ def main():
         params_list_full = filter_param_list(df_in, params_list)
         perform_bootstrap(df_clean, params_list_full, pipe, n_bootstrap, 'bootstrap_svr_all_props', title=False)
 
+    # full model, working up to all parameters
+    if True:
+        params_list = ['c44_fcc', 'extr_stack_fault_energy', 'unstable_stack_energy', #adding in c44_bcc makes it much worse!
+                       'lattice_constant_fcc']#,'bulk_modulus','c11','c12'] #same with lattice constant...why?
+                # 'cohesive_energy','thermal_expansion_coeff_fcc','surface_energy_100_fcc',
+                # 'intr_stack_fault_energy',
+                # 'unstable_twinning_energy','relaxed_formation_potential_energy_fcc',
+                # 'unrelaxed_formation_potential_energy_fcc','relaxation_volume_fcc']
+    
+        params_list_full = filter_param_list(df_in, params_list)
+        perform_bootstrap(df_clean, params_list_full, pipe, n_bootstrap, 'bootstrap_svr_explore', title=False)
+
 
 
 if __name__ == "__main__":
