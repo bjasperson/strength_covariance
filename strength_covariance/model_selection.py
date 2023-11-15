@@ -212,20 +212,24 @@ def main():
 
     n_factor_max = 3
 
-    if False:
+    if True:
         cv = RepeatedKFold(n_splits=10, n_repeats=3)
         df_results = factor_select_cv(
             X, y, pipe, n_factor_max=n_factor_max, cv=cv, scoring='neg_root_mean_squared_error')
         df_results.to_csv("./strength_covariance/model_ays/kfold_models.csv")
-        # df_results = pd.read_csv("./strength_covariance/model_ays/kfold_models.csv")
         factor_percent_usage(df_results, 100, 'kfold_factor_usage')
 
-    if False:
+    if True:
         loocv = LeaveOneOut()
         df_results_loocv = factor_select_cv(
             X, y, pipe, n_factor_max=n_factor_max, cv=loocv, scoring='neg_root_mean_squared_error')
         df_results_loocv.to_csv("./strength_covariance/model_ays/loocv_models.csv")
-        # df_results_loocv = pd.read_csv("./strength_covariance/model_ays/loocv_models.csv")
+        factor_percent_usage(df_results_loocv, 100, 'loocv_factor_usage')
+
+    if False: # load results
+        df_results = pd.read_csv("./strength_covariance/model_ays/kfold_models.csv")
+        factor_percent_usage(df_results, 100, 'kfold_factor_usage')
+        df_results_loocv = pd.read_csv("./strength_covariance/model_ays/loocv_models.csv")
         factor_percent_usage(df_results_loocv, 100, 'loocv_factor_usage')
 
     if True:
