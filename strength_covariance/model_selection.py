@@ -219,7 +219,7 @@ def main():
         df_results.to_csv("./strength_covariance/model_ays/kfold_models.csv")
         factor_percent_usage(df_results, 100, 'kfold_factor_usage')
 
-    if True:
+    if False:
         loocv = LeaveOneOut()
         df_results_loocv = factor_select_cv(
             X, y, pipe, n_factor_max=n_factor_max, cv=loocv, scoring='neg_root_mean_squared_error')
