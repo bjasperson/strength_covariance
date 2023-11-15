@@ -227,7 +227,7 @@ def main():
 
     # remove extreme outliers
     df_clean = basic_outlier_removal(df_in)
-    save_corr_values(df_in, 'corr_clean')
+    save_corr_values(df_clean, 'corr_clean')
 
     # df_clean['c11-c12-c44'] = df_clean['c11_fcc'] - \
     #     df_clean['c12_fcc'] - df_clean['c44_fcc']
