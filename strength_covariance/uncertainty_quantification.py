@@ -150,7 +150,7 @@ def model_create(model_type = "svr"):
 
 def main():
     n_bootstrap = 30
-    if True:
+    if False:
         df_clean = data_import()
         pipe = model_create(model_type = "svr")
         # set parameters 
@@ -161,6 +161,13 @@ def main():
         # params_list_full = ['c44_fcc','c11_fcc', 'c12_fcc']
         # params_list_full = ['c11_fcc', 'unstable_stack_energy_fcc', 'unstable_twinning_energy_fcc']
         perform_bootstrap(df_clean, params_list_full, pipe, n_bootstrap, "bootstrap", title=False)
+
+    if True: # w/ gb coeff
+        df_clean = data_import()
+        pipe = model_create(model_type = "svr")
+        # set parameters 
+        params_list_full = ["lattice_constant_bcc","gb_coeff_111","unstable_stack_energy_fcc"] 
+        perform_bootstrap(df_clean, params_list_full, pipe, n_bootstrap, "bootstrap_w_gb_coeff", title=False)
 
     # full model, all parameters
     if False:

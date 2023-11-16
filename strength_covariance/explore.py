@@ -22,6 +22,7 @@ def pairplot_selected(df, factors, title, label_dict):
     # for ax in fig.axes.flatten():
     #     ax.set_xlabel(ax.get_xlabel(), rotation=40, ha = "right")
     fig.savefig(f"./strength_covariance/data_ays/{title}.png", dpi=300)
+    plt.close()
     return
 
 
@@ -194,7 +195,8 @@ def run_pairplots(df_clean, label_dict):
                       ['unstable_stack_energy_fcc',
                        'vacancy_migration_energy_fcc',
                        'c44_fcc',
-                       'intr_stack_fault_energy_fcc'],
+                       'intr_stack_fault_energy_fcc',
+                       'gb_coeff_111'],
                        'pairplot_top_factors',
                        label_dict)
     
@@ -205,6 +207,15 @@ def run_pairplots(df_clean, label_dict):
                        'unstable_stack_energy_fcc',
                        'intr_stack_fault_energy_fcc'],
                        'DFT_indicator_properties',
+                      label_dict)
+    
+    pairplot_selected(df_clean,
+                      ['gb_coeff_001',
+                       'gb_coeff_110',
+                       'gb_coeff_111',
+                       'gb_coeff_112'
+                       ],
+                       'gb_coeff',
                       label_dict)
 
 

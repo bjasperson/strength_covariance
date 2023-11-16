@@ -178,6 +178,7 @@ def main():
 
     params_list = ['lattice_constant',
                    'bulk_modulus', 'c11', 'c12', 'c44',
+                   'gb_coeff_111', # others are highly correlated
                    'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc',
                    'surface_energy_100_fcc',
                    'extr_stack_fault_energy',

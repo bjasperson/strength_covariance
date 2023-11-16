@@ -1,6 +1,10 @@
 ,strength_MPa
 strength_MPa,1.0
+gb_coeff_111,0.8515398749800074
 vacancy_migration_energy_fcc,0.8356692055649965
+gb_coeff_110,0.8288137776158327
+gb_coeff_001,0.8279087357742889
+gb_coeff_112,0.8277638963869973
 c44_fcc,0.8194368836029282
 lattice_constant_bcc,0.6791515395326708
 relaxed_formation_potential_energy_fcc,0.6748168340089614
