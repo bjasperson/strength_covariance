@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from model_selection import basic_outlier_removal, filter_param_list
+from strength_covariance.model_selection import basic_outlier_removal, filter_param_list
 from sklearn.impute import KNNImputer
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.compose import TransformedTargetRegressor
