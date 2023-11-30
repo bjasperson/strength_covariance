@@ -137,6 +137,8 @@ def model_create(model_type = "svr"):
         model = svm.SVR(kernel='rbf')
     elif model_type == "linear":
         model = linear_model.LinearRegression()
+    elif model_type == "ridge":
+        model = linear_model.Ridge()
 
     pipe = Pipeline(steps=[('scale',StandardScaler()),
                             ('imp',imput),

@@ -13,12 +13,12 @@ def import_label_dict():
     return label_dict
 
 
-def pairplot_selected(df, factors, title, label_dict):
+def pairplot_selected(df, factors, title, label_dict, corner = False):
     factors.extend(['strength_MPa', 'species'])
     X = df[factors]
     X.columns = [label_dict[x] for x in X.columns.to_list()]
     # X.columns = [x.replace("_"," ") for x in X.columns.to_list()]
-    fig = sns.pairplot(X, hue='species')
+    fig = sns.pairplot(X, hue='species', corner = corner)
     # for ax in fig.axes.flatten():
     #     ax.set_xlabel(ax.get_xlabel(), rotation=40, ha = "right")
     fig.savefig(f"./strength_covariance/data_ays/{title}.png", dpi=300)
@@ -217,6 +217,31 @@ def run_pairplots(df_clean, label_dict):
                        ],
                        'gb_coeff',
                       label_dict)
+    
+
+def manuscript_plots(df_clean, label_dict):
+    param_list = ['vacancy_migration_energy_fcc',
+                  'c44_fcc',
+                  'relaxed_formation_potential_energy_fcc',
+                  'unstable_stack_energy_fcc',
+                  'intr_stack_fault_energy_fcc'
+                    ]
+    
+    sns.set(font_scale=1.5)
+    
+    pairplot_selected(df_clean,
+                    param_list,
+                    'manuscript_pairplot',
+                    label_dict,
+                    corner = True)
+    
+    sns.set(font_scale=1.5)
+    correlation_plot(df_clean[param_list],
+                    "corr_plot_manuscript",
+                    label_dict,
+                    annot=True)
+    
+    sns.set(font_scale = 1)
 
 
 def main():
@@ -247,8 +272,7 @@ def main():
         df_clean['c12_fcc'] + df_clean['c44_fcc']
 
     # uncomment to create pairplots
-    run_pairplots(df_clean, label_dict)
-    
+    # run_pairplots(df_clean, label_dict)
 
     corr_plot_list = ['strength_MPa',
                       'intr_stack_fault_energy_fcc',
@@ -292,6 +316,8 @@ def main():
                     "corr_plot_full",
                     label_dict,
                     annot=False)
+    
+    manuscript_plots(df_clean, label_dict)
 
     return
 
