@@ -26,13 +26,7 @@ def pairplot_selected(df, factors, title, label_dict, corner = False):
     return
 
 
-def correlation_plot(df, title, label_dict, figsize=(10, 10), annot=False):
-    """plots correlation heatmap of df variables
-
-    :param df pd.DataFrame: dataframe with labels to consider
-    :param figsize: figuresize for heatmap
-    "param annot: boolean, if annotated with correlation value
-    """
+def correlation_df(df, label_dict):
     df_corr = df.corr().round(2)
     columns = df_corr.columns.to_list()
     columns = [label_dict[x] for x in columns]
@@ -44,7 +38,18 @@ def correlation_plot(df, title, label_dict, figsize=(10, 10), annot=False):
 
     order = df_corr['Strength MPa'].sort_values(ascending=False).index.to_list()
     df_corr = df_corr[order].reindex(order)
+    return df_corr
 
+
+def correlation_plot(df, title, label_dict, figsize=(10, 10), annot=False):
+    """plots correlation heatmap of df variables
+
+    :param df pd.DataFrame: dataframe with labels to consider
+    :param figsize: figuresize for heatmap
+    "param annot: boolean, if annotated with correlation value
+    """
+
+    df_corr = correlation_df(df, label_dict)
     fig = plt.figure(figsize=(figsize[0], figsize[1]))
     colors = sns.color_palette("vlag", as_cmap=True)
     ax = sns.heatmap(df_corr, vmin=-1, vmax=1, cmap=colors, annot=annot)
@@ -243,6 +248,19 @@ def manuscript_plots(df_clean, label_dict):
     
     sns.set(font_scale = 1)
 
+    # initial attempt to combine pairplot and corr matrix.
+    # not working yet
+    # https://stackoverflow.com/questions/63416894/correlation-values-in-pairplot
+    # https://matplotlib.org/stable/gallery/images_contours_and_fields/image_annotated_heatmap.html
+    # checkout ax.set_facecolor
+    # df_corr = correlation_df(df_clean[param_list],label_dict)
+    # g = sns.PairGrid(df_clean[param_list])
+    # g.map_diag(sns.distplot)
+    # g.map_lower(sns.regplot)
+    # g.map_upper(sns.heatmap(df_corr))
+    # plt.show()
+    return
+
 
 def main():
     # import data
@@ -272,7 +290,7 @@ def main():
         df_clean['c12_fcc'] + df_clean['c44_fcc']
 
     # uncomment to create pairplots
-    # run_pairplots(df_clean, label_dict)
+    run_pairplots(df_clean, label_dict)
 
     corr_plot_list = ['strength_MPa',
                       'intr_stack_fault_energy_fcc',
