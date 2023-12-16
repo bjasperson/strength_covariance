@@ -53,8 +53,7 @@ def y_pred_loo(pipe,X,y):
 
 def main():
     df_clean = data_import()
-    pipe = model_create(model_type = "ridge") # had to switch to ridge due to colinearity issue/blows up for all factors
-
+  
     params_list = ['lattice_constant','bulk_modulus','c44','c11','c12',
             'cohesive_energy','thermal_expansion_coeff_fcc','surface_energy_100_fcc',
             'extr_stack_fault_energy','intr_stack_fault_energy','unstable_stack_energy',
@@ -63,13 +62,27 @@ def main():
 
     params_list_full = filter_param_list(df_clean, params_list)
 
+    X_df = df_clean[params_list_full]
+    y = df_clean['strength_MPa']
+    imput = KNNImputer(n_neighbors=2, weights="uniform", keep_empty_features=True)
+    X_df = pd.DataFrame(imput.fit_transform(X_df), columns = imput.feature_names_in_)
 
-    if False: #all factor eval
+    #model = linear_model.LinearRegression()
+    model = linear_model.Ridge()
+    pca = PCA()
+
+    pipe = Pipeline(steps=[('scale',StandardScaler()),
+                           ('pca',pca),
+                           ('lr',model)])
+    pipe = TransformedTargetRegressor(regressor = pipe,
+                                           transformer = StandardScaler())
+
+
+    if True: #all factor eval
         # ignore gb coeff until better populated
         params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
 
-        y = df_clean['strength_MPa']
-        df_corr = df_clean.corr(numeric_only=True).round(2)
+        df_corr = df_clean[['strength_MPa']+params_list_full].corr(numeric_only=True).round(2)
         df_corr = abs(df_corr['strength_MPa']).sort_values(ascending=False).dropna()
         corr_list = df_corr.index.to_list()
         corr_list = corr_list[1:] # remove strength from list
@@ -80,8 +93,11 @@ def main():
         
         for i in range(1,len(corr_list)):
             print(f"factor count {i}")
-            X = df_clean[corr_list[:i]]
-            y_pred = y_pred_loo(pipe,X,y)
+            X = X_df[corr_list[:i]]# df_clean[corr_list[:i]]
+            print(f"X shape = {X.shape}, y shape = {y.shape}")
+            #y_pred = y_pred_loo(pipe,X,y)
+            pipe.fit(X,y)
+            y_pred = pipe.predict(X)
             r2_list.append(r2_score(y, y_pred))
             k = len(X.columns)
             n = len(y)
@@ -90,10 +106,11 @@ def main():
         title = f"Linear model (leave one out) using all factors"
         pred_vs_actual_plot(df_clean, y_pred, r2_adj_list[-1], title, "linear_all_factors")
         r2_plot(r2_list, r2_adj_list,"linear_r2_plot")
+        print(f"corr_list = {corr_list}")
     
-    if True: #3 factor model, exclude jamming
+    if False: #3 factor model, exclude jamming
+        # still need to fix imputer to be applied at start??? no if we are assuming that data doesn't exist by practioner
         df_clean = df_clean[df_clean['SF_jamming']!='yes'].reset_index()
-        y = df_clean['strength_MPa']
         print(f"number of points w/o jamming: {len(df_clean)}")
         pipe = model_create(model_type = "ridge") # had to switch to ridge due to colinearity issue/blows up for all factors
         params_short = ['c44_fcc','extr_stack_fault_energy_fcc','unstable_stack_energy_fcc']

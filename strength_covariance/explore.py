@@ -41,7 +41,7 @@ def correlation_df(df, label_dict):
     return df_corr
 
 
-def correlation_plot(df, title, label_dict, figsize=(10, 10), annot=False):
+def correlation_plot(df, title, label_dict, figsize=(10, 10), annot=False, lower = False):
     """plots correlation heatmap of df variables
 
     :param df pd.DataFrame: dataframe with labels to consider
@@ -52,7 +52,13 @@ def correlation_plot(df, title, label_dict, figsize=(10, 10), annot=False):
     df_corr = correlation_df(df, label_dict)
     fig = plt.figure(figsize=(figsize[0], figsize[1]))
     colors = sns.color_palette("vlag", as_cmap=True)
-    ax = sns.heatmap(df_corr, vmin=-1, vmax=1, cmap=colors, annot=annot)
+    if lower == True:
+        mask = np.triu(np.ones_like(df_corr, dtype=bool))
+        mask[np.diag_indices_from(mask)] = False
+    else:
+        mask = np.zeros_like(df_corr)
+    ax = sns.heatmap(df_corr, mask = mask, vmin=-1, vmax=1, cmap=colors, annot=annot)
+    ax.set_facecolor('white')
     fig.add_axes(ax)
     fig.subplots_adjust(left=0.3,bottom=0.3)
     fig.savefig(f"./strength_covariance/data_ays/{title}.png", dpi=300)
@@ -244,7 +250,8 @@ def manuscript_plots(df_clean, label_dict):
     correlation_plot(df_clean[param_list],
                     "corr_plot_manuscript",
                     label_dict,
-                    annot=True)
+                    annot = True,
+                    lower = True)
     
     sns.set(font_scale = 1)
 
@@ -290,7 +297,7 @@ def main():
         df_clean['c12_fcc'] + df_clean['c44_fcc']
 
     # uncomment to create pairplots
-    run_pairplots(df_clean, label_dict)
+    # run_pairplots(df_clean, label_dict)
 
     corr_plot_list = ['strength_MPa',
                       'intr_stack_fault_energy_fcc',
