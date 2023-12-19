@@ -298,6 +298,13 @@ def main():
 
     # uncomment to create pairplots
     # run_pairplots(df_clean, label_dict)
+    pairplot_selected(df_clean,
+                    ['gb_coeff_001',
+                    'gb_coeff_110',
+                    'gb_coeff_111',
+                    'gb_coeff_112'],
+                    'gb_coeff',
+                    label_dict)
 
     corr_plot_list = ['strength_MPa',
                       'intr_stack_fault_energy_fcc',
@@ -329,7 +336,8 @@ def main():
                 'unstable_stack_energy', 'unstable_twinning_energy',
                 'relaxed_formation_potential_energy_fcc', #includes unrelaxed
                 'vacancy_migration_energy_fcc',
-                'relaxation_volume_fcc']
+                'relaxation_volume_fcc',
+                'gb_coeff_001','gb_coeff_110','gb_coeff_111','gb_coeff_112']
 
     params_list_full = filter_param_list(
         df_clean, params_list, ['strength_MPa'])

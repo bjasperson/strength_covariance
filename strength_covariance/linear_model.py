@@ -10,16 +10,17 @@ from sklearn.decomposition import PCA
 from sklearn.pipeline import Pipeline
 from sklearn import linear_model, svm
 from sklearn.utils import resample
-from sklearn.metrics import r2_score
+from sklearn.metrics import r2_score, mean_squared_error
 from scipy import stats
 from uncertainty_quantification import data_import, model_create, r2_adj_fun
 
 def pred_vs_actual_plot(df, y_pred, r2_adj, title, filename):
-    params_string = ""
-    x = df['strength_MPa']
-    p = sns.scatterplot(data=df, x=x,y=y_pred,hue='species')
-    p.plot(np.linspace(min(x),max(x),50),
-        np.linspace(min(x),max(x),50))
+    y_true = df['strength_MPa']
+    rmse = mean_squared_error(y_true,y_pred,squared=False)
+    p = sns.scatterplot(data=df, x=y_true,y=y_pred,hue='species')
+    p.errorbar(y_true,y_pred, yerr = rmse, fmt='.', markersize=0.001, alpha=0.75)
+    p.plot(np.linspace(min(y_true),max(y_true),50),
+        np.linspace(min(y_true),max(y_true),50))
     p.set_xlabel("actual strength [MPa]")
     p.set_ylabel("predicted strength [MPa]")
     p.set_title(title,fontsize=10)
@@ -28,7 +29,8 @@ def pred_vs_actual_plot(df, y_pred, r2_adj, title, filename):
         transform=p.transAxes, fontsize=10)
     #fig = plt.figure()
     #fig.add_axes(p)
-    plt.savefig(f"./strength_covariance/model_ays/{filename}.png",dpi=300)
+    plt.savefig(f"./strength_covariance/model_ays/{filename}.pdf",dpi=300)
+    plt.close()
 
 def r2_plot(r2_list, r2_adj_list, filename):
     fig,ax = plt.subplots()
@@ -37,7 +39,8 @@ def r2_plot(r2_list, r2_adj_list, filename):
     ax.set_xlabel("Number of parameters")
     ax.set_ylabel(r"$R^2$")
     ax.legend()
-    plt.savefig(f"./strength_covariance/model_ays/{filename}.png",dpi=300)
+    plt.savefig(f"./strength_covariance/model_ays/{filename}.pdf",dpi=300)
+    plt.close()
 
 
 def y_pred_loo(pipe,X,y):
@@ -53,12 +56,19 @@ def y_pred_loo(pipe,X,y):
 
 def main():
     df_clean = data_import()
+
+    # remove jamming
+    df_clean = df_clean[df_clean['SF_jamming']!='yes'].reset_index()
+    print(f"number of points w/o jamming: {len(df_clean)}")
+
   
     params_list = ['lattice_constant','bulk_modulus','c44','c11','c12',
             'cohesive_energy','thermal_expansion_coeff_fcc','surface_energy_100_fcc',
             'extr_stack_fault_energy','intr_stack_fault_energy','unstable_stack_energy',
             'unstable_twinning_energy','relaxed_formation_potential_energy_fcc',
-            'unrelaxed_formation_potential_energy_fcc','relaxation_volume_fcc']
+            'unrelaxed_formation_potential_energy_fcc','relaxation_volume_fcc',
+            'gb_coeff'
+            ]
 
     params_list_full = filter_param_list(df_clean, params_list)
 
@@ -79,39 +89,43 @@ def main():
 
 
     if True: #all factor eval
-        # ignore gb coeff until better populated
-        params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
+        # params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
 
-        df_corr = df_clean[['strength_MPa']+params_list_full].corr(numeric_only=True).round(2)
+        df_corr = df_clean[['strength_MPa']+params_list_full].copy().corr(numeric_only=True).round(2)
         df_corr = abs(df_corr['strength_MPa']).sort_values(ascending=False).dropna()
         corr_list = df_corr.index.to_list()
         corr_list = corr_list[1:] # remove strength from list
 
         # leave out point you are predicting
         r2_list = []
+        r2_all_list = []
         r2_adj_list = []
+        r2_all_adj_list = []
         
         for i in range(1,len(corr_list)):
             print(f"factor count {i}")
             X = X_df[corr_list[:i]]# df_clean[corr_list[:i]]
             print(f"X shape = {X.shape}, y shape = {y.shape}")
-            #y_pred = y_pred_loo(pipe,X,y)
+            print(f"factors = {X.columns.to_list()}")
+            print("-----------")
+            y_pred = y_pred_loo(pipe,X,y)
             pipe.fit(X,y)
-            y_pred = pipe.predict(X)
+            y_pred_all = pipe.predict(X)
             r2_list.append(r2_score(y, y_pred))
+            r2_all_list.append(r2_score(y,y_pred_all))
             k = len(X.columns)
             n = len(y)
             r2_adj_list.append(r2_adj_fun(r2_list[-1], n, k))
+            r2_all_adj_list.append(r2_adj_fun(r2_all_list[-1], n, k))
 
         title = f"Linear model (leave one out) using all factors"
         pred_vs_actual_plot(df_clean, y_pred, r2_adj_list[-1], title, "linear_all_factors")
-        r2_plot(r2_list, r2_adj_list,"linear_r2_plot")
+        r2_plot(r2_list, r2_adj_list,"linear_r2_loo_plot")
+        r2_plot(r2_all_list, r2_all_adj_list,"linear_r2_plot")
         print(f"corr_list = {corr_list}")
     
-    if False: #3 factor model, exclude jamming
+    if True: #3 factor model, exclude jamming
         # still need to fix imputer to be applied at start??? no if we are assuming that data doesn't exist by practioner
-        df_clean = df_clean[df_clean['SF_jamming']!='yes'].reset_index()
-        print(f"number of points w/o jamming: {len(df_clean)}")
         pipe = model_create(model_type = "ridge") # had to switch to ridge due to colinearity issue/blows up for all factors
         params_short = ['c44_fcc','extr_stack_fault_energy_fcc','unstable_stack_energy_fcc']
         X = df_clean[params_short]
@@ -119,6 +133,16 @@ def main():
         title2 = f"Linear model (leave one out) w/o jammed:\nc44, eSFE, uSFE (all FCC)"
         r2_adj = r2_score(y,y_pred)
         pred_vs_actual_plot(df_clean, y_pred, r2_adj, title2, "linear_3factors")
+
+    if True: #3 factor model, exclude jamming, gb coeff
+        # still need to fix imputer to be applied at start??? no if we are assuming that data doesn't exist by practioner
+        pipe = model_create(model_type = "ridge") # had to switch to ridge due to colinearity issue/blows up for all factors
+        params_short = ['lattice_constant_bcc', 'gb_coeff_111', 'unstable_stack_energy_fcc']
+        X = df_clean[params_short]
+        y_pred = y_pred_loo(pipe,X,y)
+        title2 = f"Linear model (leave one out) w/o jammed:\nlattice const (BCC), GB coeff (111), uSFE (FCC)"
+        r2_adj = r2_score(y,y_pred)
+        pred_vs_actual_plot(df_clean, y_pred, r2_adj, title2, "linear_3factors_w_gb")
 
 
     return
