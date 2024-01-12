@@ -157,14 +157,14 @@ def factor_select_plotting(df, label_dict, filename, width = 0.125):
     ax.set_ylabel("Correlation Coefficient or Normalized Factor Usage",fontsize=16)
     tick_loc = (len(cols)*width/2-width/2)
     ax.set_xticks(x + tick_loc, x_labels, rotation = 90)
-    ax.legend(bbox_to_anchor = (0,1,1,1), loc="lower center", mode="expand", ncol = 4)
+    ax.legend(bbox_to_anchor = (0,1,1,1), loc="lower center", mode="expand", ncol = 4,fontsize=16)
     ax.xaxis.set_minor_locator(ticker.FixedLocator(0.5+x+tick_loc))
     ax.xaxis.grid(visible=True, which="minor")
 
     #plt.show()
     fig.tight_layout()
-    fig.savefig(f"./strength_covariance/model_ays/{filename}.png", dpi=300)
-    fig.savefig(f"./strength_covariance/model_ays/{filename}.eps", dpi=300)
+    fig.savefig(f"./strength_covariance/model_ays/{filename}.pdf", dpi=300)
+    #fig.savefig(f"./strength_covariance/model_ays/{filename}.eps", dpi=300)
 
 
     return

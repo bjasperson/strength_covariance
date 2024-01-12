@@ -12,7 +12,7 @@ from sklearn import linear_model, svm
 from sklearn.utils import resample
 from sklearn.metrics import r2_score, mean_squared_error
 from scipy import stats
-from uncertainty_quantification import data_import, model_create, r2_adj_fun
+from uncertainty_quantification import data_import, r2_adj_fun
 from sklearn.model_selection import GridSearchCV, KFold, cross_val_score
 
 
@@ -20,13 +20,13 @@ def pred_vs_actual_plot(df, y_pred, r2_adj, title, filename):
     y_true = df['strength_MPa']
     rmse = mean_squared_error(y_true,y_pred,squared=False)
     p = sns.scatterplot(data=df, x=y_true,y=y_pred,hue='species')
-    p.errorbar(y_true,y_pred, yerr = rmse, fmt='.', markersize=0.001, alpha=0.75)
+    p.errorbar(y_true,y_pred, yerr = rmse, fmt='.', markersize=0.001, alpha=0.5)
     p.plot(np.linspace(min(y_true),max(y_true),50),
         np.linspace(min(y_true),max(y_true),50))
     p.set_xlabel("actual strength [MPa]")
     p.set_ylabel("predicted strength [MPa]")
     p.set_title(title,fontsize=10)
-    p.text(0.95, 0.01, f"Adjusted R\N{SUPERSCRIPT TWO} = {r2_adj:.3f}",
+    p.text(0.95, 0.01, f"N = {len(y_true)}\nAdjusted R\N{SUPERSCRIPT TWO} = {r2_adj:.3f}",
         verticalalignment='bottom', horizontalalignment='right',
         transform=p.transAxes, fontsize=10)
     #fig = plt.figure()
@@ -76,31 +76,7 @@ def y_pred_loo_w_nested_CV(pipe_in,X,y):
         y_pred.extend([y_pred_value])
     return y_pred
 
-
-def main():
-    df_clean = data_import()
-
-    # remove jamming
-    df_clean = df_clean[df_clean['SF_jamming']!='yes'].reset_index()
-    print(f"number of points w/o jamming: {len(df_clean)}")
-
-  
-    params_list = ['lattice_constant','bulk_modulus','c44','c11','c12',
-            'cohesive_energy','thermal_expansion_coeff_fcc','surface_energy_100_fcc',
-            'extr_stack_fault_energy','intr_stack_fault_energy','unstable_stack_energy',
-            'unstable_twinning_energy','relaxed_formation_potential_energy_fcc',
-            'unrelaxed_formation_potential_energy_fcc','relaxation_volume_fcc',
-            'gb_coeff'
-            ]
-
-    params_list_full = filter_param_list(df_clean, params_list)
-
-    X_df = df_clean[params_list_full]
-    y = df_clean['strength_MPa']
-    imput = KNNImputer(n_neighbors=2, weights="uniform", keep_empty_features=True)
-    X_df = pd.DataFrame(imput.fit_transform(X_df), columns = imput.feature_names_in_)
-
-    #model = linear_model.LinearRegression()
+def linear_model_create():
     model = linear_model.Ridge()
     pca = PCA()
 
@@ -109,13 +85,40 @@ def main():
                            ('lr',model)])
     pipe = TransformedTargetRegressor(regressor = pipe,
                                            transformer = StandardScaler())
+    return pipe
 
-    df_corr = df_clean[['strength_MPa']+params_list_full].copy().corr(numeric_only=True).round(2)
+def create_X_y(df, params):
+    X_df = df[params]
+    y = df['strength_MPa']
+
+    # apply imputer at start; otherwise R2 doesn't increase w/ each factor added
+    imput = KNNImputer(n_neighbors=2, weights="uniform", keep_empty_features=True)
+    X_df = pd.DataFrame(imput.fit_transform(X_df), columns = imput.feature_names_in_)
+    return X_df, y
+
+def main():
+    df = data_import()
+    print(f"number of points initially: {len(df)}")
+
+    params_list = ['lattice_constant','bulk_modulus','c44','c11','c12',
+            'cohesive_energy','thermal_expansion_coeff_fcc','surface_energy_100_fcc',
+            'extr_stack_fault_energy','intr_stack_fault_energy','unstable_stack_energy',
+            'unstable_twinning_energy','relaxed_formation_potential_energy_fcc',
+            'unrelaxed_formation_potential_energy_fcc','relaxation_volume_fcc',
+            'gb_coeff'
+            ]
+
+    params_list_full = filter_param_list(df, params_list)
+    X_df, y = create_X_y(df, params_list_full)
+    pipe = linear_model_create()
+    
+
+    df_corr = df[['strength_MPa']+params_list_full].copy().corr(numeric_only=True).round(2)
     df_corr = abs(df_corr['strength_MPa']).sort_values(ascending=False).dropna()
     corr_list = df_corr.index.to_list()
     corr_list = corr_list[1:] # remove strength from list
 
-    if True: #all factor eval
+    if True: #all factor eval, before removing jammed
         # params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
 
         # leave out point you are predicting
@@ -126,7 +129,7 @@ def main():
         
         for i in range(1,len(corr_list)):
             print(f"factor count {i}")
-            X = X_df[corr_list[:i]]# df_clean[corr_list[:i]]
+            X = X_df[corr_list[:i]]
             print(f"X shape = {X.shape}, y shape = {y.shape}")
             print(f"factors = {X.columns.to_list()}")
             print("-----------")
@@ -141,7 +144,7 @@ def main():
             r2_all_adj_list.append(r2_adj_fun(r2_all_list[-1], n, k))
 
         title = f"Linear model (leave one out) using all factors"
-        pred_vs_actual_plot(df_clean, y_pred, r2_adj_list[-1], title, "linear_all_factors")
+        pred_vs_actual_plot(df, y_pred, r2_adj_list[-1], title, "linear_all_factors")
         r2_plot(r2_list, r2_adj_list,"linear_r2_loo_plot")
         r2_plot(r2_all_list, r2_all_adj_list,"linear_r2_plot")
         print(f"corr_list = {corr_list}")
@@ -164,12 +167,19 @@ def main():
 
         title = f"Linear model (leave one out) using all factors"
         pred_vs_actual_plot(df_clean, y_pred, r2_adj, title, "linear_all_factors_nested_cv")
+
+    # remove jamming
+    df_clean = df[df['SF_jamming']!='yes'].reset_index()
+    print(f"number of points w/o jamming: {len(df_clean)}")
+
+    X_df, y = create_X_y(df_clean, params_list_full)
+
     
     if True: #3 factor model, exclude jamming
         # still need to fix imputer to be applied at start??? no if we are assuming that data doesn't exist by practioner
-        pipe = model_create(model_type = "ridge") # had to switch to ridge due to colinearity issue/blows up for all factors
+        pipe = linear_model_create() # had to switch to ridge due to colinearity issue/blows up for all factors
         params_short = ['c44_fcc','extr_stack_fault_energy_fcc','unstable_stack_energy_fcc']
-        X = df_clean[params_short]
+        X = X_df[params_short]
         y_pred = y_pred_loo(pipe,X,y)
         title2 = f"Linear model (leave one out) w/o jammed:\nc44, eSFE, uSFE (all FCC)"
         r2_adj = r2_score(y,y_pred)
@@ -177,9 +187,9 @@ def main():
 
     if True: #3 factor model, exclude jamming, gb coeff
         # still need to fix imputer to be applied at start??? no if we are assuming that data doesn't exist by practioner
-        pipe = model_create(model_type = "ridge") # had to switch to ridge due to colinearity issue/blows up for all factors
+        pipe = linear_model_create() # had to switch to ridge due to colinearity issue/blows up for all factors
         params_short = ['lattice_constant_bcc', 'gb_coeff_111', 'unstable_stack_energy_fcc']
-        X = df_clean[params_short]
+        X = X_df[params_short]
         y_pred = y_pred_loo(pipe,X,y)
         title2 = f"Linear model (leave one out) w/o jammed:\nlattice const (BCC), GB coeff (111), uSFE (FCC)"
         r2_adj = r2_score(y,y_pred)

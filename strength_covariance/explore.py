@@ -17,11 +17,13 @@ def pairplot_selected(df, factors, title, label_dict, corner = False):
     factors.extend(['strength_MPa', 'species'])
     X = df[factors]
     X.columns = [label_dict[x] for x in X.columns.to_list()]
+    sns.set(style="whitegrid",font_scale=1.25)
     # X.columns = [x.replace("_"," ") for x in X.columns.to_list()]
-    fig = sns.pairplot(X, hue='species', corner = corner)
+    fig = sns.pairplot(X, hue='species', corner = corner,
+                       plot_kws={"s":100})
     # for ax in fig.axes.flatten():
     #     ax.set_xlabel(ax.get_xlabel(), rotation=40, ha = "right")
-    fig.savefig(f"./strength_covariance/data_ays/{title}.png", dpi=300)
+    fig.savefig(f"./strength_covariance/data_ays/{title}.pdf", dpi=300)
     plt.close()
     return
 
@@ -61,7 +63,7 @@ def correlation_plot(df, title, label_dict, figsize=(10, 10), annot=False, lower
     ax.set_facecolor('white')
     fig.add_axes(ax)
     fig.subplots_adjust(left=0.3,bottom=0.3)
-    fig.savefig(f"./strength_covariance/data_ays/{title}.png", dpi=300)
+    fig.savefig(f"./strength_covariance/data_ays/{title}.pdf", dpi=300)
 
 
 def save_corr_values(df, title):
