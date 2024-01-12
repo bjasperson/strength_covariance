@@ -13,6 +13,8 @@ from sklearn.utils import resample
 from sklearn.metrics import r2_score, mean_squared_error
 from scipy import stats
 from uncertainty_quantification import data_import, model_create, r2_adj_fun
+from sklearn.model_selection import GridSearchCV, KFold, cross_val_score
+
 
 def pred_vs_actual_plot(df, y_pred, r2_adj, title, filename):
     y_true = df['strength_MPa']
@@ -53,6 +55,27 @@ def y_pred_loo(pipe,X,y):
         y_pred.append(pipe.predict(X)[y_index])
     return y_pred
 
+def y_pred_loo_w_nested_CV(pipe_in,X,y):
+    # define search space
+    space = dict()
+    space['regressor__lr__alpha'] = [0.5,1,10,100] # strength of regularization inversely proportional to C
+    #space['regressor__lr__epsilon'] = [0.01,0.05,0.1,0.5] # epsilon-tube for no penalty
+    
+    y_pred = []
+    for y_index in range(len(y)):
+        available_indexes = [j for j in range(len(y)) if j != y_index]
+        X_train = X.loc[available_indexes]
+        y_train = y.loc[available_indexes]
+        cv_inner = KFold(n_splits=10, shuffle=True)
+        pipe = pipe_in
+        search = GridSearchCV(pipe, space, scoring='r2', n_jobs=-1, cv=cv_inner, refit=True)
+        result = search.fit(X_train, y_train)
+        best_model = result.best_estimator_
+        print(f"best model: C = {best_model.regressor.named_steps.lr.alpha}")
+        y_pred_value = best_model.predict(X).tolist()[y_index]
+        y_pred.extend([y_pred_value])
+    return y_pred
+
 
 def main():
     df_clean = data_import()
@@ -87,14 +110,13 @@ def main():
     pipe = TransformedTargetRegressor(regressor = pipe,
                                            transformer = StandardScaler())
 
+    df_corr = df_clean[['strength_MPa']+params_list_full].copy().corr(numeric_only=True).round(2)
+    df_corr = abs(df_corr['strength_MPa']).sort_values(ascending=False).dropna()
+    corr_list = df_corr.index.to_list()
+    corr_list = corr_list[1:] # remove strength from list
 
     if True: #all factor eval
         # params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
-
-        df_corr = df_clean[['strength_MPa']+params_list_full].copy().corr(numeric_only=True).round(2)
-        df_corr = abs(df_corr['strength_MPa']).sort_values(ascending=False).dropna()
-        corr_list = df_corr.index.to_list()
-        corr_list = corr_list[1:] # remove strength from list
 
         # leave out point you are predicting
         r2_list = []
@@ -123,6 +145,25 @@ def main():
         r2_plot(r2_list, r2_adj_list,"linear_r2_loo_plot")
         r2_plot(r2_all_list, r2_all_adj_list,"linear_r2_plot")
         print(f"corr_list = {corr_list}")
+
+    if False: #all factor eval, nested_cv
+        # params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
+
+        # leave out point you are predicting
+        
+
+        X = X_df[corr_list]# df_clean[corr_list[:i]]
+        print(f"X shape = {X.shape}, y shape = {y.shape}")
+        print(f"factors = {X.columns.to_list()}")
+        print("-----------")
+        y_pred = y_pred_loo_w_nested_CV(pipe,X,y)
+        k = len(X.columns)
+        n = len(y)
+        r2 = r2_score(y, y_pred)
+        r2_adj = r2_adj_fun(r2, n, k)
+
+        title = f"Linear model (leave one out) using all factors"
+        pred_vs_actual_plot(df_clean, y_pred, r2_adj, title, "linear_all_factors_nested_cv")
     
     if True: #3 factor model, exclude jamming
         # still need to fix imputer to be applied at start??? no if we are assuming that data doesn't exist by practioner
