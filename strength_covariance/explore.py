@@ -13,17 +13,19 @@ def import_label_dict():
     return label_dict
 
 
-def pairplot_selected(df, factors, title, label_dict, corner = False):
+def pairplot_selected(df, factors, title, label_dict, corner = False, height=1.5):
     factors.extend(['strength_MPa', 'species'])
     X = df[factors]
     X.columns = [label_dict[x] for x in X.columns.to_list()]
-    sns.set(style="whitegrid",font_scale=1.25)
+    sns.set(style="whitegrid")#,font_scale=1.25)
     # X.columns = [x.replace("_"," ") for x in X.columns.to_list()]
-    fig = sns.pairplot(X, hue='species', corner = corner,
-                       plot_kws={"s":100})
+    #fig,ax = plt.subplots(figsize = (3,3))
+    g = sns.pairplot(X, hue='species', corner = corner, height=height)#,
+                       #plot_kws={"s":100})
     # for ax in fig.axes.flatten():
     #     ax.set_xlabel(ax.get_xlabel(), rotation=40, ha = "right")
-    fig.savefig(f"./strength_covariance/data_ays/{title}.pdf", dpi=300)
+    sns.move_legend(g,"upper right",bbox_to_anchor=(0.85,1))
+    g.savefig(f"./strength_covariance/data_ays/{title}.pdf")#, dpi=300)
     plt.close()
     return
 
@@ -38,7 +40,7 @@ def correlation_df(df, label_dict):
     df_index = [label_dict[x] for x in df_index]
     df_corr.index = df_index
 
-    order = df_corr['Strength MPa'].sort_values(ascending=False).index.to_list()
+    order = df_corr['Strength'].sort_values(ascending=False).index.to_list()
     df_corr = df_corr[order].reindex(order)
     return df_corr
 
@@ -59,11 +61,12 @@ def correlation_plot(df, title, label_dict, figsize=(10, 10), annot=False, lower
         mask[np.diag_indices_from(mask)] = False
     else:
         mask = np.zeros_like(df_corr)
-    ax = sns.heatmap(df_corr, mask = mask, vmin=-1, vmax=1, cmap=colors, annot=annot)
+    ax = sns.heatmap(df_corr, mask = mask, vmin=-1, vmax=1, cmap=colors, annot=annot,
+                     cbar_kws = dict(use_gridspec=False,location='top'))
     ax.set_facecolor('white')
     fig.add_axes(ax)
-    fig.subplots_adjust(left=0.3,bottom=0.3)
-    fig.savefig(f"./strength_covariance/data_ays/{title}.pdf", dpi=300)
+    #fig.subplots_adjust(left=0.3,bottom=0.3)
+    fig.savefig(f"./strength_covariance/data_ays/{title}.pdf", bbox_inches = 'tight')#, dpi=300)
 
 
 def save_corr_values(df, title):
@@ -209,7 +212,8 @@ def run_pairplots(df_clean, label_dict):
                        'vacancy_migration_energy_fcc',
                        'c44_fcc',
                        'intr_stack_fault_energy_fcc',
-                       'gb_coeff_111'],
+                       #'gb_coeff_111',
+                       ],
                        'pairplot_top_factors',
                        label_dict)
     
@@ -222,14 +226,14 @@ def run_pairplots(df_clean, label_dict):
                        'DFT_indicator_properties',
                       label_dict)
     
-    pairplot_selected(df_clean,
-                      ['gb_coeff_001',
-                       'gb_coeff_110',
-                       'gb_coeff_111',
-                       'gb_coeff_112'
-                       ],
-                       'gb_coeff',
-                      label_dict)
+    # pairplot_selected(df_clean,
+    #                   ['gb_coeff_001',
+    #                    'gb_coeff_110',
+    #                    'gb_coeff_111',
+    #                    'gb_coeff_112'
+    #                    ],
+    #                    'gb_coeff',
+    #                   label_dict)
     
 
 def manuscript_plots(df_clean, label_dict):
@@ -240,22 +244,24 @@ def manuscript_plots(df_clean, label_dict):
                   'intr_stack_fault_energy_fcc'
                     ]
     
-    sns.set(font_scale=1.5)
+    #sns.set(font_scale=1.5)
     
     pairplot_selected(df_clean,
                     param_list,
                     'manuscript_pairplot',
                     label_dict,
+                    height=1.5,
                     corner = True)
     
-    sns.set(font_scale=1.5)
+    #sns.set(font_scale=1.5)
     correlation_plot(df_clean[param_list],
                     "corr_plot_manuscript",
                     label_dict,
+                    figsize=(3,4),
                     annot = True,
                     lower = True)
     
-    sns.set(font_scale = 1)
+    #sns.set(font_scale = 1)
 
     # initial attempt to combine pairplot and corr matrix.
     # not working yet
@@ -298,15 +304,16 @@ def main():
     df_clean['c11-c12+c44'] = df_clean['c11_fcc'] - \
         df_clean['c12_fcc'] + df_clean['c44_fcc']
 
-    # uncomment to create pairplots
+    # uncomment to run all pairplots
     # run_pairplots(df_clean, label_dict)
-    pairplot_selected(df_clean,
-                    ['gb_coeff_001',
-                    'gb_coeff_110',
-                    'gb_coeff_111',
-                    'gb_coeff_112'],
-                    'gb_coeff',
-                    label_dict)
+
+    # pairplot_selected(df_clean,
+    #                 ['gb_coeff_001',
+    #                 'gb_coeff_110',
+    #                 'gb_coeff_111',
+    #                 'gb_coeff_112'],
+    #                 'gb_coeff',
+    #                 label_dict)
 
     corr_plot_list = ['strength_MPa',
                       'intr_stack_fault_energy_fcc',
@@ -339,7 +346,8 @@ def main():
                 'relaxed_formation_potential_energy_fcc', #includes unrelaxed
                 'vacancy_migration_energy_fcc',
                 'relaxation_volume_fcc',
-                'gb_coeff_001','gb_coeff_110','gb_coeff_111','gb_coeff_112']
+                # 'gb_coeff_001','gb_coeff_110','gb_coeff_111','gb_coeff_112',
+                ]
 
     params_list_full = filter_param_list(
         df_clean, params_list, ['strength_MPa'])
@@ -350,6 +358,7 @@ def main():
     correlation_plot(df_clean[params_list_full],
                     "corr_plot_full",
                     label_dict,
+                    figsize=(4,4),
                     annot=False)
     
     manuscript_plots(df_clean, label_dict)

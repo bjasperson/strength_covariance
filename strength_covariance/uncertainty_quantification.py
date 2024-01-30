@@ -164,12 +164,12 @@ def main():
         # params_list_full = ['c11_fcc', 'unstable_stack_energy_fcc', 'unstable_twinning_energy_fcc']
         perform_bootstrap(df_clean, params_list_full, pipe, n_bootstrap, "bootstrap", title=False)
 
-    if True: # w/ gb coeff
-        df_clean = data_import()
-        pipe = model_create(model_type = "svr")
-        # set parameters 
-        params_list_full = ["lattice_constant_bcc","gb_coeff_111","unstable_stack_energy_fcc"] 
-        perform_bootstrap(df_clean, params_list_full, pipe, n_bootstrap, "bootstrap_w_gb_coeff", title=False)
+    # if False: # w/ gb coeff
+    #     df_clean = data_import()
+    #     pipe = model_create(model_type = "svr")
+    #     # set parameters 
+    #     params_list_full = ["lattice_constant_bcc","gb_coeff_111","unstable_stack_energy_fcc"] 
+    #     perform_bootstrap(df_clean, params_list_full, pipe, n_bootstrap, "bootstrap_w_gb_coeff", title=False)
 
     # full model, all parameters
     if False:

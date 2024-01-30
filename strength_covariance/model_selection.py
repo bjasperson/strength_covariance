@@ -56,6 +56,8 @@ def filter_param_list(df, base_labels, specific_items=""):
         current_list = [j for j in df.columns if i in j]
         params_list_full.extend(current_list)
 
+    params_list_full = list(set(params_list_full)) # remove duplicates
+
     return params_list_full
 
 
@@ -119,28 +121,30 @@ def create_factor_select_plot(df_merge, filename, label_dict):
     df = df[['loocv_factor_count','kfold_factor_count','corr_coeff']]
     df['loocv_factor_count'] = (df['loocv_factor_count'] - df['loocv_factor_count'].min())/(df['loocv_factor_count'].max() - df['loocv_factor_count'].min())
     df['kfold_factor_count'] = (df['kfold_factor_count'] - df['kfold_factor_count'].min())/(df['kfold_factor_count'].max() - df['kfold_factor_count'].min())
-    df = df.rename(columns = {"corr_coeff":"Correlation Coefficient",
-                              "loocv_factor_count":"Usage, LOOCV, top 100 models",
-                              "kfold_factor_count":"Usage, K-fold CV, top 100 models"})
+    df = df.rename(columns = {"corr_coeff":"Correlation\nCoefficient",
+                              "loocv_factor_count":"Usage, LOOCV, \ntop 100 models",
+                              "kfold_factor_count":"Usage, K-fold CV, \ntop 100 models"})
     
-    df = df.sort_values("Correlation Coefficient", ascending=False)
+    df = df.sort_values("Correlation\nCoefficient", ascending=False)
     factor_select_plotting(df.iloc[:15,:], label_dict, filename+"_corr", width = 0.25)
 
-    df = df.sort_values("Usage, K-fold CV, top 100 models", ascending=False)
+    df = df.sort_values("Usage, K-fold CV, \ntop 100 models", ascending=False)
     factor_select_plotting(df.iloc[:15,:], label_dict, filename+"_count", width = 0.25)
 
+    top5_table(df_results_loocv, df_results_kfold, label_dict)
 
-def factor_select_plotting(df, label_dict, filename, width = 0.125): 
+
+def factor_select_plotting(df, label_dict, filename, width = 0.125, size = (7,3)): 
     cols = df.columns
 
     x = np.arange(len(df))    
     multiplier = 0
 
 
-    plt.rc('xtick', labelsize=16) #fontsize of the x tick labels
-    plt.rc('ytick', labelsize=16) #fontsize of the y tick labels
+    #plt.rc('xtick', labelsize=16) #fontsize of the x tick labels
+    #plt.rc('ytick', labelsize=16) #fontsize of the y tick labels
 
-    fig, ax = plt.subplots(figsize=(16,10))
+    fig, ax = plt.subplots(figsize=size)
     for attribute in cols:
         offset = width * multiplier
         scaled_value = df[attribute]
@@ -154,19 +158,32 @@ def factor_select_plotting(df, label_dict, filename, width = 0.125):
     #ax.set_xticklabels(ax.get_xticklabels(), rotation = 90)
     x_labels =  [label_dict[x] for x in df.index.to_list()]
     #ax.set_ylabel("Correlation Coefficient or Normalized Factor Usage\n(Value - Min Value)/(Max Value - Min Value)",fontsize=16)
-    ax.set_ylabel("Correlation Coefficient or Normalized Factor Usage",fontsize=16)
+    ax.set_ylabel("Correlation Coefficient \nor Normalized Factor Usage")#,fontsize=16)
     tick_loc = (len(cols)*width/2-width/2)
     ax.set_xticks(x + tick_loc, x_labels, rotation = 90)
-    ax.legend(bbox_to_anchor = (0,1,1,1), loc="lower center", mode="expand", ncol = 4,fontsize=16)
+    ax.legend(bbox_to_anchor = (0,1,1,1), loc="lower center", mode="expand", ncol = 4)#,fontsize=16)
     ax.xaxis.set_minor_locator(ticker.FixedLocator(0.5+x+tick_loc))
     ax.xaxis.grid(visible=True, which="minor")
 
     #plt.show()
-    fig.tight_layout()
-    fig.savefig(f"./strength_covariance/model_ays/{filename}.pdf", dpi=300)
+    #fig.tight_layout()
+    fig.savefig(f"./strength_covariance/model_ays/{filename}.pdf", bbox_inches = 'tight')#dpi=300)
     #fig.savefig(f"./strength_covariance/model_ays/{filename}.eps", dpi=300)
 
 
+    return
+
+def top5_table(df_loocv, df_kfold, label_dict):
+
+    loocv = [literal_eval(i) for i in df_loocv['factors'].iloc[0:5]]
+    #loocv =  [label_dict[x] for x in loocv ]
+    df5_loocv = pd.DataFrame(loocv)
+    df5_loocv = df5_loocv.replace(label_dict)
+    df5_loocv.to_csv(f"strength_covariance/model_ays/loocv_top5.csv")
+    kfold = [literal_eval(i) for i in df_kfold['factors'].iloc[0:5]]
+    df5_kfold = pd.DataFrame(kfold)
+    df5_kfold = df5_kfold.replace(label_dict)
+    df5_kfold.to_csv(f"strength_covariance/model_ays/kfold_top5.csv")
     return
 
 def main():
@@ -181,7 +198,7 @@ def main():
 
     params_list = ['lattice_constant',
                    'bulk_modulus', 'c11', 'c12', 'c44',
-                   'gb_coeff_111', # others are highly correlated
+                   # 'gb_coeff_111', # others are highly correlated
                    'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc',
                    'surface_energy_100_fcc',
                    'extr_stack_fault_energy',
@@ -205,7 +222,8 @@ def main():
                        keep_empty_features=True)
     pca = PCA()
     #model = linear_model.LinearRegression()
-    model = svm.SVR(kernel='rbf')
+    #model = svm.SVR(kernel='rbf')
+    model = linear_model.Ridge()
 
     pipe = Pipeline(steps=[('scale', StandardScaler()),
                            ('imp', imput),
@@ -216,7 +234,7 @@ def main():
 
     n_factor_max = 3
 
-    if False:
+    if True:
         cv = RepeatedKFold(n_splits=10, n_repeats=3)
         df_results = factor_select_cv(
             X, y, pipe, n_factor_max=n_factor_max, cv=cv, scoring='neg_root_mean_squared_error')
@@ -230,7 +248,7 @@ def main():
         df_results_loocv.to_csv("./strength_covariance/model_ays/loocv_models.csv")
         factor_percent_usage(df_results_loocv, 100, 'loocv_factor_usage')
 
-    if False: # load results
+    if False: # load results and plot without rerunning kFold or LOO
         df_results = pd.read_csv("./strength_covariance/model_ays/kfold_models.csv")
         factor_percent_usage(df_results, 100, 'kfold_factor_usage')
         df_results_loocv = pd.read_csv("./strength_covariance/model_ays/loocv_models.csv")
