@@ -122,13 +122,13 @@ def create_factor_select_plot(df_merge, filename, label_dict):
     df['loocv_factor_count'] = (df['loocv_factor_count'] - df['loocv_factor_count'].min())/(df['loocv_factor_count'].max() - df['loocv_factor_count'].min())
     df['kfold_factor_count'] = (df['kfold_factor_count'] - df['kfold_factor_count'].min())/(df['kfold_factor_count'].max() - df['kfold_factor_count'].min())
     df = df.rename(columns = {"corr_coeff":"Correlation\nCoefficient",
-                              "loocv_factor_count":"Usage, LOOCV, \ntop 100 models",
-                              "kfold_factor_count":"Usage, K-fold CV, \ntop 100 models"})
+                              "loocv_factor_count":"Freq. of occurrence\ntop LOOCV models",#Usage, LOOCV, \ntop 100 models",
+                              "kfold_factor_count":"Freq. of occurrence\ntop K-Fold CV models"}) #Usage, K-fold CV, \ntop 100 models"})
     
     df = df.sort_values("Correlation\nCoefficient", ascending=False)
     factor_select_plotting(df.iloc[:15,:], label_dict, filename+"_corr", width = 0.25)
 
-    df = df.sort_values("Usage, K-fold CV, \ntop 100 models", ascending=False)
+    df = df.sort_values(df.columns[-1], ascending=False)
     factor_select_plotting(df.iloc[:15,:], label_dict, filename+"_count", width = 0.25)
 
     top5_table(df_results_loocv, df_results_kfold, label_dict)
@@ -161,7 +161,7 @@ def factor_select_plotting(df, label_dict, filename, width = 0.125, size = (7,3)
     ax.set_ylabel("Correlation Coefficient \nor Normalized Factor Usage")#,fontsize=16)
     tick_loc = (len(cols)*width/2-width/2)
     ax.set_xticks(x + tick_loc, x_labels, rotation = 90)
-    ax.legend(bbox_to_anchor = (0,1,1,1), loc="lower center", mode="expand", ncol = 4)#,fontsize=16)
+    ax.legend(bbox_to_anchor = (0,1,1,1), loc="lower center", mode="expand", ncol = 4,fontsize=8)
     ax.xaxis.set_minor_locator(ticker.FixedLocator(0.5+x+tick_loc))
     ax.xaxis.grid(visible=True, which="minor")
 
@@ -234,7 +234,7 @@ def main():
 
     n_factor_max = 3
 
-    if True:
+    if False:
         cv = RepeatedKFold(n_splits=10, n_repeats=3)
         df_results = factor_select_cv(
             X, y, pipe, n_factor_max=n_factor_max, cv=cv, scoring='neg_root_mean_squared_error')

@@ -14,6 +14,8 @@ from sklearn.metrics import r2_score, mean_squared_error
 from scipy import stats
 from uncertainty_quantification import data_import, r2_adj_fun
 from sklearn.model_selection import GridSearchCV, KFold, cross_val_score
+from explore import import_label_dict
+
 
 
 def pred_vs_actual_plot(df, y_pred, r2_adj, filename, title=False, factor_list = False):
@@ -37,17 +39,23 @@ def pred_vs_actual_plot(df, y_pred, r2_adj, filename, title=False, factor_list =
     plt.legend(loc='upper left',bbox_to_anchor=(1,1))
     #fig = plt.figure()
     #fig.add_axes(p)
+    p.set_aspect('equal', adjustable='box')
     plt.savefig(f"./strength_covariance/model_ays/{filename}.pdf", bbox_inches = 'tight')#,dpi=300)
     plt.close()
 
-def r2_plot(r2_list, r2_adj_list, filename):
-    fig,ax = plt.subplots()
-    ax.plot(range(1,len(r2_list)+1),r2_list,'bx',label = "r2",)
-    ax.plot(range(1,len(r2_list)+1),r2_adj_list,'r.',label = "r2 adj")
+def r2_plot(r2_list, r2_adj_list, corr_list, label_dict, filename):
+    corr_list = [label_dict[i] for i in corr_list]
+    fig,ax = plt.subplots(figsize=(5,3))
+    xloc = range(1,len(r2_list)+1)
+    ax.plot(xloc,r2_list,'bx',label = "r2",)
+    ax.plot(xloc,r2_adj_list,'r.',label = "r2 adj")
     ax.set_xlabel("Number of parameters")
     ax.set_ylabel(r"$R^2$")
+    #ax.set_xticklabels(corr_list)
+    ax.set_xticks(xloc, corr_list, rotation=90)
+    ax.grid()
     ax.legend()
-    plt.savefig(f"./strength_covariance/model_ays/{filename}.pdf",dpi=300)
+    plt.savefig(f"./strength_covariance/model_ays/{filename}.pdf",bbox_inches='tight')
     plt.close()
 
 
@@ -105,6 +113,7 @@ def create_X_y(df, params):
 
 def main():
     df = data_import()
+    label_dict = import_label_dict()
 
     df = basic_outlier_removal(df)
 
@@ -129,7 +138,7 @@ def main():
     corr_list = df_corr.index.to_list()
     corr_list = corr_list[1:] # remove strength from list
 
-    if False: #r2 plotting, before removing jammed
+    if True: #r2 plotting, before removing jammed
         # params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
 
         # leave out point you are predicting
@@ -138,29 +147,33 @@ def main():
         r2_adj_list = []
         r2_all_adj_list = []
         
-        for i in range(1,len(corr_list)):
+        for i in range(1,len(corr_list)+1):
             print(f"factor count {i}")
             X = X_df[corr_list[:i]]
             print(f"X shape = {X.shape}, y shape = {y.shape}")
             print(f"factors = {X.columns.to_list()}")
             print("-----------")
-            y_pred = y_pred_loo(pipe,X,y)
-            pipe.fit(X,y)
-            y_pred_all = pipe.predict(X)
-            r2_list.append(r2_score(y, y_pred))
-            r2_all_list.append(r2_score(y,y_pred_all))
+
             k = len(X.columns)
             n = len(y)
-            r2_adj_list.append(r2_adj_fun(r2_list[-1], n, k))
+            
+            pipe.fit(X,y)
+            if False: #LOO R2 plot
+                y_pred = y_pred_loo(pipe,X,y)
+                r2_list.append(r2_score(y, y_pred))
+                r2_adj_list.append(r2_adj_fun(r2_list[-1], n, k))
+            
+            y_pred_all = pipe.predict(X)
+            r2_all_list.append(r2_score(y,y_pred_all))
             r2_all_adj_list.append(r2_adj_fun(r2_all_list[-1], n, k))
 
         title = f"Linear model (leave one out) using all factors"
         # pred_vs_actual_plot(df, y_pred, r2_adj_list[-1], title, "linear_all_factors") # obsolete, using nested CV now
-        r2_plot(r2_list, r2_adj_list,"linear_r2_loo_plot")
-        r2_plot(r2_all_list, r2_all_adj_list,"linear_r2_plot")
+        # r2_plot(r2_list, r2_adj_list, corr_list, "linear_r2_loo_plot")
+        r2_plot(r2_all_list, r2_all_adj_list, corr_list, label_dict, "linear_r2_plot")
         print(f"corr_list = {corr_list}")
 
-    if True: #all factor eval, nested_cv
+    if False: #all factor eval, nested_cv
         # params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
 
         # leave out point you are predicting
@@ -188,7 +201,7 @@ def main():
     X_df, y = create_X_y(df_clean, params_list_full)
 
     
-    if True: #3 factor model, exclude jamming
+    if False: #3 factor model, exclude jamming
         # still need to fix imputer to be applied at start??? no if we are assuming that data doesn't exist by practioner
         pipe = linear_model_create() # had to switch to ridge due to colinearity issue/blows up for all factors
         params_short = ['c44_fcc','extr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']#'unstable_stack_energy_fcc']
