@@ -14,6 +14,53 @@ from ast import literal_eval
 import seaborn as sns
 
 
+def data_import(clean=False,
+                data_path = "./data/models_w_props.csv",
+                readme = ""):
+    
+    df = pd.read_csv(data_path)
+    readme += f"data import:\nInitial shape: {df.shape}\n"
+
+    # count initial factor list
+    factor_list = get_factor_list(df)
+    readme += f"initial factor list = {len(factor_list)}\n"
+
+    # remove very sparse columns
+    drop_list = ['bulk_modulus_diamond','c44_diamond','c12_diamond','c11_diamond']
+    df = df.drop(drop_list,axis=1)
+    readme += f"removed {len(drop_list)} very sparse columns: {drop_list}\n"
+    #df_in = df_in.drop([i for i in df_in.columns if 'diamond' in i],axis=1)
+    
+    if 'disqualified' in df.columns:
+        df = df.drop('disqualified', axis=1)
+
+    # drop empty columns
+    drop_cols = []
+    for col in df.columns.tolist():
+        if df[col].isnull().all():
+            drop_cols.append(col)
+    df = df.drop(drop_cols,axis=1)
+    readme += f"removed {len(drop_cols)} empty columns: {drop_cols}\n"
+
+    if clean==True:
+        df = basic_outlier_removal(df)
+        readme += f"cleaned data\n"
+
+    factor_list = get_factor_list(df)
+    readme += f"final factor count is {len(factor_list)}: {factor_list}\n"
+
+
+    df = df.sample(frac=1).reset_index(drop=True)  # shuffle
+    readme += f"shuffled\n"
+    return df, readme
+
+
+def get_factor_list(df):
+    factor_list = df.columns.tolist()
+    factor_list = [i for i in factor_list if ("_fcc" in i) or ("_bcc" in i) or ("_sc" in i) or ("_diamond" in i) or ("_hcp" in i)]
+    return factor_list
+
+
 def basic_outlier_removal(df):
     """remove extreme canonical property predictions
 
@@ -101,8 +148,8 @@ def factor_percent_usage(df_results, N_lines, title):
     fig.savefig(f"./strength_covariance/model_ays/{title}.png", dpi=300)
     return df_factors.value_counts().rename_axis('factor').reset_index(name=title)
 
-def create_factor_select_plot(df_merge, filename, label_dict, factor_dict):
-    factor_list = [i for i in factor_dict.keys()]
+def create_factor_select_plot(df_merge, filename, label_dict, model_dict):
+    model_list = [i for i in model_dict.keys()]
     
     df_corr = df_merge.corr(numeric_only = True).round(2)
     abs_strength_corr = abs(df_corr['strength_MPa']).sort_values(ascending=False)
@@ -111,30 +158,27 @@ def create_factor_select_plot(df_merge, filename, label_dict, factor_dict):
     abs_strength_corr = abs_strength_corr.drop('strength_MPa')
 
     to_include = []
-    for factor in factor_list:
-        df_results = pd.read_csv(f"./strength_covariance/model_ays/{factor}.csv", index_col=0)
-        df_factor_count = factor_percent_usage(df_results, 100, factor_dict[factor])
+    for model in model_list:
+        df_results = pd.read_csv(f"./strength_covariance/model_ays/{model}.csv", index_col=0)
+        df_factor_count = factor_percent_usage(df_results, 100, model_dict[model])
         df_factor_count = df_factor_count.set_index('factor')
-        max_count = df_factor_count.max()[factor_dict[factor]]
-        min_count = df_factor_count.min()[factor_dict[factor]]
+        max_count = df_factor_count.max()[model_dict[model]]
+        min_count = df_factor_count.min()[model_dict[model]]
         df_factor_count = (df_factor_count - min_count)/(max_count - min_count)
         abs_strength_corr = pd.merge(df_factor_count, abs_strength_corr, left_index = True, right_index = True, how='outer').fillna(0)
-        to_include.extend(abs_strength_corr[abs_strength_corr[factor_dict[factor]]>0].index.tolist())
+        to_include.extend(abs_strength_corr[abs_strength_corr[model_dict[model]]>0].index.tolist())
 
     to_include = list(set(to_include))
     df = abs_strength_corr.loc[to_include]
     
     df = df.rename(columns = {"corr_coeff":"Correlation\nCoefficient"})
-    df = df.rename(columns = factor_dict)
+    df = df.rename(columns = model_dict)
     
     df = df.sort_values("Correlation\nCoefficient", ascending=False)
     factor_select_plotting(df.iloc[:15,:], label_dict, filename+"_corr", width = 0.25)
 
-    df = df.sort_values(factor_dict[factor_list[-1]], ascending=False)
+    df = df.sort_values(model_dict[model_list[-1]], ascending=False)
     factor_select_plotting(df.iloc[:15,:], label_dict, filename+"_count", width = 0.25)
-
-    #top5_table(df_results_loocv, df_results_kfold, label_dict)
-
 
 def factor_select_plotting(df, label_dict, filename, width = 0.125, size = (7,3)): 
     cols = df.columns
@@ -175,17 +219,16 @@ def factor_select_plotting(df, label_dict, filename, width = 0.125, size = (7,3)
 
     return
 
-def top5_table(df_loocv, df_kfold, label_dict):
+def top5_table(label_dict, model_dict, sort_by):
+    model_list = [i for i in model_dict.keys()]
 
-    loocv = [literal_eval(i) for i in df_loocv['factors'].iloc[0:5]]
-    #loocv =  [label_dict[x] for x in loocv ]
-    df5_loocv = pd.DataFrame(loocv)
-    df5_loocv = df5_loocv.replace(label_dict)
-    df5_loocv.to_csv(f"strength_covariance/model_ays/loocv_top5.csv")
-    kfold = [literal_eval(i) for i in df_kfold['factors'].iloc[0:5]]
-    df5_kfold = pd.DataFrame(kfold)
-    df5_kfold = df5_kfold.replace(label_dict)
-    df5_kfold.to_csv(f"strength_covariance/model_ays/kfold_top5.csv")
+    for model in model_list:
+        df_results = pd.read_csv(f"./strength_covariance/model_ays/{model}.csv", index_col=0)
+        df_results = df_results.sort_values(sort_by, ascending=False)
+        factor_list = [literal_eval(i) for i in df_results['factors'].iloc[0:5]]
+        df5 = pd.DataFrame(factor_list)
+        df5 = df5.replace(label_dict)
+        df5.to_csv(f"strength_covariance/model_ays/{model}_top5.csv")
     return
 
 def model_create(model_type):
@@ -212,44 +255,43 @@ def model_create(model_type):
 def main():
     from explore import import_label_dict
 
-    df_in = pd.read_csv("./data/models_w_props.csv")
+    df_clean, readme = data_import(clean=True)
     label_dict = import_label_dict()
-
-
-    df_in = df_in.drop([i for i in df_in.columns if 'diamond' in i], axis=1)
-    df_in = df_in.sample(frac=1)  # shuffle
 
     params_list = ['lattice_constant',
                    'bulk_modulus', 'c11', 'c12', 'c44',
-                   # 'gb_coeff_111', # others are highly correlated
-                   'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc',
+                   'cohesive_energy_fcc', # highly correlated with other CohEng; LM uses all
+                   'thermal_expansion_coeff_fcc',
                    'surface_energy_100_fcc',
                    'extr_stack_fault_energy',
-                   # 'intr_stack_fault_energy', # highly correlated with extr SFE
+                   'intr_stack_fault_energy', # highly correlated with extr SFE
                    'unstable_stack_energy', 
-                   #'unstable_twinning_energy', #highly correlated with unstable SFE
+                   'unstable_twinning_energy', #highly correlated with unstable SFE
                    'relaxed_formation_potential_energy_fcc', #includes unrelaxed
-                   #'unrelaxed_formation_potential_energy_fcc',
+                   'unrelaxed_formation_potential_energy_fcc', 
                    'vacancy_migration_energy_fcc',
                    'relaxation_volume_fcc'
                    ]
 
-    params_list_full = filter_param_list(df_in, params_list)
+    params_list_full = filter_param_list(df_clean, params_list)
+    print(f"number of factors: {len(params_list_full)}")
 
-    df_clean = basic_outlier_removal(df_in)
+    # remove jammed
+    print(f"number of points before removing jamming: {len(df_clean)}")
+    df_clean = df_clean[df_clean['SF_jamming']!='yes'].reset_index()
+    print(f"number of points w/o jamming: {len(df_clean)}")
 
     X = df_clean[params_list_full]
     y = df_clean['strength_MPa']
 
     n_factor_max = 3
-
     if False:
-        pipe = model_create('ridge')
+        pipe = model_create('lr')
         cv = RepeatedKFold(n_splits=10, n_repeats=5)
         df_results = factor_select_cv(
             X, y, pipe, n_factor_max=n_factor_max, cv=cv)
-        df_results.to_csv("./strength_covariance/model_ays/kfold_ridge_models.csv")
-        factor_percent_usage(df_results, 100, 'kfold_ridge_factor_usage')
+        df_results.to_csv("./strength_covariance/model_ays/kfold_lr_models.csv")
+        factor_percent_usage(df_results, 100, 'kfold_lr_factor_usage')
 
     if False:
         pipe = model_create('svr')
@@ -259,7 +301,7 @@ def main():
         df_results.to_csv("./strength_covariance/model_ays/kfold_svr_models.csv")
         factor_percent_usage(df_results, 100, 'kfold_svr_factor_usage')
 
-    if False:
+    if False: #LOOCV
         pipe = model_create('ridge')
         loocv = LeaveOneOut()
         df_results_loocv = factor_select_cv(
@@ -274,9 +316,10 @@ def main():
         factor_percent_usage(df_results_loocv, 100, 'loocv_factor_usage')
 
     if True:
-        create_factor_select_plot(df_in, "factor_importance", label_dict, 
-                                  {"kfold_ridge_models":"Freq. of occurrence\ntop LR models",
-                                   "kfold_svr_models":"Freq. of occurrence\ntop SVR models"})
+        model_dict = {"kfold_lr_models":"Freq. of occurrence\ntop LR models",
+                      "kfold_svr_models":"Freq. of occurrence\ntop SVR models"}
+        create_factor_select_plot(df_clean, "factor_importance", label_dict, model_dict)
+        top5_table(label_dict, model_dict, "rmse_cv_score")
     return
 
 

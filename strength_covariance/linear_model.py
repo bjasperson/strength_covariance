@@ -12,7 +12,8 @@ from sklearn import linear_model, svm
 from sklearn.utils import resample
 from sklearn.metrics import r2_score, mean_squared_error
 from scipy import stats
-from uncertainty_quantification import data_import, r2_adj_fun
+from uncertainty_quantification import r2_adj_fun
+from model_selection import data_import
 from sklearn.model_selection import GridSearchCV, KFold, cross_val_score
 from explore import import_label_dict
 
@@ -37,8 +38,6 @@ def pred_vs_actual_plot(df, y_pred, r2_adj, filename, title=False, factor_list =
         verticalalignment='bottom', horizontalalignment='right',
         transform=p.transAxes)#, fontsize=12, weight='bold')
     plt.legend(loc='upper left',bbox_to_anchor=(1,1))
-    #fig = plt.figure()
-    #fig.add_axes(p)
     p.set_aspect('equal', adjustable='box')
     plt.savefig(f"./strength_covariance/model_ays/{filename}.pdf", bbox_inches = 'tight')#,dpi=300)
     plt.close()
@@ -47,9 +46,9 @@ def r2_plot(r2_list, r2_adj_list, corr_list, label_dict, filename):
     corr_list = [label_dict[i] for i in corr_list]
     fig,ax = plt.subplots(figsize=(5,3))
     xloc = range(1,len(r2_list)+1)
-    ax.plot(xloc,r2_list,'bx',label = "r2",)
-    ax.plot(xloc,r2_adj_list,'r.',label = "r2 adj")
-    ax.set_xlabel("Number of parameters")
+    ax.plot(xloc,r2_list,'bx',label = f"$r^2$",)
+    ax.plot(xloc,r2_adj_list,'r.',label = f"adjusted $r^2$")
+    #ax.set_xlabel("Number of parameters")
     ax.set_ylabel(r"$R^2$")
     #ax.set_xticklabels(corr_list)
     ax.set_xticks(xloc, corr_list, rotation=90)
@@ -112,26 +111,28 @@ def create_X_y(df, params):
     return X_df, y
 
 def main():
-    df = data_import()
+    df, readme = data_import(clean=True)
     label_dict = import_label_dict()
-
-    df = basic_outlier_removal(df)
 
     print(f"number of points initially: {len(df)}")
 
-    params_list = ['lattice_constant','bulk_modulus','c44','c11','c12',
-            'cohesive_energy','thermal_expansion_coeff_fcc','surface_energy_100_fcc',
-            'extr_stack_fault_energy','intr_stack_fault_energy','unstable_stack_energy',
-            'unstable_twinning_energy','relaxed_formation_potential_energy_fcc',
-            'unrelaxed_formation_potential_energy_fcc','relaxation_volume_fcc',
-            'vacancy_migration_energy_fcc',
-            #'gb_coeff'
-            ] # only using one surface energy, 
+    params_list = ['lattice_constant',
+                   'bulk_modulus','c44','c11','c12',
+                   'cohesive_energy','thermal_expansion_coeff_fcc','surface_energy_100_fcc',
+                   'extr_stack_fault_energy','intr_stack_fault_energy','unstable_stack_energy',
+                   'unstable_twinning_energy',
+                   ] # only using one surface energy, ignore vacancy params for initial plot (matches research narative)
 
     params_list_full = filter_param_list(df, params_list)
+    #params_list_full.remove('lattice_constant_diamond')
+    #params_list_full.remove('cohesive_energy_diamond')
+
+    print(f"Number of parameters: {len(params_list_full)}")
+
     X_df, y = create_X_y(df, params_list_full)
+    readme += f"{len(X_df.columns)} factors: {X_df.columns}\n"
     pipe = linear_model_create()
-    
+
 
     df_corr = df[['strength_MPa']+params_list_full].copy().corr(numeric_only=True).round(2)
     df_corr = abs(df_corr['strength_MPa']).sort_values(ascending=False).dropna()
@@ -167,61 +168,58 @@ def main():
             r2_all_list.append(r2_score(y,y_pred_all))
             r2_all_adj_list.append(r2_adj_fun(r2_all_list[-1], n, k))
 
-        # title = f"Linear model (leave one out) using all factors"
-        # pred_vs_actual_plot(df, y_pred, r2_adj_list[-1], title, "linear_all_factors") # obsolete, using nested CV now
-        # r2_plot(r2_list, r2_adj_list, corr_list, "linear_r2_loo_plot")  # LOO gives the strange jumps due to different models each time
+        # r2_plot(r2_list, r2_adj_list, corr_list, "linear_r2_loo_plot")  # LOO gives the strange drops/jumps due to different models each time
         r2_plot(r2_all_list, r2_all_adj_list, corr_list, label_dict, "linear_r2_plot")
         print(f"corr_list = {corr_list}")
+        readme += f"\ncorr_list = {corr_list}\n"
 
-    if False: #all factor eval, nested_cv
-        # params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
-
+    if True: #all factor eval, nested_cv
         # leave out point you are predicting
-        
-
         X = X_df[corr_list]# df_clean[corr_list[:i]]
         print(f"X shape = {X.shape}, y shape = {y.shape}")
         print(f"factors = {X.columns.to_list()}")
         print("-----------")
+        readme += f"\n{len(X.columns)} all factors model: {X.columns}\n"
         y_pred = y_pred_loo_w_nested_CV(pipe,X,y)
         k = len(X.columns)
         n = len(y)
         r2 = r2_score(y, y_pred)
         r2_adj = r2_adj_fun(r2, n, k)
 
-        factor_list = f"{X.shape[1]} factors"
+        factor_description = f"{X.shape[1]} factors"
 
         # title = f"Linear model (leave one out, nested CV) using all factors"
-        pred_vs_actual_plot(df, y_pred, r2_adj, "linear_all_factors_loo_nested_cv", factor_list = factor_list)
+        pred_vs_actual_plot(df, y_pred, r2_adj, "linear_all_factors_loo_nested_cv", factor_list = factor_description)
 
     # remove jamming
     df_clean = df[df['SF_jamming']!='yes'].reset_index()
     print(f"number of points w/o jamming: {len(df_clean)}")
 
+
+    # add back in missing vacancy
+    params_list.extend(['relaxed_formation_potential_energy_fcc',
+                        'unrelaxed_formation_potential_energy_fcc','relaxation_volume_fcc',
+                        'vacancy_migration_energy_fcc'])
+    params_list_full = filter_param_list(df, params_list)
+
     X_df, y = create_X_y(df_clean, params_list_full)
 
     
-    if False: #3 factor model, exclude jamming
+    if True: #3 factor model, exclude jamming
         # still need to fix imputer to be applied at start??? no if we are assuming that data doesn't exist by practioner
         pipe = linear_model_create() # had to switch to ridge due to colinearity issue/blows up for all factors
         params_short = ['c44_fcc','extr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']#'unstable_stack_energy_fcc']
         factor_list = 'c44, eSFE, VME (all FCC)'
         X = X_df[params_short]
+        readme += f"\n3 factor model: {X.columns}\n"
         y_pred = y_pred_loo_w_nested_CV(pipe,X,y)
         # title2 = f"Linear model (leave one out, nested CV) w/o jammed:\nc44, eSFE, uSFE (all FCC)"
         r2_adj = r2_score(y,y_pred)
         pred_vs_actual_plot(df_clean, y_pred, r2_adj, "linear_3factors_nested_cv", factor_list = factor_list)
 
-    # if True: #3 factor model, exclude jamming, gb coeff
-    #     # still need to fix imputer to be applied at start??? no if we are assuming that data doesn't exist by practioner
-    #     pipe = linear_model_create() # had to switch to ridge due to colinearity issue/blows up for all factors
-    #     params_short = ['lattice_constant_bcc', 'gb_coeff_111', 'unstable_stack_energy_fcc']
-    #     X = X_df[params_short]
-    #     y_pred = y_pred_loo(pipe,X,y)
-    #     title2 = f"Linear model (leave one out) w/o jammed:\nlattice const (BCC), GB coeff (111), uSFE (FCC)"
-    #     r2_adj = r2_score(y,y_pred)
-    #     pred_vs_actual_plot(df_clean, y_pred, r2_adj, "linear_3factors_w_gb", title2)
-
+    with open(f"./strength_covariance/model_ays/linear_model_readme.txt", "w") as text_file:
+        for line in readme:
+            text_file.write(line)
 
     return
 

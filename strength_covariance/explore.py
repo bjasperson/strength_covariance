@@ -64,12 +64,14 @@ def correlation_plot(df, title, label_dict, figsize=(10, 10), annot=False, lower
     ax = sns.heatmap(df_corr, mask = mask, vmin=-1, vmax=1, cmap=colors, annot=annot,
                      cbar_kws = dict(use_gridspec=False,location='top'))
     ax.set_facecolor('white')
+    ax.tick_params(labelsize=8)
     fig.add_axes(ax)
     #fig.subplots_adjust(left=0.3,bottom=0.3)
     fig.savefig(f"./strength_covariance/data_ays/{title}.pdf", bbox_inches = 'tight')#, dpi=300)
 
 
 def save_corr_values(df, title):
+    df.corr(numeric_only=True).to_csv(f"./strength_covariance/data_ays/{title}_all.csv")
     values = df.corr(numeric_only=True)[
         'strength_MPa'].abs().sort_values(ascending=False)
     values.to_csv(f"./strength_covariance/data_ays/{title}.csv")
@@ -287,12 +289,15 @@ def main():
     if 'disqualified' in df_in.columns:
         df_in = df_in.drop('disqualified', axis=1)
 
+    print(f"Pre drop diamond:{df_in.shape}")
     df_in = df_in.drop([i for i in df_in.columns if 'diamond' in i], axis=1)
+    print(f"Post drop diamond:{df_in.shape}")
     df_in = df_in.drop(['thermal_expansion_coeff_bcc',
                         'surface_energy_100_bcc',
                         'surface_energy_110_bcc',
                         'surface_energy_111_bcc',
                         'surface_energy_121_bcc'], axis=1)
+    print(f"Post drop TEC-BCC and SE-BCC:{df_in.shape}")
 
     # remove extreme outliers
     df_clean = basic_outlier_removal(df_in)
@@ -358,7 +363,7 @@ def main():
     correlation_plot(df_clean[params_list_full],
                     "corr_plot_full",
                     label_dict,
-                    figsize=(4,4),
+                    figsize=(8,9),
                     annot=False)
     
     manuscript_plots(df_clean, label_dict)

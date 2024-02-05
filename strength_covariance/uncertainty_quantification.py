@@ -108,26 +108,6 @@ def perform_bootstrap(df, params_list_in, pipe, n_bootstrap, filename, title=Tru
     df.to_csv(f"./strength_covariance/model_ays/{filename}_data.csv")
 
 
-def data_import(clean=True,
-                data_path = "./data/models_w_props.csv"):
-    df_in = pd.read_csv(data_path)
-    df_in = df_in.drop([i for i in df_in.columns if 'diamond' in i],axis=1)
-
-    if 'disqualified' in df_in.columns:
-        df_in = df_in.drop('disqualified', axis=1)
-
-    df_in = df_in.drop([i for i in df_in.columns if 'diamond' in i], axis=1)
-    df_in = df_in.drop(['thermal_expansion_coeff_bcc',
-                        'surface_energy_100_bcc',
-                        'surface_energy_110_bcc',
-                        'surface_energy_111_bcc',
-                        'surface_energy_121_bcc'], axis=1)
-    if clean==True:
-        df_in = basic_outlier_removal(df_in)
-
-    return df_in
-
-
 def model_create(model_type = "svr"):
     # create pipeline
     imput = KNNImputer(n_neighbors=2, weights="uniform", keep_empty_features=True)
