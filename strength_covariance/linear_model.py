@@ -167,9 +167,9 @@ def main():
             r2_all_list.append(r2_score(y,y_pred_all))
             r2_all_adj_list.append(r2_adj_fun(r2_all_list[-1], n, k))
 
-        title = f"Linear model (leave one out) using all factors"
+        # title = f"Linear model (leave one out) using all factors"
         # pred_vs_actual_plot(df, y_pred, r2_adj_list[-1], title, "linear_all_factors") # obsolete, using nested CV now
-        # r2_plot(r2_list, r2_adj_list, corr_list, "linear_r2_loo_plot")
+        # r2_plot(r2_list, r2_adj_list, corr_list, "linear_r2_loo_plot")  # LOO gives the strange jumps due to different models each time
         r2_plot(r2_all_list, r2_all_adj_list, corr_list, label_dict, "linear_r2_plot")
         print(f"corr_list = {corr_list}")
 

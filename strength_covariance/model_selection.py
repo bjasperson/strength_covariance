@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.ticker as ticker
 from itertools import combinations
-from sklearn.model_selection import train_test_split, RepeatedKFold, cross_val_score, LeaveOneOut, GridSearchCV
+from sklearn.model_selection import train_test_split, RepeatedKFold, cross_validate, LeaveOneOut, GridSearchCV
 from sklearn.impute import KNNImputer
 from sklearn.compose import TransformedTargetRegressor
 from sklearn.pipeline import Pipeline, make_pipeline
@@ -61,7 +61,7 @@ def filter_param_list(df, base_labels, specific_items=""):
     return params_list_full
 
 
-def factor_select_cv(X, y, pipe, n_factor_max=2, cv=5, scoring='r2'):
+def factor_select_cv(X, y, pipe, n_factor_max=2, cv=5):
     # return list of parameters w/ cv score
     factor_list = X.columns.to_list()
     subsets = []
@@ -69,19 +69,20 @@ def factor_select_cv(X, y, pipe, n_factor_max=2, cv=5, scoring='r2'):
         for subset in combinations(factor_list, n):
             subsets.append(list(subset))
 
-    cv_score_mean = []
-    cv_score_std = []
-    for subset in subsets:
-        print('current subset: ', subset)
-        score = cross_val_score(pipe, X[subset], y, cv=cv, scoring=scoring)
-        print('score mean: ', np.mean(score))
-        cv_score_mean.append(np.mean(score))
-        cv_score_std.append(np.std(score))
+    cv_score_rmse_mean = []
+    cv_score_r2_mean = []
+    for i, subset in enumerate(subsets):
+        print(f'{i} of {len(subsets)}: {subset}')
+        scoring = {'neg_rmse':'neg_root_mean_squared_error',
+                   'r2':'r2'}
+        score = cross_validate(pipe, X[subset], y, cv=cv, scoring=scoring, n_jobs = -1)
+        cv_score_rmse_mean.append(np.mean(score['test_neg_rmse']))
+        cv_score_r2_mean.append(np.mean(score['test_r2']))
 
     df_results = pd.DataFrame({'factors': subsets,
-                               'cv_score': cv_score_mean,
-                               'cv_score_std': cv_score_std})
-    df_results = df_results.sort_values('cv_score', ascending=False)
+                               'r2_cv_score': cv_score_r2_mean,
+                               'rmse_cv_score': cv_score_rmse_mean})
+    df_results = df_results.sort_values('r2_cv_score', ascending=False)
 
     return df_results
 
@@ -100,38 +101,39 @@ def factor_percent_usage(df_results, N_lines, title):
     fig.savefig(f"./strength_covariance/model_ays/{title}.png", dpi=300)
     return df_factors.value_counts().rename_axis('factor').reset_index(name=title)
 
-def create_factor_select_plot(df_merge, filename, label_dict):
+def create_factor_select_plot(df_merge, filename, label_dict, factor_dict):
+    factor_list = [i for i in factor_dict.keys()]
     
     df_corr = df_merge.corr(numeric_only = True).round(2)
     abs_strength_corr = abs(df_corr['strength_MPa']).sort_values(ascending=False)
     abs_strength_corr.index.name = "factor"
     abs_strength_corr = abs_strength_corr.rename('corr_coeff')
+    abs_strength_corr = abs_strength_corr.drop('strength_MPa')
 
-    df_results_loocv = pd.read_csv("./strength_covariance/model_ays/loocv_models.csv", index_col=0)
-    df_results_kfold = pd.read_csv("./strength_covariance/model_ays/kfold_models.csv", index_col=0)
-    #need to rerun with num_factors to do this plot
-    #boxplot = df_results_loocv.boxplot("cv_score","num_factors")
-    #plt.savefig(f"./gb_covariance/model_ays/{filename}_boxplot.png", dpi=300)
-    df_factor_count_loocv = factor_percent_usage(df_results_loocv, 100, 'loocv_factor_count')
-    df_factor_count_kfold = factor_percent_usage(df_results_kfold, 100, 'kfold_factor_count')
+    to_include = []
+    for factor in factor_list:
+        df_results = pd.read_csv(f"./strength_covariance/model_ays/{factor}.csv", index_col=0)
+        df_factor_count = factor_percent_usage(df_results, 100, factor_dict[factor])
+        df_factor_count = df_factor_count.set_index('factor')
+        max_count = df_factor_count.max()[factor_dict[factor]]
+        min_count = df_factor_count.min()[factor_dict[factor]]
+        df_factor_count = (df_factor_count - min_count)/(max_count - min_count)
+        abs_strength_corr = pd.merge(df_factor_count, abs_strength_corr, left_index = True, right_index = True, how='outer').fillna(0)
+        to_include.extend(abs_strength_corr[abs_strength_corr[factor_dict[factor]]>0].index.tolist())
+
+    to_include = list(set(to_include))
+    df = abs_strength_corr.loc[to_include]
     
-    df = pd.merge(df_factor_count_loocv, abs_strength_corr, how="left", on='factor').set_index("factor").fillna(0)
-    df = pd.merge(df_factor_count_kfold, df, how="left", on='factor').set_index("factor").fillna(0)
-    #df = abs_coeff_corr.merge(df_factor_count, how="left", on='factor').set_index("factor").fillna(0)
-    df = df[['loocv_factor_count','kfold_factor_count','corr_coeff']]
-    df['loocv_factor_count'] = (df['loocv_factor_count'] - df['loocv_factor_count'].min())/(df['loocv_factor_count'].max() - df['loocv_factor_count'].min())
-    df['kfold_factor_count'] = (df['kfold_factor_count'] - df['kfold_factor_count'].min())/(df['kfold_factor_count'].max() - df['kfold_factor_count'].min())
-    df = df.rename(columns = {"corr_coeff":"Correlation\nCoefficient",
-                              "loocv_factor_count":"Freq. of occurrence\ntop LOOCV models",#Usage, LOOCV, \ntop 100 models",
-                              "kfold_factor_count":"Freq. of occurrence\ntop K-Fold CV models"}) #Usage, K-fold CV, \ntop 100 models"})
+    df = df.rename(columns = {"corr_coeff":"Correlation\nCoefficient"})
+    df = df.rename(columns = factor_dict)
     
     df = df.sort_values("Correlation\nCoefficient", ascending=False)
     factor_select_plotting(df.iloc[:15,:], label_dict, filename+"_corr", width = 0.25)
 
-    df = df.sort_values(df.columns[-1], ascending=False)
+    df = df.sort_values(factor_dict[factor_list[-1]], ascending=False)
     factor_select_plotting(df.iloc[:15,:], label_dict, filename+"_count", width = 0.25)
 
-    top5_table(df_results_loocv, df_results_kfold, label_dict)
+    #top5_table(df_results_loocv, df_results_kfold, label_dict)
 
 
 def factor_select_plotting(df, label_dict, filename, width = 0.125, size = (7,3)): 
@@ -186,6 +188,27 @@ def top5_table(df_loocv, df_kfold, label_dict):
     df5_kfold.to_csv(f"strength_covariance/model_ays/kfold_top5.csv")
     return
 
+def model_create(model_type):
+    imput = KNNImputer(n_neighbors=2, weights="uniform",
+                       keep_empty_features=True)
+    pca = PCA()
+
+    if model_type == "lr":
+        model = linear_model.LinearRegression()
+    elif model_type == "svr":
+        model = svm.SVR(kernel='rbf')
+    elif model_type == "ridge":
+        model = linear_model.Ridge()
+
+    pipe = Pipeline(steps=[('scale', StandardScaler()),
+                           ('imp', imput),
+                           ('pca', pca),
+                           ('lr', model)])
+    pipe = TransformedTargetRegressor(regressor=pipe,
+                                      transformer=StandardScaler())
+
+    return pipe
+
 def main():
     from explore import import_label_dict
 
@@ -218,35 +241,31 @@ def main():
     X = df_clean[params_list_full]
     y = df_clean['strength_MPa']
 
-    imput = KNNImputer(n_neighbors=2, weights="uniform",
-                       keep_empty_features=True)
-    pca = PCA()
-    #model = linear_model.LinearRegression()
-    #model = svm.SVR(kernel='rbf')
-    model = linear_model.Ridge()
-
-    pipe = Pipeline(steps=[('scale', StandardScaler()),
-                           ('imp', imput),
-                           ('pca', pca),
-                           ('lr', model)])
-    pipe = TransformedTargetRegressor(regressor=pipe,
-                                      transformer=StandardScaler())
-
     n_factor_max = 3
 
     if False:
-        cv = RepeatedKFold(n_splits=10, n_repeats=3)
+        pipe = model_create('ridge')
+        cv = RepeatedKFold(n_splits=10, n_repeats=5)
         df_results = factor_select_cv(
-            X, y, pipe, n_factor_max=n_factor_max, cv=cv, scoring='neg_root_mean_squared_error')
-        df_results.to_csv("./strength_covariance/model_ays/kfold_models.csv")
-        factor_percent_usage(df_results, 100, 'kfold_factor_usage')
+            X, y, pipe, n_factor_max=n_factor_max, cv=cv)
+        df_results.to_csv("./strength_covariance/model_ays/kfold_ridge_models.csv")
+        factor_percent_usage(df_results, 100, 'kfold_ridge_factor_usage')
 
     if False:
+        pipe = model_create('svr')
+        cv = RepeatedKFold(n_splits=10, n_repeats=5)
+        df_results = factor_select_cv(
+            X, y, pipe, n_factor_max=n_factor_max, cv=cv)
+        df_results.to_csv("./strength_covariance/model_ays/kfold_svr_models.csv")
+        factor_percent_usage(df_results, 100, 'kfold_svr_factor_usage')
+
+    if False:
+        pipe = model_create('ridge')
         loocv = LeaveOneOut()
         df_results_loocv = factor_select_cv(
-            X, y, pipe, n_factor_max=n_factor_max, cv=loocv, scoring='neg_root_mean_squared_error')
-        df_results_loocv.to_csv("./strength_covariance/model_ays/loocv_models.csv")
-        factor_percent_usage(df_results_loocv, 100, 'loocv_factor_usage')
+            X, y, pipe, n_factor_max=n_factor_max, cv=loocv)
+        df_results_loocv.to_csv("./strength_covariance/model_ays/loocv_ridge_models.csv")
+        factor_percent_usage(df_results_loocv, 100, 'loocv_ridge_factor_usage')
 
     if False: # load results and plot without rerunning kFold or LOO
         df_results = pd.read_csv("./strength_covariance/model_ays/kfold_models.csv")
@@ -255,7 +274,9 @@ def main():
         factor_percent_usage(df_results_loocv, 100, 'loocv_factor_usage')
 
     if True:
-        create_factor_select_plot(df_in, "factor_importance", label_dict)
+        create_factor_select_plot(df_in, "factor_importance", label_dict, 
+                                  {"kfold_ridge_models":"Freq. of occurrence\ntop LR models",
+                                   "kfold_svr_models":"Freq. of occurrence\ntop SVR models"})
     return
 
 
