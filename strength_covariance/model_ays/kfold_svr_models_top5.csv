@@ -1,6 +1,6 @@
 ,0,1,2
-0,VME-FCC,Unrel. Vac. Form PE FCC,Lattice Const BCC
-1,VME-FCC,Lattice Const BCC,uTwinEnergy-FCC
-2,VME-FCC,Lattice Const FCC,Unrel. Vac. Form PE FCC
-3,uSFE-FCC,VME-FCC,Lattice Const BCC
-4,Ideal Surf Energy 100 FCC,VME-FCC,Lattice Const BCC
+0,VME-FCC,Lattice Const BCC,Unrel. Vac. Form PE FCC
+1,VME-FCC,Surf Energy 100 FCC,Lattice Const BCC
+2,VME-FCC,uTwinEnergy-FCC,Lattice Const BCC
+3,VME-FCC,Lattice Const Diamond,Lattice Const BCC
+4,uSFE-FCC,VME-FCC,Lattice Const BCC

@@ -45,7 +45,12 @@ def correlation_df(df, label_dict):
     return df_corr
 
 
-def correlation_plot(df, title, label_dict, figsize=(10, 10), annot=False, lower = False):
+def correlation_plot(df, 
+                     title, 
+                     label_dict, 
+                     figsize=(10, 10), 
+                     annot_fontsize = 12,
+                     annot=False, lower = False):
     """plots correlation heatmap of df variables
 
     :param df pd.DataFrame: dataframe with labels to consider
@@ -62,8 +67,10 @@ def correlation_plot(df, title, label_dict, figsize=(10, 10), annot=False, lower
     else:
         mask = np.zeros_like(df_corr)
     ax = sns.heatmap(df_corr, mask = mask, vmin=-1, vmax=1, cmap=colors, annot=annot,
+                     annot_kws = {"fontsize":annot_fontsize},
                      cbar_kws = dict(use_gridspec=False,location='top'))
     ax.set_facecolor('white')
+    ax.grid(False)
     ax.tick_params(labelsize=8)
     fig.add_axes(ax)
     #fig.subplots_adjust(left=0.3,bottom=0.3)
@@ -260,6 +267,7 @@ def manuscript_plots(df_clean, label_dict):
                     "corr_plot_manuscript",
                     label_dict,
                     figsize=(3,4),
+                    annot_fontsize = 8,
                     annot = True,
                     lower = True)
     
@@ -277,6 +285,39 @@ def manuscript_plots(df_clean, label_dict):
     # g.map_upper(sns.heatmap(df_corr))
     # plt.show()
     return
+
+
+def additional_pairplots(df_clean, label_dict):
+    param_list = ['vacancy_migration_energy_fcc',
+                  'c44_fcc',
+                  'relaxed_formation_potential_energy_fcc',
+                  'unstable_stack_energy_fcc',
+                  'unstable_twinning_energy_fcc'
+                  ]
+    
+
+    pairplot_selected(df_clean,
+                    param_list,
+                    'pp_with_jammed',
+                    label_dict,
+                    height=1.5,
+                    corner = True)
+
+    df_clean = df_clean[df_clean['SF_jamming']!='yes']
+
+    param_list = ['vacancy_migration_energy_fcc',
+                'c44_fcc',
+                'relaxed_formation_potential_energy_fcc',
+                'unstable_stack_energy_fcc',
+                'unstable_twinning_energy_fcc'
+                ]
+
+    pairplot_selected(df_clean,
+                    param_list,
+                    'pp_wo_jammed',
+                    label_dict,
+                    height=1.5,
+                    corner = True)
 
 
 def main():
@@ -367,6 +408,8 @@ def main():
                     annot=False)
     
     manuscript_plots(df_clean, label_dict)
+
+    additional_pairplots(df_clean, label_dict)
 
     return
 

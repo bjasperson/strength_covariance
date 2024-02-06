@@ -276,7 +276,7 @@ def main():
     params_list_full = filter_param_list(df_clean, params_list)
     print(f"number of factors: {len(params_list_full)}")
 
-    # remove jammed
+    # remove jammed; significantly changes importance of uSFE in model selection for SVR
     print(f"number of points before removing jamming: {len(df_clean)}")
     df_clean = df_clean[df_clean['SF_jamming']!='yes'].reset_index()
     print(f"number of points w/o jamming: {len(df_clean)}")
@@ -293,13 +293,21 @@ def main():
         df_results.to_csv("./strength_covariance/model_ays/kfold_lr_models.csv")
         factor_percent_usage(df_results, 100, 'kfold_lr_factor_usage')
 
-    if False:
+    if True:
         pipe = model_create('svr')
         cv = RepeatedKFold(n_splits=10, n_repeats=5)
         df_results = factor_select_cv(
             X, y, pipe, n_factor_max=n_factor_max, cv=cv)
         df_results.to_csv("./strength_covariance/model_ays/kfold_svr_models.csv")
         factor_percent_usage(df_results, 100, 'kfold_svr_factor_usage')
+
+    if False:
+        pipe = model_create('ridge')
+        cv = RepeatedKFold(n_splits=10, n_repeats=5)
+        df_results = factor_select_cv(
+            X, y, pipe, n_factor_max=n_factor_max, cv=cv)
+        df_results.to_csv("./strength_covariance/model_ays/kfold_ridge_models.csv")
+        factor_percent_usage(df_results, 100, 'kfold_ridge_factor_usage')
 
     if False: #LOOCV
         pipe = model_create('ridge')
@@ -320,6 +328,10 @@ def main():
                       "kfold_svr_models":"Freq. of occurrence\ntop SVR models"}
         create_factor_select_plot(df_clean, "factor_importance", label_dict, model_dict)
         top5_table(label_dict, model_dict, "rmse_cv_score")
+
+        model_dict = {"kfold_ridge_models":"Freq. of occurrence\ntop ridge models",
+                      "kfold_svr_models":"Freq. of occurrence\ntop SVR models"}
+        create_factor_select_plot(df_clean, "factor_importance_2", label_dict, model_dict)
     return
 
 

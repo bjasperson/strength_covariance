@@ -19,12 +19,13 @@ from explore import import_label_dict
 
 
 
-def pred_vs_actual_plot(df, y_pred, r2_adj, filename, title=False, factor_list = False):
+def pred_vs_actual_plot(df, y_pred, r2_adj, filename, title=False, factor_list = False, error_bars = False):
     y_true = df['strength_MPa']
     rmse = mean_squared_error(y_true,y_pred,squared=False)
     plt.figure(figsize = (4,3))
     p = sns.scatterplot(data=df, x=y_true,y=y_pred,hue='species')
-    #p.errorbar(y_true,y_pred, yerr = rmse, fmt='.', markersize=0.001, alpha=0.5)
+    if error_bars == True:
+        p.errorbar(y_true,y_pred, yerr = rmse, fmt='.', markersize=0.001, alpha=0.5)
     p.plot(np.linspace(min(y_true),max(y_true),50),
         np.linspace(min(y_true),max(y_true),50))
     p.set_xlabel("actual strength [MPa]")#, weight='bold',fontsize=8)  
@@ -215,7 +216,7 @@ def main():
         y_pred = y_pred_loo_w_nested_CV(pipe,X,y)
         # title2 = f"Linear model (leave one out, nested CV) w/o jammed:\nc44, eSFE, uSFE (all FCC)"
         r2_adj = r2_score(y,y_pred)
-        pred_vs_actual_plot(df_clean, y_pred, r2_adj, "linear_3factors_nested_cv", factor_list = factor_list)
+        pred_vs_actual_plot(df_clean, y_pred, r2_adj, "linear_3factors_nested_cv", factor_list = factor_list, error_bars = True)
 
     with open(f"./strength_covariance/model_ays/linear_model_readme.txt", "w") as text_file:
         for line in readme:
