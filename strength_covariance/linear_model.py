@@ -59,12 +59,14 @@ def r2_plot(r2_list, r2_adj_list, corr_list, label_dict, filename):
     plt.close()
 
 
-def y_pred_loo(pipe,X,y):
+def y_pred_loo(pipe_in,X,y):
     y_pred = []
     for y_index in range(len(y)):
+        print(f"{y_index} of {len(y)}")
         available_indexes = [j for j in range(len(y)) if j != y_index]
         X_available = X.loc[available_indexes]
         y_available = y.loc[available_indexes]
+        pipe = pipe_in
         pipe.fit(X_available,y_available)
         y_pred.append(pipe.predict(X)[y_index])
     return y_pred
@@ -91,8 +93,11 @@ def y_pred_loo_w_nested_CV(pipe_in,X,y):
         y_pred.extend([y_pred_value])
     return y_pred
 
-def linear_model_create():
-    model = linear_model.Ridge()
+def linear_model_create(model_type):
+    if model_type == "ridge":
+        model = linear_model.Ridge()
+    elif model_type == "lr":
+        model = linear_model.LinearRegression()
     pca = PCA()
 
     pipe = Pipeline(steps=[('scale',StandardScaler()),
@@ -132,7 +137,6 @@ def main():
 
     X_df, y = create_X_y(df, params_list_full)
     readme += f"{len(X_df.columns)} factors: {X_df.columns}\n"
-    pipe = linear_model_create()
 
 
     df_corr = df[['strength_MPa']+params_list_full].copy().corr(numeric_only=True).round(2)
@@ -142,6 +146,7 @@ def main():
 
     if True: #r2 plotting, before removing jammed
         # params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
+        pipe = linear_model_create("ridge")
 
         # leave out point you are predicting
         r2_list = []
@@ -176,6 +181,7 @@ def main():
 
     if True: #all factor eval, nested_cv
         # leave out point you are predicting
+        pipe = linear_model_create("ridge") # had to switch to ridge due to colinearity issue/blows up for all factors
         X = X_df[corr_list]# df_clean[corr_list[:i]]
         print(f"X shape = {X.shape}, y shape = {y.shape}")
         print(f"factors = {X.columns.to_list()}")
@@ -208,12 +214,12 @@ def main():
     
     if True: #3 factor model, exclude jamming
         # still need to fix imputer to be applied at start??? no if we are assuming that data doesn't exist by practioner
-        pipe = linear_model_create() # had to switch to ridge due to colinearity issue/blows up for all factors
+        pipe = linear_model_create("lr") 
         params_short = ['c44_fcc','extr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']#'unstable_stack_energy_fcc']
         factor_list = 'c44, eSFE, VME (all FCC)'
         X = X_df[params_short]
         readme += f"\n3 factor model: {X.columns}\n"
-        y_pred = y_pred_loo_w_nested_CV(pipe,X,y)
+        y_pred = y_pred_loo(pipe,X,y)
         # title2 = f"Linear model (leave one out, nested CV) w/o jammed:\nc44, eSFE, uSFE (all FCC)"
         r2_adj = r2_score(y,y_pred)
         pred_vs_actual_plot(df_clean, y_pred, r2_adj, "linear_3factors_nested_cv", factor_list = factor_list, error_bars = True)

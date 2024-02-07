@@ -293,7 +293,7 @@ def main():
         df_results.to_csv("./strength_covariance/model_ays/kfold_lr_models.csv")
         factor_percent_usage(df_results, 100, 'kfold_lr_factor_usage')
 
-    if True:
+    if False:
         pipe = model_create('svr')
         cv = RepeatedKFold(n_splits=10, n_repeats=5)
         df_results = factor_select_cv(
@@ -332,6 +332,9 @@ def main():
         model_dict = {"kfold_ridge_models":"Freq. of occurrence\ntop ridge models",
                       "kfold_svr_models":"Freq. of occurrence\ntop SVR models"}
         create_factor_select_plot(df_clean, "factor_importance_2", label_dict, model_dict)
+
+        model_dict = {"kfold_lr_models":"Freq. of occurrence\ntop LR models"}
+        create_factor_select_plot(df_clean, "factor_importance_3", label_dict, model_dict)
     return
 
 
