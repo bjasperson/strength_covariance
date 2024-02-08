@@ -16,6 +16,8 @@ from uncertainty_quantification import r2_adj_fun
 from model_selection import data_import
 from sklearn.model_selection import GridSearchCV, KFold, cross_val_score
 from explore import import_label_dict
+import statsmodels.api as sm
+
 
 
 
@@ -144,7 +146,7 @@ def main():
     corr_list = df_corr.index.to_list()
     corr_list = corr_list[1:] # remove strength from list
 
-    if True: #r2 plotting, before removing jammed
+    if False: #r2 plotting, before removing jammed
         # params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
         pipe = linear_model_create("ridge")
 
@@ -179,7 +181,7 @@ def main():
         print(f"corr_list = {corr_list}")
         readme += f"\ncorr_list = {corr_list}\n"
 
-    if True: #all factor eval, nested_cv
+    if False: #all factor eval, nested_cv
         # leave out point you are predicting
         pipe = linear_model_create("ridge") # had to switch to ridge due to colinearity issue/blows up for all factors
         X = X_df[corr_list]# df_clean[corr_list[:i]]
@@ -212,7 +214,7 @@ def main():
     X_df, y = create_X_y(df_clean, params_list_full)
 
     
-    if True: #3 factor model, exclude jamming
+    if False: #3 factor model, exclude jamming
         # still need to fix imputer to be applied at start??? no if we are assuming that data doesn't exist by practioner
         pipe = linear_model_create("lr") 
         params_short = ['c44_fcc','extr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']#'unstable_stack_energy_fcc']
@@ -228,6 +230,22 @@ def main():
         for line in readme:
             text_file.write(line)
 
+
+    if True: #3 factor model, excluding jamming, statsmodel
+        pca = PCA()
+        pipe = Pipeline(steps=[('scale',StandardScaler()),
+                        ('pca',pca)])
+        params_short = ['c44_fcc','extr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']#'unstable_stack_energy_fcc']
+        factor_list = 'c44, eSFE, VME (all FCC)'
+        X = X_df[params_short]
+        pipe.fit(X)
+        X_scaled = pipe.transform(X)
+        X_scaled = sm.add_constant(X_scaled, prepend=False)
+        res = sm.OLS(y,X_scaled).fit()
+        print(res.summary())
+        y_pred = res.predict(X_scaled)
+        r2_adj = r2_score(y,y_pred)
+        pred_vs_actual_plot(df_clean, y_pred, r2_adj, "linear_3factors_sm", factor_list = factor_list, error_bars = True)
     return
 
 if __name__ == "__main__":
