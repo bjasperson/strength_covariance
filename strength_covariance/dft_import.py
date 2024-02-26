@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import container
 import seaborn as sns
 from strength_covariance.model_selection import basic_outlier_removal, filter_param_list, data_import
 from explore import import_label_dict
@@ -40,24 +41,38 @@ def get_boxplot(df_clean, dft_predicted_strength):
     order_list = ["Ag","Al","Au","Cu","Ni","Pd","Pt"]
     sns.set(style="whitegrid")
     fig, ax = plt.subplots(figsize=(4,3))
-    sns.boxplot(data = df_clean, x="species", y="strength_MPa", order=order_list, color = "0.8", linewidth=0.5)
+    sns.boxplot(data = df_clean, 
+                x="species", 
+                y="strength_MPa", 
+                order=order_list, 
+                color = "0.8", 
+                linewidth=1.0,
+                fliersize=5.0,
+                whis=0,
+                flierprops={"marker":"."})
     ax.set_ylabel("Strength [MPa]")
-    # ax.scatter(data = dft_predicted_strength, 
-    #         x="species",
-    #         y="mean", 
-    #         marker=".", 
-    #         color="b", 
-    #         s=40, 
-    #         label='\n'.join(wrap("Predicted Strength using DFT Indicator Properties",20))
-    #         )
+
     lower = (dft_predicted_strength['mean'] - dft_predicted_strength['obs_ci_lower']).to_list()
     upper = (dft_predicted_strength['obs_ci_upper']-dft_predicted_strength['mean']).to_list()
     ax.errorbar(dft_predicted_strength['species'],
                 dft_predicted_strength['mean'], 
-                yerr = (lower,upper), fmt='.', markersize=10, alpha=1, color="b",
-                label='\n'.join(wrap("Predicted Strength using DFT Indicator Properties",20)),
-                elinewidth=3.0)
-    ax.legend(fontsize=8)
+                yerr = (lower,upper), fmt='x', markersize=10., alpha=1.0, color="r",
+                label='\n'.join(wrap("Predicted strength using DFT indicator properties",20)),
+                elinewidth=2.0,
+                capsize = 4)
+    
+    # # remove error bar (https://swdg.io/2015/errorbar-legends/)
+    # handles, labels = ax.get_legend_handles_labels()
+    # new_handles = []
+    # for h in handles:
+    #     #only need to edit the errorbar legend entries
+    #     if isinstance(h, container.ErrorbarContainer):
+    #         new_handles.append(h[0])
+    #     else:
+    #         new_handles.append(h)
+
+    # ax.legend(new_handles, labels, fontsize=8)
+
     fig.savefig(f"strength_covariance/model_ays/dft_w_pi.pdf", bbox_inches = 'tight')
 
 def main():

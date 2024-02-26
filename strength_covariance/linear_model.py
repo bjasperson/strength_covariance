@@ -25,7 +25,7 @@ def pred_vs_actual_plot(df, y_pred, r2_adj, filename, title=False, factor_list =
     y_true = df['strength_MPa']
     rmse = mean_squared_error(y_true,y_pred,squared=False)
     plt.figure(figsize = (4,3))
-    p = sns.scatterplot(data=df, x=y_true,y=y_pred,hue='species')
+    p = sns.scatterplot(data=df, x=y_true,y=y_pred, style = 'species', hue='species')
     if error_bars == True:
         p.errorbar(y_true,y_pred, yerr = rmse, fmt='.', markersize=0.001, alpha=0.5)
     p.plot(np.linspace(min(y_true),max(y_true),50),
@@ -37,7 +37,7 @@ def pred_vs_actual_plot(df, y_pred, r2_adj, filename, title=False, factor_list =
     note = "\nall factors"
     if factor_list != False:
         note = '\n' + factor_list 
-    p.text(0.95, 0.01, f"N = {len(y_true)}\nAdjusted R\N{SUPERSCRIPT TWO} = {r2_adj:.3f}"+note,
+    p.text(0.95, 0.01, f"N = {len(y_true)}\nAdjusted r\N{SUPERSCRIPT TWO} = {r2_adj:.3f}"+note,
         verticalalignment='bottom', horizontalalignment='right',
         transform=p.transAxes)#, fontsize=12, weight='bold')
     plt.legend(loc='upper left',bbox_to_anchor=(1,1))
@@ -52,7 +52,7 @@ def r2_plot(r2_list, r2_adj_list, corr_list, label_dict, filename):
     ax.plot(xloc,r2_list,'bx',label = f"$r^2$",)
     ax.plot(xloc,r2_adj_list,'r.',label = f"adjusted $r^2$")
     #ax.set_xlabel("Number of parameters")
-    ax.set_ylabel(r"$R^2$")
+    ax.set_ylabel(r"$r^2$")
     #ax.set_xticklabels(corr_list)
     ax.set_xticks(xloc, corr_list, rotation=90)
     ax.grid()

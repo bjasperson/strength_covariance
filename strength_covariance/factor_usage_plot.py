@@ -72,12 +72,12 @@ def factor_usage_plot():
     fig,ax = plt.subplots(figsize=(6,5))
     sns.heatmap(df_factor_table, mask = mask, 
                 cmap = cmap, square=True, linewidth=.5, linecolor="grey",
-                cbar_kws = dict(location='top',label="RMSE"))#shrink= 0.35,
+                cbar_kws = dict(location='top',label="RMSE", shrink= 0.35))
     cbar = ax.collections[0].colorbar
     cbar.ax.tick_params(labelsize=8)
     ax.tick_params("both",labelsize=8)
     ax.invert_yaxis()
-    ax.set_ylabel("Property Grouping", style='italic', y=1.1, horizontalalignment = "left", rotation=0, labelpad=0)
+    ax.set_ylabel("Property Grouping", style='italic',  horizontalalignment = "left", rotation=90, labelpad=10, y=0) #y=1.1,
     ax.set_xlabel("Model Performance Ranking", style='italic')
     fig.savefig("./strength_covariance/model_ays/factor_usage.pdf", bbox_inches = "tight")
 

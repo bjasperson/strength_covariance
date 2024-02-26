@@ -50,7 +50,8 @@ def correlation_plot(df,
                      label_dict, 
                      figsize=(10, 10), 
                      annot_fontsize = 12,
-                     annot=False, lower = False):
+                     annot=False, lower = False,
+                     custom_order = False):
     """plots correlation heatmap of df variables
 
     :param df pd.DataFrame: dataframe with labels to consider
@@ -59,6 +60,9 @@ def correlation_plot(df,
     """
 
     df_corr = correlation_df(df, label_dict)
+    if custom_order != False:
+        df_corr = df_corr[custom_order]
+        df_corr = df_corr.loc[custom_order]
     fig = plt.figure(figsize=(figsize[0], figsize[1]))
     colors = sns.color_palette("vlag", as_cmap=True)
     if lower == True:
@@ -269,7 +273,8 @@ def manuscript_plots(df_clean, label_dict):
                     figsize=(3,4),
                     annot_fontsize = 8,
                     annot = True,
-                    lower = True)
+                    lower = True,
+                    custom_order=['VME-FCC','C44-FCC','RFPE-FCC','uSFE-FCC','iSFE-FCC','Strength'])
     
     #sns.set(font_scale = 1)
 
