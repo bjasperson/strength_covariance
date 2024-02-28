@@ -100,10 +100,29 @@ def create_citation_file(df_models, model_sources_key):
     outfile = outfile[:-2]
     return outfile
 
+def create_citation_table(df_models, model_sources_key):
+    species_list = df_models.species.drop_duplicates()
+
+    citations = []
+    for i,row in df_models.iterrows():
+        current_model = row.model
+        current_citations = model_sources_key[current_model]
+        cite_list = ""
+        for citation in current_citations:
+            current = "\cite{" + citation + "},"
+            cite_list += current
+        cite_list = cite_list[:-1]
+        citations.append(cite_list)
+
+    df_models['citations'] = citations
+
+    df_models = df_models.sort_values(['species','strength_MPa'])
+    return df_models
+
 def main():
     # import list of models used
     df = pd.read_csv("data/models_w_props_full.csv")
-    df_models = df[['species','model']].drop_duplicates()
+    df_models = df[['species','model','strength_MPa']].drop_duplicates()
     models_list = df.model.drop_duplicates().to_list()
  
     if False:
@@ -133,9 +152,13 @@ def main():
     
     model_sources_key = create_citation_df(models_list, df_models)
     output_file = create_citation_file(df_models, model_sources_key)
-
     with open(f'./data/citation_text.txt','w') as out:
         out.write(output_file)
+    
+    output_df = create_citation_table(df_models, model_sources_key)
+    output_df.to_csv("data/citations.csv")
+
+
  
     return
 
