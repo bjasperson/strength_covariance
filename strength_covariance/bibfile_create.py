@@ -119,6 +119,25 @@ def create_citation_table(df_models, model_sources_key):
     df_models = df_models.sort_values(['species','strength_MPa'])
     return df_models
 
+
+def create_citation_list(df_models, model_sources_key):
+    df_models = df_models.sort_values(['species','strength_MPa'])
+    out_text = ""
+
+    for i,row in df_models.iterrows():
+        current_model = row.model
+        current_citations = model_sources_key[current_model]
+        current_string = f"{row.species}, {row.strength_MPa} "
+        current_string += "\cite{"
+        cite_list = ""
+        for citation in current_citations:
+            current = citation + ","
+            cite_list += current
+        cite_list = cite_list[:-1]
+        current_string += cite_list + "}\\\\ \n"
+        out_text += current_string
+    return out_text
+
 def main():
     # import list of models used
     df = pd.read_csv("data/models_w_props_full.csv")
@@ -157,6 +176,10 @@ def main():
     
     output_df = create_citation_table(df_models, model_sources_key)
     output_df.to_csv("data/citations.csv")
+
+    output_file = create_citation_list(df_models, model_sources_key)
+    with open(f'./data/citation_list.txt','w') as out:
+        out.write(output_file)
 
 
  
