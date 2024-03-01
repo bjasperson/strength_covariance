@@ -31,7 +31,7 @@ def se_unit_convert(df):
 
 def get_df_dft():
     df_dft = pd.read_csv("data/dft.csv")
-    se_list = ['surface_energy_111_fcc', 'surface_energy_112_fcc',
+    se_list = ['surface_energy_111_fcc', 'surface_energy_121_fcc',
                'surface_energy_100_fcc', 'unstable_stack_energy_fcc',
                'intr_stack_fault_energy_fcc']
     df_dft[se_list] = se_unit_convert(df_dft[se_list])
@@ -75,6 +75,30 @@ def get_boxplot(df_clean, dft_predicted_strength):
 
     fig.savefig(f"strength_covariance/model_ays/dft_w_pi.pdf", bbox_inches = 'tight')
 
+
+def get_prop_boxplot(df_clean, prop, prop_label, dft_value):
+    order_list = ["Ag","Al","Au","Cu","Ni","Pd","Pt"]
+    sns.set(style="whitegrid")
+    fig, ax = plt.subplots(figsize=(4,3))
+    g = sns.boxplot(data = df_clean, 
+                x="species", 
+                y=prop, 
+                order=order_list, 
+                color = "0.8", 
+                linewidth=1.0,
+                fliersize=5.0,
+                whis=0,
+                flierprops={"marker":"."})
+    g.set_ylabel(prop_label)
+    g.scatter(data = dft_value,
+              x = "species",
+              y = prop,
+              marker = 'x',
+              s=50.,
+              color = "r")
+
+    fig.savefig(f"strength_covariance/data_ays/dft_props/dft_{prop}.pdf", bbox_inches = 'tight')
+
 def main():
     params_list_full = ['bulk_modulus_fcc',
                         'c44_fcc',
@@ -114,6 +138,21 @@ def main():
     df_pi['species'] = df_dft['species'].tolist()
     print(df_pi)
     get_boxplot(df, df_pi)
+    
+    properties = ['bulk_modulus_fcc',
+                  'c44_fcc',
+                  #'C11-C12',
+                  'surface_energy_111_fcc',
+                  'surface_energy_121_fcc',
+                  'surface_energy_100_fcc',
+                  'unstable_stack_energy_fcc',
+                  'intr_stack_fault_energy_fcc',
+                  'lattice_constant_fcc']
+    
+    for prop in properties:
+        get_prop_boxplot(df, prop, label_dict[prop], df_dft)
+    
+
     return
 
 
