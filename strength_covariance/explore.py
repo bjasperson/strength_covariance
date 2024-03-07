@@ -20,8 +20,9 @@ def pairplot_selected(df, factors, title, label_dict, corner = False, height=1.5
     sns.set(style="whitegrid")#,font_scale=1.25)
     # X.columns = [x.replace("_"," ") for x in X.columns.to_list()]
     #fig,ax = plt.subplots(figsize = (3,3))
-    g = sns.pairplot(X, hue='species', corner = corner, height=height)#,
-                       #plot_kws={"s":100})
+    marker_list = ['o','^','v','<','>','s','D','p','X','*','.','P']
+    g = sns.pairplot(X, hue='species', markers = marker_list[0:len(df.species.drop_duplicates())], corner = corner, height=height,
+                       plot_kws={"s":75})
     # for ax in fig.axes.flatten():
     #     ax.set_xlabel(ax.get_xlabel(), rotation=40, ha = "right")
     sns.move_legend(g,"upper right",bbox_to_anchor=(0.85,1))
@@ -250,8 +251,7 @@ def run_pairplots(df_clean, label_dict):
     
 
 def manuscript_plots(df_clean, label_dict):
-    param_list = ['vacancy_migration_energy_fcc',
-                  'c44_fcc',
+    param_list = ['c44_fcc',
                   'relaxed_formation_potential_energy_fcc',
                   'unstable_stack_energy_fcc',
                   'intr_stack_fault_energy_fcc'
@@ -274,7 +274,7 @@ def manuscript_plots(df_clean, label_dict):
                     annot_fontsize = 8,
                     annot = True,
                     lower = True,
-                    custom_order=['VME-FCC','C44-FCC','RFPE-FCC','uSFE-FCC','iSFE-FCC','Strength'])
+                    custom_order=['C44-FCC','RFPE-FCC','uSFE-FCC','iSFE-FCC','Strength'])
     
     #sns.set(font_scale = 1)
 
