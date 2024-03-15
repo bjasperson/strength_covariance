@@ -32,7 +32,8 @@ def se_unit_convert(df):
 def get_df_dft():
     df_dft = pd.read_csv("data/dft.csv")
     se_list = ['surface_energy_111_fcc', 'surface_energy_121_fcc',
-               'surface_energy_100_fcc', 'unstable_stack_energy_fcc',
+               'surface_energy_100_fcc', 
+               'unstable_stack_energy_fcc',
                'intr_stack_fault_energy_fcc']
     df_dft[se_list] = se_unit_convert(df_dft[se_list])
     return df_dft
@@ -100,12 +101,25 @@ def get_prop_boxplot(df_clean, prop, prop_label, dft_value):
     fig.savefig(f"strength_covariance/data_ays/dft_props/dft_{prop}.pdf", bbox_inches = 'tight')
 
 def main():
-    params_list_full = ['bulk_modulus_fcc',
-                        'c44_fcc',
-                        'surface_energy_111_fcc',
-                        'unstable_stack_energy_fcc',
-                        'intr_stack_fault_energy_fcc'
-                        ]  # for dft
+    all_dft_properties = ['bulk_modulus_fcc',
+                          'c44_fcc',
+                         #'C11-C12',
+                          'surface_energy_111_fcc',
+                          'surface_energy_121_fcc',
+                          'surface_energy_100_fcc',
+                          'unstable_stack_energy_fcc',
+                          'intr_stack_fault_energy_fcc',
+                          'lattice_constant_fcc',
+                          'relaxed_formation_potential_energy_fcc',
+                          'vacancy_migration_energy_fcc'
+                          ]
+    
+    # model_properties = ['vacancy_migration_energy_fcc',
+    #                     'surface_energy_100_fcc',
+    #                     'lattice_constant_fcc']
+    model_properties = ['unstable_stack_energy_fcc', 
+                        'intr_stack_fault_energy_fcc', 
+                        'c44_fcc']
  
     df, readme = data_import(clean=True)
     label_dict = import_label_dict()
@@ -115,11 +129,12 @@ def main():
     df = df[df["SF_jamming"]!="yes"]
     print(f"number of points after removing jammed: {len(df)}")
 
-    X_df, y = create_X_y(df, params_list_full)
+
+    X_df, y = create_X_y(df, model_properties)
     readme += f"{len(X_df.columns)} factors: {X_df.columns}\n"
 
     pipe = create_pipe()
-    X = X_df[params_list_full]
+    X = X_df[model_properties]
     pipe.fit(X)
     X_scaled = pipe.transform(X)
     X_scaled = sm.add_constant(X_scaled, prepend=False)
@@ -128,7 +143,7 @@ def main():
     y_pred = res.predict(X_scaled)
     r2_adj = r2_score(y,y_pred)
     
-    df_dft = get_df_dft()
+    df_dft = get_df_dft() #also converts SEs and SFE units
     X_dft_scaled = pipe.transform(df_dft[X_df.columns])
     X_dft_scaled = sm.add_constant(X_dft_scaled, prepend=False)
     y_pred_dft = res.predict(X_dft_scaled)
@@ -139,17 +154,9 @@ def main():
     print(df_pi)
     get_boxplot(df, df_pi)
     
-    properties = ['bulk_modulus_fcc',
-                  'c44_fcc',
-                  #'C11-C12',
-                  'surface_energy_111_fcc',
-                  'surface_energy_121_fcc',
-                  'surface_energy_100_fcc',
-                  'unstable_stack_energy_fcc',
-                  'intr_stack_fault_energy_fcc',
-                  'lattice_constant_fcc']
+
     
-    for prop in properties:
+    for prop in all_dft_properties:
         get_prop_boxplot(df, prop, label_dict[prop], df_dft)
     
 

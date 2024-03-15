@@ -37,6 +37,11 @@ def factor_usage_plot():
             factor_dict[factor] = "thermal exp coeff"
         if "bulk_modulus" in factor:
             factor_dict[factor] = "bulk mod"
+    
+    # save off group labels
+    df_factor_dict = pd.DataFrame([[i,factor_dict[i]] for i in factor_dict])
+    df_factor_dict.to_csv("./strength_covariance/model_ays/factor_groups.csv")
+    
     factor_table = []
     for line in top_models['factors']:
         factor_table.append([factor_dict[i] for i in literal_eval(line)])

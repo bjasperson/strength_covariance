@@ -1,0 +1,31 @@
+,0,1
+0,bulk_modulus_bcc,bulk mod
+1,bulk_modulus_fcc,bulk mod
+2,bulk_modulus_sc,bulk mod
+3,c11_bcc,elastic const
+4,c11_fcc,elastic const
+5,c11_sc,elastic const
+6,c12_bcc,elastic const
+7,c12_fcc,elastic const
+8,c12_sc,elastic const
+9,c44_bcc,elastic const
+10,c44_fcc,elastic const
+11,c44_sc,elastic const
+12,cohesive_energy_fcc,cohesive energy
+13,extr_stack_fault_energy_fcc,stack/twin fault energy
+14,ideal_surface_energy_100_fcc,surface energy
+15,intr_stack_fault_energy_fcc,stack/twin fault energy
+16,lattice_constant_bcc,lattice constant
+17,lattice_constant_diamond,lattice constant
+18,lattice_constant_fcc,lattice constant
+19,lattice_constant_sc,lattice constant
+20,relaxation_volume_fcc,vac. form. vol.
+21,relaxed_formation_potential_energy_fcc,vac. form. energies
+22,surface_energy_100_fcc,surface energy
+23,thermal_expansion_coeff_fcc,thermal exp coeff
+24,unrelaxed_formation_potential_energy_fcc,vac. form. energies
+25,unstable_stack_energy_fcc,stack/twin fault energy
+26,unstable_stack_energy_slip_fraction_fcc,stack/twin fault energy
+27,unstable_twinning_energy_fcc,stack/twin fault energy
+28,unstable_twinning_energy_slip_fraction_fcc,stack/twin fault energy
+29,vacancy_migration_energy_fcc,vac. migr. energies

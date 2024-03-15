@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-from model_selection import basic_outlier_removal, filter_param_list
+from model_selection import basic_outlier_removal, filter_param_list, data_import, get_factor_list
 import seaborn as sns
 import matplotlib.pyplot as plt
 import csv
@@ -13,20 +13,31 @@ def import_label_dict():
     return label_dict
 
 
-def pairplot_selected(df, factors, title, label_dict, corner = False, height=1.5):
-    factors.extend(['strength_MPa', 'species'])
+def pairplot_selected(df, 
+                      factors, 
+                      title, 
+                      label_dict, 
+                      corner = False, 
+                      height=1.5,
+                      save_location = "./strength_covariance/data_ays",
+                      marker_size = 75):
+    if 'strength_MPa' not in factors:
+        factors.extend(['strength_MPa'])
+    if 'species' not in factors:
+        factors.extend(['species'])
     X = df[factors]
     X.columns = [label_dict[x] for x in X.columns.to_list()]
+    X = X.sort_values('species')
     sns.set(style="whitegrid")#,font_scale=1.25)
     # X.columns = [x.replace("_"," ") for x in X.columns.to_list()]
     #fig,ax = plt.subplots(figsize = (3,3))
     marker_list = ['o','^','v','<','>','s','D','p','X','*','.','P']
     g = sns.pairplot(X, hue='species', markers = marker_list[0:len(df.species.drop_duplicates())], corner = corner, height=height,
-                       plot_kws={"s":75})
+                       plot_kws={"s":marker_size})
     # for ax in fig.axes.flatten():
     #     ax.set_xlabel(ax.get_xlabel(), rotation=40, ha = "right")
     sns.move_legend(g,"upper right",bbox_to_anchor=(0.85,1))
-    g.savefig(f"./strength_covariance/data_ays/{title}.pdf")#, dpi=300)
+    g.savefig(f"{save_location}/{title}.pdf")#, dpi=300)
     plt.close()
     return
 
@@ -49,10 +60,12 @@ def correlation_df(df, label_dict):
 def correlation_plot(df, 
                      title, 
                      label_dict, 
+                     labelsize = 8,
                      figsize=(10, 10), 
                      annot_fontsize = 12,
                      annot=False, lower = False,
-                     custom_order = False):
+                     custom_order = False,
+                     save_location = './strength_covariance/data_ays'):
     """plots correlation heatmap of df variables
 
     :param df pd.DataFrame: dataframe with labels to consider
@@ -71,22 +84,31 @@ def correlation_plot(df,
         mask[np.diag_indices_from(mask)] = False
     else:
         mask = np.zeros_like(df_corr)
-    ax = sns.heatmap(df_corr, mask = mask, vmin=-1, vmax=1, cmap=colors, annot=annot,
+    ax = sns.heatmap(df_corr, 
+                     mask = mask, 
+                     xticklabels = True,
+                     yticklabels = True,
+                     fmt = '.1f',
+                     vmin=-1, 
+                     vmax=1, 
+                     cmap=colors, 
+                     annot=annot,
                      annot_kws = {"fontsize":annot_fontsize},
-                     cbar_kws = dict(use_gridspec=False,location='top'))
+                     cbar_kws = dict(use_gridspec=False,
+                                     location='top',
+                                     shrink=0.5))
     ax.set_facecolor('white')
     ax.grid(False)
-    ax.tick_params(labelsize=8)
+    ax.tick_params(labelsize=labelsize)
     fig.add_axes(ax)
     #fig.subplots_adjust(left=0.3,bottom=0.3)
-    fig.savefig(f"./strength_covariance/data_ays/{title}.pdf", bbox_inches = 'tight')#, dpi=300)
+    fig.savefig(f"{save_location}/{title}.pdf", bbox_inches = 'tight')#, dpi=300)
 
 
 def save_corr_values(df, title):
-    df.corr(numeric_only=True).to_csv(f"./strength_covariance/data_ays/{title}_all.csv")
-    values = df.corr(numeric_only=True)[
-        'strength_MPa'].abs().sort_values(ascending=False)
-    values.to_csv(f"./strength_covariance/data_ays/{title}.csv")
+    values = df.corr(numeric_only=True).round(decimals = 4)
+    values.to_csv(f"./strength_covariance/data_ays/{title}_all.csv")
+    values['strength_MPa'].abs().sort_values(ascending=False).to_csv(f"./strength_covariance/data_ays/{title}.csv")
 
 
 def run_pairplots(df_clean, label_dict):
@@ -257,6 +279,8 @@ def manuscript_plots(df_clean, label_dict):
                   'intr_stack_fault_energy_fcc'
                     ]
     
+    save_location = "figures/main"
+    
     #sns.set(font_scale=1.5)
     
     pairplot_selected(df_clean,
@@ -264,7 +288,8 @@ def manuscript_plots(df_clean, label_dict):
                     'manuscript_pairplot',
                     label_dict,
                     height=1.5,
-                    corner = True)
+                    corner = True,
+                    save_location = save_location)
     
     #sns.set(font_scale=1.5)
     correlation_plot(df_clean[param_list],
@@ -274,7 +299,8 @@ def manuscript_plots(df_clean, label_dict):
                     annot_fontsize = 8,
                     annot = True,
                     lower = True,
-                    custom_order=['C44-FCC','RFPE-FCC','uSFE-FCC','iSFE-FCC','Strength'])
+                    custom_order=['C44-FCC','rVFPE-FCC','uSFE-FCC','iSFE-FCC','Strength'],
+                    save_location = save_location)
     
     #sns.set(font_scale = 1)
 
@@ -292,129 +318,91 @@ def manuscript_plots(df_clean, label_dict):
     return
 
 
-def additional_pairplots(df_clean, label_dict):
+def supplemental_plots(df_clean, label_dict):
+    save_location = "figures/si"
+    params_list_full = get_factor_list(df_clean)
+    params_list_full.append('strength_MPa')
+
+    correlation_plot(df_clean[params_list_full],
+                    "corr_plot_full",
+                    label_dict,
+                    labelsize = 7,
+                    figsize=(6.5,9),
+                    annot=True,
+                    annot_fontsize = 5,
+                    save_location = save_location)
+       
     param_list = ['vacancy_migration_energy_fcc',
                   'c44_fcc',
+                  'surface_energy_100_fcc',
                   'relaxed_formation_potential_energy_fcc',
                   'unstable_stack_energy_fcc',
-                  'unstable_twinning_energy_fcc'
+                  'lattice_constant_bcc'
                   ]
-    
 
     pairplot_selected(df_clean,
                     param_list,
                     'pp_with_jammed',
                     label_dict,
                     height=1.5,
-                    corner = True)
+                    corner = True,
+                    save_location = save_location,
+                    marker_size = 50)
 
-    df_clean = df_clean[df_clean['SF_jamming']!='yes']
-
-    param_list = ['vacancy_migration_energy_fcc',
-                'c44_fcc',
-                'relaxed_formation_potential_energy_fcc',
-                'unstable_stack_energy_fcc',
-                'unstable_twinning_energy_fcc'
-                ]
+    df_clean = df_clean[df_clean['SF_jamming']!='yes'].reset_index(drop = True)
 
     pairplot_selected(df_clean,
                     param_list,
                     'pp_wo_jammed',
                     label_dict,
                     height=1.5,
-                    corner = True)
+                    corner = True,
+                    save_location = save_location,
+                    marker_size = 50)
+    
+    pairplot_selected(df_clean,
+                      ['surface_energy_100_fcc',
+                       'surface_energy_110_fcc',
+                       'surface_energy_111_fcc',
+                       'surface_energy_121_fcc'],
+                      'pp_surf_energies',
+                      label_dict,
+                      height=1.5,
+                      corner = True,
+                      save_location = save_location)
+    
+    pairplot_selected(df_clean,
+                      ['unstable_twinning_energy_fcc',
+                       'unstable_stack_energy_fcc',
+                       'intr_stack_fault_energy_fcc',
+                       'extr_stack_fault_energy_fcc'
+                       ],
+                      'pp_stack_twin',
+                      label_dict,
+                      height=1.5,
+                      corner = True,
+                      save_location = save_location)
 
 
 def main():
     # import data
     label_dict = import_label_dict()
-    df_in = pd.read_csv('./data/models_w_props.csv')
+    df_in, readme = data_import(clean = False)
 
     save_corr_values(df_in, 'corr_initial')
-    # cleanup data
-    if 'disqualified' in df_in.columns:
-        df_in = df_in.drop('disqualified', axis=1)
-
-    print(f"Pre drop diamond:{df_in.shape}")
-    df_in = df_in.drop([i for i in df_in.columns if 'diamond' in i], axis=1)
-    print(f"Post drop diamond:{df_in.shape}")
-    df_in = df_in.drop(['thermal_expansion_coeff_bcc',
-                        'surface_energy_100_bcc',
-                        'surface_energy_110_bcc',
-                        'surface_energy_111_bcc',
-                        'surface_energy_121_bcc'], axis=1)
-    print(f"Post drop TEC-BCC and SE-BCC:{df_in.shape}")
 
     # remove extreme outliers
     df_clean = basic_outlier_removal(df_in)
     save_corr_values(df_clean, 'corr_clean')
-
-    # df_clean['c11-c12-c44'] = df_clean['c11_fcc'] - \
-    #     df_clean['c12_fcc'] - df_clean['c44_fcc']
     
     df_clean['c11-c12+c44'] = df_clean['c11_fcc'] - \
         df_clean['c12_fcc'] + df_clean['c44_fcc']
 
     # uncomment to run all pairplots
     # run_pairplots(df_clean, label_dict)
-
-    # pairplot_selected(df_clean,
-    #                 ['gb_coeff_001',
-    #                 'gb_coeff_110',
-    #                 'gb_coeff_111',
-    #                 'gb_coeff_112'],
-    #                 'gb_coeff',
-    #                 label_dict)
-
-    corr_plot_list = ['strength_MPa',
-                      'intr_stack_fault_energy_fcc',
-                      'unstable_stack_energy_fcc',
-                      'unstable_stack_energy_slip_fraction_fcc',
-                      'unstable_twinning_energy_fcc',
-                      'surface_energy_110_fcc',
-                      'lattice_constant_sc',
-                      'lattice_constant_fcc',
-                      'cohesive_energy_fcc',
-                      'c44_fcc',
-                      'vacancy_migration_energy_fcc',
-                      'relaxed_formation_potential_energy_fcc']
-
-    correlation_plot(df_clean[corr_plot_list],
-                     "corr_plot",
-                     label_dict,
-                     annot=True)
-    
-    params_list = ['lattice_constant', 
-                'bulk_modulus', 'c11', 'c12', 'c44',
-                'cohesive_energy_fcc', 'thermal_expansion_coeff_fcc',
-                'surface_energy_100_fcc',
-                'surface_energy_110_fcc',
-                'surface_energy_111_fcc',
-                'surface_energy_121_fcc',
-                'extr_stack_fault_energy', 
-                'intr_stack_fault_energy',
-                'unstable_stack_energy', 'unstable_twinning_energy',
-                'relaxed_formation_potential_energy_fcc', #includes unrelaxed
-                'vacancy_migration_energy_fcc',
-                'relaxation_volume_fcc',
-                # 'gb_coeff_001','gb_coeff_110','gb_coeff_111','gb_coeff_112',
-                ]
-
-    params_list_full = filter_param_list(
-        df_clean, params_list, ['strength_MPa'])
-    
-    params_list_full = [i for n, i in enumerate(params_list_full) if i not in params_list_full[:n]]
-
-    
-    correlation_plot(df_clean[params_list_full],
-                    "corr_plot_full",
-                    label_dict,
-                    figsize=(8,9),
-                    annot=False)
     
     manuscript_plots(df_clean, label_dict)
-
-    additional_pairplots(df_clean, label_dict)
+    supplemental_plots(df_clean, label_dict)
 
     return
 
