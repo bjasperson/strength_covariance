@@ -3,7 +3,7 @@ import pandas as pd
 import seaborn as sns
 from ast import literal_eval
 
-def factor_usage_plot():
+def factor_usage_plot(save_loc = './strength_covariance/model_ays'):
     df_cov = pd.read_csv("./strength_covariance/data_ays/corr_clean_all.csv",index_col=0)
     df = pd.read_csv("./data/models_w_props.csv",index_col=0)
     top_models = pd.read_csv("./strength_covariance/model_ays/kfold_lr_models.csv",index_col=0)
@@ -84,9 +84,9 @@ def factor_usage_plot():
     ax.invert_yaxis()
     ax.set_ylabel("Property Grouping", style='italic',  horizontalalignment = "left", rotation=90, labelpad=10, y=0) #y=1.1,
     ax.set_xlabel("Model Performance Ranking", style='italic')
-    fig.savefig("./strength_covariance/model_ays/factor_usage.pdf", bbox_inches = "tight")
+    fig.savefig(f"{save_loc}/factor_usage.pdf", bbox_inches = "tight")
 
     return
 
 if __name__ == "__main__":
-    factor_usage_plot()
+    factor_usage_plot("./figures/main")

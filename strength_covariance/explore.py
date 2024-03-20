@@ -1,14 +1,14 @@
 import pandas as pd
 import numpy as np
-from model_selection import basic_outlier_removal, filter_param_list, data_import, get_factor_list
+from strength_covariance.model_selection import basic_outlier_removal, filter_param_list, data_import, get_factor_list
 import seaborn as sns
 import matplotlib.pyplot as plt
 import csv
 
 
 
-def import_label_dict():
-    df_labels = pd.read_csv("./strength_covariance/data_ays/label_dict.csv")
+def import_label_dict(path = "./strength_covariance/data_ays/label_dict.csv"):
+    df_labels = pd.read_csv(path)
     label_dict = df_labels.to_dict(orient="records")[0]
     return label_dict
 

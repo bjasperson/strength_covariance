@@ -1,6 +1,6 @@
 ,0,1,2
 0,VME-FCC,C44-FCC,uTwinEnergy-FCC
 1,VME-FCC,C44-FCC,eSFE FCC
-2,Surf Energy 100 FCC,VME-FCC,Lattice Const FCC
-3,Surf Energy 100 FCC,VME-FCC,Lattice Const BCC
-4,Ideal Surf Energy 100 FCC,VME-FCC,Lattice Const FCC
+2,SE 100 FCC,VME-FCC,LC FCC
+3,SE 100 FCC,VME-FCC,LC BCC
+4,Ideal SE 100 FCC,VME-FCC,LC FCC

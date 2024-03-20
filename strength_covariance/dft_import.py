@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from matplotlib import container
 import seaborn as sns
 from strength_covariance.model_selection import basic_outlier_removal, filter_param_list, data_import
-from explore import import_label_dict
+from strength_covariance.explore import import_label_dict
 from sklearn.impute import KNNImputer
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.compose import TransformedTargetRegressor
@@ -15,7 +15,7 @@ from sklearn.utils import resample
 from sklearn.metrics import r2_score
 from scipy import stats
 from textwrap import wrap
-from linear_model import create_X_y
+from strength_covariance.linear_model import create_X_y
 import statsmodels.api as sm
 
 
@@ -29,8 +29,8 @@ def se_unit_convert(df):
     #J/m^2 to eV/angstrom^2
     return df*6.241509e+18*1.0E-20
 
-def get_df_dft():
-    df_dft = pd.read_csv("data/dft.csv")
+def get_df_dft(path = "data/dft.csv"):
+    df_dft = pd.read_csv(path)
     se_list = ['surface_energy_111_fcc', 'surface_energy_121_fcc',
                'surface_energy_100_fcc', 
                'unstable_stack_energy_fcc',
@@ -38,7 +38,9 @@ def get_df_dft():
     df_dft[se_list] = se_unit_convert(df_dft[se_list])
     return df_dft
 
-def get_boxplot(df_clean, dft_predicted_strength):
+def get_boxplot(df_clean, 
+                dft_predicted_strength, 
+                save_fig = True):
     order_list = ["Ag","Al","Au","Cu","Ni","Pd","Pt"]
     sns.set(style="whitegrid")
     fig, ax = plt.subplots(figsize=(4,3))
@@ -74,10 +76,12 @@ def get_boxplot(df_clean, dft_predicted_strength):
 
     # ax.legend(new_handles, labels, fontsize=8)
 
-    fig.savefig(f"strength_covariance/model_ays/dft_w_pi.pdf", bbox_inches = 'tight')
+    if save_fig == True:
+        fig.savefig(f"strength_covariance/model_ays/dft_w_pi.pdf", bbox_inches = 'tight')
+    return 
 
 
-def get_prop_boxplot(df_clean, prop, prop_label, dft_value):
+def get_prop_boxplot(df_clean, prop, prop_label, dft_value, save_fig = True):
     order_list = ["Ag","Al","Au","Cu","Ni","Pd","Pt"]
     sns.set(style="whitegrid")
     fig, ax = plt.subplots(figsize=(4,3))
@@ -98,7 +102,9 @@ def get_prop_boxplot(df_clean, prop, prop_label, dft_value):
               s=50.,
               color = "r")
 
-    fig.savefig(f"strength_covariance/data_ays/dft_props/dft_{prop}.pdf", bbox_inches = 'tight')
+    if save_fig == True:
+        fig.savefig(f"strength_covariance/data_ays/dft_props/dft_{prop}.pdf", bbox_inches = 'tight')
+    return fig
 
 def main():
     all_dft_properties = ['bulk_modulus_fcc',
@@ -159,7 +165,6 @@ def main():
     for prop in all_dft_properties:
         get_prop_boxplot(df, prop, label_dict[prop], df_dft)
     
-
     return
 
 

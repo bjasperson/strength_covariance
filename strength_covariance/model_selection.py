@@ -323,18 +323,19 @@ def main():
         df_results_loocv = pd.read_csv("./strength_covariance/model_ays/loocv_models.csv")
         factor_percent_usage(df_results_loocv, 100, 'loocv_factor_usage')
 
-    if True:
+    if False: # obsolete plotting for non-linear models
         model_dict = {"kfold_lr_models":"Freq. of occurrence\ntop LR models",
                       "kfold_svr_models":"Freq. of occurrence\ntop SVR models"}
         create_factor_select_plot(df_clean, "factor_importance", label_dict, model_dict)
-        top5_table(label_dict, model_dict, "rmse_cv_score")
 
         model_dict = {"kfold_ridge_models":"Freq. of occurrence\ntop ridge models",
                       "kfold_svr_models":"Freq. of occurrence\ntop SVR models"}
         create_factor_select_plot(df_clean, "factor_importance_2", label_dict, model_dict)
 
+    if True:
         model_dict = {"kfold_lr_models":"Freq. of occurrence\ntop LR models"}
         create_factor_select_plot(df_clean, "factor_importance_3", label_dict, model_dict)
+        top5_table(label_dict, model_dict, "rmse_cv_score")
     return
 
 

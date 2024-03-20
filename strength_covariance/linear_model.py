@@ -12,20 +12,31 @@ from sklearn import linear_model, svm
 from sklearn.utils import resample
 from sklearn.metrics import r2_score, mean_squared_error
 from scipy import stats
-from uncertainty_quantification import r2_adj_fun
-from model_selection import data_import
+from strength_covariance.uncertainty_quantification import r2_adj_fun
+from strength_covariance.model_selection import data_import
 from sklearn.model_selection import GridSearchCV, KFold, cross_val_score
-from explore import import_label_dict
+from strength_covariance.explore import import_label_dict
 import statsmodels.api as sm
 
 
 
 
-def pred_vs_actual_plot(df, y_pred, r2_adj, filename, title=False, factor_list = False, error_bars = False):
+def pred_vs_actual_plot(df_in, 
+                        y_pred, 
+                        r2_adj, 
+                        filename, 
+                        title=False, 
+                        factor_list = False, 
+                        error_bars = False,
+                        save_loc = "./strength_covariance/model_ays"):
+    df = df_in.copy()
+    df['y_pred'] = y_pred
+    df = df.sort_values('species')
     y_true = df['strength_MPa']
+    y_pred = df['y_pred']
     rmse = mean_squared_error(y_true,y_pred,squared=False)
     plt.figure(figsize = (4,3))
-    p = sns.scatterplot(data=df, x=y_true,y=y_pred, style = 'species', hue='species')
+    p = sns.scatterplot(data=df, x=y_true, y=y_pred, style = 'species', hue='species')
     if error_bars == True:
         p.errorbar(y_true,y_pred, yerr = rmse, fmt='.', markersize=0.001, alpha=0.5)
     p.plot(np.linspace(min(y_true),max(y_true),50),
@@ -42,7 +53,7 @@ def pred_vs_actual_plot(df, y_pred, r2_adj, filename, title=False, factor_list =
         transform=p.transAxes)#, fontsize=12, weight='bold')
     plt.legend(loc='upper left',bbox_to_anchor=(1,1))
     p.set_aspect('equal', adjustable='box')
-    plt.savefig(f"./strength_covariance/model_ays/{filename}.pdf", bbox_inches = 'tight')#,dpi=300)
+    plt.savefig(f"{save_loc}/{filename}.pdf", bbox_inches = 'tight')#,dpi=300)
     plt.close()
 
 def r2_plot(r2_list, r2_adj_list, corr_list, label_dict, filename):
@@ -198,7 +209,12 @@ def main():
         factor_description = f"{X.shape[1]} factors"
 
         # title = f"Linear model (leave one out, nested CV) using all factors"
-        pred_vs_actual_plot(df, y_pred, r2_adj, "linear_all_factors_loo_nested_cv", factor_list = factor_description)
+        pred_vs_actual_plot(df, 
+                            y_pred, 
+                            r2_adj, 
+                            "linear_all_factors_loo_nested_cv", 
+                            factor_list = factor_description,
+                            save_loc = "./figures/main")
 
     # remove jamming
     df_clean = df[df['SF_jamming']!='yes'].reset_index()
@@ -224,7 +240,13 @@ def main():
         y_pred = y_pred_loo(pipe,X,y)
         # title2 = f"Linear model (leave one out, nested CV) w/o jammed:\nc44, eSFE, uSFE (all FCC)"
         r2_adj = r2_score(y,y_pred)
-        pred_vs_actual_plot(df_clean, y_pred, r2_adj, "linear_3factors_nested_cv", factor_list = factor_list, error_bars = False)
+        pred_vs_actual_plot(df_clean, 
+                            y_pred, 
+                            r2_adj, 
+                            "linear_3factors_nested_cv", 
+                            factor_list = factor_list, 
+                            error_bars = False,
+                            save_loc = "./figures/main")
 
     with open(f"./strength_covariance/model_ays/linear_model_readme.txt", "w") as text_file:
         for line in readme:
@@ -245,7 +267,12 @@ def main():
         print(res.summary())
         y_pred = res.predict(X_scaled)
         r2_adj = r2_score(y,y_pred)
-        pred_vs_actual_plot(df_clean, y_pred, r2_adj, "linear_3factors_sm", factor_list = factor_list, error_bars = True)
+        pred_vs_actual_plot(df_clean, 
+                            y_pred, 
+                            r2_adj, 
+                            "linear_3factors_sm", 
+                            factor_list = factor_list, 
+                            error_bars = True)
     return
 
 if __name__ == "__main__":
