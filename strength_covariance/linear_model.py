@@ -6,7 +6,6 @@ from strength_covariance.model_selection import basic_outlier_removal, filter_pa
 from sklearn.impute import KNNImputer
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.compose import TransformedTargetRegressor
-from sklearn.decomposition import PCA
 from sklearn.pipeline import Pipeline
 from sklearn import linear_model, svm
 from sklearn.utils import resample
@@ -111,10 +110,8 @@ def linear_model_create(model_type):
         model = linear_model.Ridge()
     elif model_type == "lr":
         model = linear_model.LinearRegression()
-    pca = PCA()
 
     pipe = Pipeline(steps=[('scale',StandardScaler()),
-                           ('pca',pca),
                            ('lr',model)])
     pipe = TransformedTargetRegressor(regressor = pipe,
                                            transformer = StandardScaler())
@@ -254,9 +251,8 @@ def main():
 
 
     if True: #3 factor model, excluding jamming, statsmodel
-        pca = PCA()
         pipe = Pipeline(steps=[('scale',StandardScaler()),
-                        ('pca',pca)])
+                        ])
         params_short = ['c44_fcc','extr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']#'unstable_stack_energy_fcc']
         factor_list = 'c44, eSFE, VME (all FCC)'
         X = X_df[params_short]

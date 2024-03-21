@@ -8,7 +8,6 @@ from sklearn.impute import KNNImputer
 from sklearn.compose import TransformedTargetRegressor
 from sklearn.pipeline import Pipeline, make_pipeline
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
-from sklearn.decomposition import PCA
 from sklearn import linear_model, svm
 from ast import literal_eval
 import seaborn as sns
@@ -234,7 +233,6 @@ def top5_table(label_dict, model_dict, sort_by):
 def model_create(model_type):
     imput = KNNImputer(n_neighbors=2, weights="uniform",
                        keep_empty_features=True)
-    pca = PCA()
 
     if model_type == "lr":
         model = linear_model.LinearRegression()
@@ -245,7 +243,6 @@ def model_create(model_type):
 
     pipe = Pipeline(steps=[('scale', StandardScaler()),
                            ('imp', imput),
-                           ('pca', pca),
                            ('lr', model)])
     pipe = TransformedTargetRegressor(regressor=pipe,
                                       transformer=StandardScaler())
@@ -285,7 +282,7 @@ def main():
     y = df_clean['strength_MPa']
 
     n_factor_max = 3
-    if False:
+    if False: # this is the one used for the manuscript
         pipe = model_create('lr')
         cv = RepeatedKFold(n_splits=10, n_repeats=5)
         df_results = factor_select_cv(

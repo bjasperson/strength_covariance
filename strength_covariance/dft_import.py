@@ -8,21 +8,19 @@ from strength_covariance.explore import import_label_dict
 from sklearn.impute import KNNImputer
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.compose import TransformedTargetRegressor
-from sklearn.decomposition import PCA
 from sklearn.pipeline import Pipeline
 from sklearn import linear_model, svm
 from sklearn.utils import resample
 from sklearn.metrics import r2_score
 from scipy import stats
 from textwrap import wrap
-from strength_covariance.linear_model import create_X_y
+from strength_covariance.linear_model import create_X_y, y_pred_loo
 import statsmodels.api as sm
 
 
 def create_pipe():
-    pca = PCA()
     pipe = Pipeline(steps=[('scale',StandardScaler()),
-                        ('pca',pca)])
+                           ])
     return pipe
 
 def se_unit_convert(df):
@@ -40,7 +38,8 @@ def get_df_dft(path = "data/dft.csv"):
 
 def get_boxplot(df_clean, 
                 dft_predicted_strength, 
-                save_fig = True):
+                save_fig = True,
+                save_loc = 'strength_covariance/model_ays'):
     order_list = ["Ag","Al","Au","Cu","Ni","Pd","Pt"]
     sns.set(style="whitegrid")
     fig, ax = plt.subplots(figsize=(4,3))
@@ -77,11 +76,16 @@ def get_boxplot(df_clean,
     # ax.legend(new_handles, labels, fontsize=8)
 
     if save_fig == True:
-        fig.savefig(f"strength_covariance/model_ays/dft_w_pi.pdf", bbox_inches = 'tight')
+        fig.savefig(f"{save_loc}/dft_w_pi.pdf", bbox_inches = 'tight')
     return 
 
 
-def get_prop_boxplot(df_clean, prop, prop_label, dft_value, save_fig = True):
+def get_prop_boxplot(df_clean, 
+                     prop, 
+                     prop_label, 
+                     dft_value, 
+                     save_fig = True,
+                     save_loc = "strength_covariance/data_ays/dft_props"):
     order_list = ["Ag","Al","Au","Cu","Ni","Pd","Pt"]
     sns.set(style="whitegrid")
     fig, ax = plt.subplots(figsize=(4,3))
@@ -103,7 +107,7 @@ def get_prop_boxplot(df_clean, prop, prop_label, dft_value, save_fig = True):
               color = "r")
 
     if save_fig == True:
-        fig.savefig(f"strength_covariance/data_ays/dft_props/dft_{prop}.pdf", bbox_inches = 'tight')
+        fig.savefig(f"{save_loc}/dft_{prop}.pdf", bbox_inches = 'tight')
     return fig
 
 def main():
@@ -123,9 +127,22 @@ def main():
     # model_properties = ['vacancy_migration_energy_fcc',
     #                     'surface_energy_100_fcc',
     #                     'lattice_constant_fcc']
-    model_properties = ['unstable_stack_energy_fcc', 
-                        'intr_stack_fault_energy_fcc', 
-                        'c44_fcc']
+    # model_properties = ['unstable_stack_energy_fcc', 
+    #                     'intr_stack_fault_energy_fcc', 
+    #                     'c44_fcc']
+
+    model_properties = ['bulk_modulus_fcc',
+                        'c44_fcc',
+                        #'C11-C12',
+                        # 'surface_energy_111_fcc',
+                        # 'surface_energy_121_fcc',
+                        'surface_energy_100_fcc',
+                        'unstable_stack_energy_fcc',
+                        'intr_stack_fault_energy_fcc',
+                        'lattice_constant_fcc',
+                        # 'relaxed_formation_potential_energy_fcc',
+                        # 'vacancy_migration_energy_fcc'
+                        ]
  
     df, readme = data_import(clean=True)
     label_dict = import_label_dict()
@@ -158,12 +175,16 @@ def main():
     df_pi = predictions.summary_frame(alpha=0.05)
     df_pi['species'] = df_dft['species'].tolist()
     print(df_pi)
-    get_boxplot(df, df_pi)
-    
-
+    get_boxplot(df, 
+                df_pi,
+                save_loc = "figures/main")
     
     for prop in all_dft_properties:
-        get_prop_boxplot(df, prop, label_dict[prop], df_dft)
+        get_prop_boxplot(df, 
+                         prop, 
+                         label_dict[prop], 
+                         df_dft,
+                         save_loc = "figures/si")
     
     return
 
