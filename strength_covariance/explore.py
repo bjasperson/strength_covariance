@@ -27,15 +27,32 @@ def pairplot_selected(df,
         factors.extend(['species'])
     X = df[factors]
     X.columns = [label_dict[x] for x in X.columns.to_list()]
-    X = X.sort_values('species')
+    X = X.sort_values('species')  
     sns.set(style="whitegrid")#,font_scale=1.25)
     # X.columns = [x.replace("_"," ") for x in X.columns.to_list()]
     #fig,ax = plt.subplots(figsize = (3,3))
     marker_list = ['o','^','v','<','>','s','D','p','X','*','.','P']
-    g = sns.pairplot(X, hue='species', markers = marker_list[0:len(df.species.drop_duplicates())], corner = corner, height=height,
-                       plot_kws={"s":marker_size})
-    # for ax in fig.axes.flatten():
-    #     ax.set_xlabel(ax.get_xlabel(), rotation=40, ha = "right")
+    g = sns.pairplot(X, 
+                     hue='species', 
+                     markers = marker_list[0:len(df.species.drop_duplicates())], 
+                     height=height, 
+                     plot_kws={"s":marker_size})
+    
+    if corner == True:
+        # this approach is needed to show the upper row label
+        # ref: https://stackoverflow.com/questions/34087126/plot-lower-triangle-in-a-seaborn-pairgrid
+        def hide_current_axis(*args, **kwds):
+            plt.gca().set_visible(False)
+
+        g.map_upper(hide_current_axis)
+    # for ax in g.axes.flat:
+    #     if ax is not None:
+    #         ax.set_ylabel(ax.get_ylabel(), ha = "left")#rotation=40, ha = "right")
+
+    for ax in g.axes.flatten():
+        if ax is not None:
+            ax.get_yaxis().set_label_coords(-0.6,0.5)
+
     sns.move_legend(g,"upper right",bbox_to_anchor=(0.85,1))
     g.savefig(f"{save_location}/{title}.pdf")#, dpi=300)
     plt.close()
@@ -289,7 +306,8 @@ def manuscript_plots(df_clean, label_dict):
                     label_dict,
                     height=1.5,
                     corner = True,
-                    save_location = save_location)
+                    save_location = save_location,
+                    marker_size = 25)
     
     #sns.set(font_scale=1.5)
     correlation_plot(df_clean[param_list],
@@ -300,7 +318,8 @@ def manuscript_plots(df_clean, label_dict):
                     annot = True,
                     lower = True,
                     custom_order=['C44-FCC','rVFPE-FCC','uSFE-FCC','iSFE-FCC','Strength'],
-                    save_location = save_location)
+                    save_location = save_location,
+                    )
     
     #sns.set(font_scale = 1)
 
@@ -347,7 +366,7 @@ def supplemental_plots(df_clean, label_dict):
                     height=1.5,
                     corner = True,
                     save_location = save_location,
-                    marker_size = 50)
+                    marker_size = 25)
 
     df_clean = df_clean[df_clean['SF_jamming']!='yes'].reset_index(drop = True)
 
@@ -358,7 +377,7 @@ def supplemental_plots(df_clean, label_dict):
                     height=1.5,
                     corner = True,
                     save_location = save_location,
-                    marker_size = 50)
+                    marker_size = 25)
     
     pairplot_selected(df_clean,
                       ['surface_energy_100_fcc',
@@ -369,7 +388,8 @@ def supplemental_plots(df_clean, label_dict):
                       label_dict,
                       height=1.5,
                       corner = True,
-                      save_location = save_location)
+                      save_location = save_location,
+                      marker_size = 25)
     
     pairplot_selected(df_clean,
                       ['unstable_twinning_energy_fcc',
@@ -381,7 +401,8 @@ def supplemental_plots(df_clean, label_dict):
                       label_dict,
                       height=1.5,
                       corner = True,
-                      save_location = save_location)
+                      save_location = save_location,
+                      marker_size = 25)
 
 
 def main():
