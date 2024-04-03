@@ -230,8 +230,9 @@ def main():
     if True: #3 factor model, exclude jamming
         # still need to fix imputer to be applied at start??? no if we are assuming that data doesn't exist by practioner
         pipe = linear_model_create("lr") 
-        params_short = ['c44_fcc','extr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']#'unstable_stack_energy_fcc']
-        factor_list = 'c44, eSFE, VME (all FCC)'
+        #params_short = ['c44_fcc','extr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']#'unstable_stack_energy_fcc']
+        params_short = ['c44_fcc','intr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']
+        factor_list = 'c44, iSFE, VME (all FCC)'
         X = X_df[params_short]
         readme += f"\n3 factor model: {X.columns}\n"
         y_pred = y_pred_loo(pipe,X,y)
@@ -253,8 +254,8 @@ def main():
     if True: #3 factor model, excluding jamming, statsmodel
         pipe = Pipeline(steps=[('scale',StandardScaler()),
                         ])
-        params_short = ['c44_fcc','extr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']#'unstable_stack_energy_fcc']
-        factor_list = 'c44, eSFE, VME (all FCC)'
+        params_short = ['c44_fcc','intr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']
+        factor_list = 'c44, iSFE, VME (all FCC)'
         X = X_df[params_short]
         pipe.fit(X)
         X_scaled = pipe.transform(X)

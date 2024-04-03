@@ -6,25 +6,26 @@ removed 23 empty columns: ['thermal_expansion_coeff_bcc', 'thermal_expansion_coe
 cleaned data
 final factor count is 39: ['lattice_constant_bcc', 'lattice_constant_diamond', 'lattice_constant_fcc', 'lattice_constant_sc', 'bulk_modulus_bcc', 'bulk_modulus_fcc', 'bulk_modulus_sc', 'c44_bcc', 'c44_fcc', 'c44_sc', 'c12_bcc', 'c12_fcc', 'c12_sc', 'c11_bcc', 'c11_fcc', 'c11_sc', 'cohesive_energy_bcc', 'cohesive_energy_diamond', 'cohesive_energy_fcc', 'cohesive_energy_sc', 'thermal_expansion_coeff_fcc', 'surface_energy_100_fcc', 'surface_energy_110_fcc', 'surface_energy_111_fcc', 'surface_energy_121_fcc', 'ideal_surface_energy_100_fcc', 'ideal_surface_energy_110_fcc', 'ideal_surface_energy_111_fcc', 'ideal_surface_energy_121_fcc', 'extr_stack_fault_energy_fcc', 'intr_stack_fault_energy_fcc', 'unstable_stack_energy_fcc', 'unstable_stack_energy_slip_fraction_fcc', 'unstable_twinning_energy_fcc', 'unstable_twinning_energy_slip_fraction_fcc', 'relaxed_formation_potential_energy_fcc', 'unrelaxed_formation_potential_energy_fcc', 'vacancy_migration_energy_fcc', 'relaxation_volume_fcc']
 shuffled
-29 factors: Index(['extr_stack_fault_energy_fcc', 'lattice_constant_bcc', 'c11_bcc',
-       'thermal_expansion_coeff_fcc', 'cohesive_energy_fcc',
-       'lattice_constant_diamond', 'c44_sc', 'lattice_constant_fcc', 'c12_bcc',
-       'surface_energy_100_fcc', 'intr_stack_fault_energy_fcc', 'c44_fcc',
-       'bulk_modulus_bcc', 'unstable_twinning_energy_slip_fraction_fcc',
-       'c44_bcc', 'c12_fcc', 'c11_sc', 'c12_sc', 'unstable_stack_energy_fcc',
-       'bulk_modulus_sc', 'unstable_twinning_energy_fcc',
-       'unstable_stack_energy_slip_fraction_fcc', 'cohesive_energy_sc',
-       'cohesive_energy_bcc', 'c11_fcc', 'bulk_modulus_fcc',
-       'lattice_constant_sc', 'cohesive_energy_diamond',
-       'ideal_surface_energy_100_fcc'],
+29 factors: Index(['cohesive_energy_sc', 'c12_sc',
+       'unstable_twinning_energy_slip_fraction_fcc',
+       'thermal_expansion_coeff_fcc',
+       'unstable_stack_energy_slip_fraction_fcc', 'lattice_constant_fcc',
+       'c44_sc', 'cohesive_energy_fcc', 'bulk_modulus_sc',
+       'ideal_surface_energy_100_fcc', 'lattice_constant_diamond', 'c12_bcc',
+       'c44_bcc', 'unstable_stack_energy_fcc', 'extr_stack_fault_energy_fcc',
+       'c12_fcc', 'lattice_constant_sc', 'lattice_constant_bcc',
+       'cohesive_energy_bcc', 'surface_energy_100_fcc', 'c11_fcc',
+       'bulk_modulus_fcc', 'c44_fcc', 'c11_bcc',
+       'unstable_twinning_energy_fcc', 'bulk_modulus_bcc',
+       'intr_stack_fault_energy_fcc', 'c11_sc', 'cohesive_energy_diamond'],
       dtype='object')
 
-corr_list = ['c44_fcc', 'lattice_constant_bcc', 'lattice_constant_fcc', 'c11_fcc', 'surface_energy_100_fcc', 'lattice_constant_sc', 'ideal_surface_energy_100_fcc', 'c11_sc', 'cohesive_energy_fcc', 'unstable_twinning_energy_fcc', 'unstable_stack_energy_fcc', 'cohesive_energy_bcc', 'bulk_modulus_fcc', 'lattice_constant_diamond', 'cohesive_energy_sc', 'c12_fcc', 'c44_bcc', 'bulk_modulus_sc', 'thermal_expansion_coeff_fcc', 'cohesive_energy_diamond', 'c44_sc', 'c12_sc', 'unstable_stack_energy_slip_fraction_fcc', 'unstable_twinning_energy_slip_fraction_fcc', 'intr_stack_fault_energy_fcc', 'c12_bcc', 'extr_stack_fault_energy_fcc', 'bulk_modulus_bcc', 'c11_bcc']
+corr_list = ['c44_fcc', 'lattice_constant_bcc', 'c11_fcc', 'lattice_constant_fcc', 'surface_energy_100_fcc', 'lattice_constant_sc', 'ideal_surface_energy_100_fcc', 'cohesive_energy_fcc', 'unstable_twinning_energy_fcc', 'c11_sc', 'unstable_stack_energy_fcc', 'cohesive_energy_bcc', 'bulk_modulus_fcc', 'lattice_constant_diamond', 'cohesive_energy_sc', 'c12_fcc', 'c44_bcc', 'bulk_modulus_sc', 'thermal_expansion_coeff_fcc', 'cohesive_energy_diamond', 'c44_sc', 'c12_sc', 'unstable_stack_energy_slip_fraction_fcc', 'unstable_twinning_energy_slip_fraction_fcc', 'intr_stack_fault_energy_fcc', 'c12_bcc', 'extr_stack_fault_energy_fcc', 'bulk_modulus_bcc', 'c11_bcc']
 
-29 all factors model: Index(['c44_fcc', 'lattice_constant_bcc', 'lattice_constant_fcc', 'c11_fcc',
+29 all factors model: Index(['c44_fcc', 'lattice_constant_bcc', 'c11_fcc', 'lattice_constant_fcc',
        'surface_energy_100_fcc', 'lattice_constant_sc',
-       'ideal_surface_energy_100_fcc', 'c11_sc', 'cohesive_energy_fcc',
-       'unstable_twinning_energy_fcc', 'unstable_stack_energy_fcc',
+       'ideal_surface_energy_100_fcc', 'cohesive_energy_fcc',
+       'unstable_twinning_energy_fcc', 'c11_sc', 'unstable_stack_energy_fcc',
        'cohesive_energy_bcc', 'bulk_modulus_fcc', 'lattice_constant_diamond',
        'cohesive_energy_sc', 'c12_fcc', 'c44_bcc', 'bulk_modulus_sc',
        'thermal_expansion_coeff_fcc', 'cohesive_energy_diamond', 'c44_sc',
@@ -34,6 +35,6 @@ corr_list = ['c44_fcc', 'lattice_constant_bcc', 'lattice_constant_fcc', 'c11_fcc
        'bulk_modulus_bcc', 'c11_bcc'],
       dtype='object')
 
-3 factor model: Index(['c44_fcc', 'extr_stack_fault_energy_fcc',
+3 factor model: Index(['c44_fcc', 'intr_stack_fault_energy_fcc',
        'vacancy_migration_energy_fcc'],
       dtype='object')

@@ -22,14 +22,17 @@ def se_unit_convert(df):
     #J/m^2 to eV/angstrom^2
     return df*6.241509e+18*1.0E-20
 
-def get_df_dft(path = "data/dft.csv"):
+def get_df_dft(path = "data/dft.csv",
+               add_c11_c12 = False):
     df_dft = pd.read_csv(path)
-    se_list = ['surface_energy_111_fcc', 'surface_energy_121_fcc',
-               'surface_energy_100_fcc', 
-               'unstable_stack_energy_fcc',
+    se_list = ['surface_energy_111_fcc', 
+               #'surface_energy_121_fcc',
+               #'surface_energy_100_fcc', 
+               #'unstable_stack_energy_fcc',
                'intr_stack_fault_energy_fcc']
     df_dft[se_list] = se_unit_convert(df_dft[se_list])
-    df_dft = add_elastic_consts(df_dft)
+    if add_c11_c12 == True:
+        df_dft = add_elastic_consts(df_dft)
     return df_dft
 
 def add_elastic_consts(df):
@@ -149,29 +152,24 @@ def error_plots(y,
 
 
 def main():
-    all_dft_properties = ['bulk_modulus_fcc',
+    all_dft_properties = [#'bulk_modulus_fcc',
                           'c44_fcc',
-                         #'C11-C12',
-                          'c11_fcc',
-                          'c12_fcc',
+                          #'C11-C12',
+                          #'c11_fcc',
+                          #'c12_fcc',
                           'surface_energy_111_fcc',
-                          'surface_energy_121_fcc',
-                          'surface_energy_100_fcc',
-                          'unstable_stack_energy_fcc',
+                          #'surface_energy_121_fcc',
+                          #'surface_energy_100_fcc',
+                          #'unstable_stack_energy_fcc',
                           'intr_stack_fault_energy_fcc',
                           'lattice_constant_fcc',
                           'relaxed_formation_potential_energy_fcc',
                           'vacancy_migration_energy_fcc'
                           ]
 
-    model_properties = ['bulk_modulus_fcc',
-                        'c11_fcc',
-                        'c12_fcc',
-                        'c44_fcc',
-                        'surface_energy_100_fcc',
-                        'unstable_stack_energy_fcc',
+    model_properties = ['c44_fcc',
                         'intr_stack_fault_energy_fcc',
-                        'lattice_constant_fcc',
+                        'vacancy_migration_energy_fcc'
                         ]
  
     df, readme = data_import(clean=True)
