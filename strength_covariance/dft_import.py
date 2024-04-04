@@ -14,7 +14,7 @@ from sklearn.utils import resample
 from sklearn.metrics import r2_score, mean_squared_error
 from scipy import stats
 from textwrap import wrap
-from strength_covariance.linear_model import create_X_y, y_pred_loo
+from strength_covariance.linear_model import create_X_y, y_pred_loo, linear_model_create
 import statsmodels.api as sm
 
 
@@ -167,30 +167,20 @@ def main():
                           'vacancy_migration_energy_fcc'
                           ]
 
-    model_properties = ['c44_fcc',
-                        'intr_stack_fault_energy_fcc',
-                        'vacancy_migration_energy_fcc'
-                        ]
+    model_properties = ['vacancy_migration_energy_fcc',
+                        'surface_energy_111_fcc',
+                        'lattice_constant_fcc']
  
     df, readme = data_import(clean=True)
     label_dict = import_label_dict()
     print(f"number of points initially: {len(df)}")
 
     # remove jammed
-    df = df[df["SF_jamming"]!="yes"]
+    df = df[df["SF_jamming"]!="yes"].reset_index()
     print(f"number of points after removing jammed: {len(df)}")
 
 
-    X_df, y = create_X_y(df, model_properties)
-    readme += f"{len(X_df.columns)} factors: {X_df.columns}\n"
 
-    scale = StandardScaler()
-    X = X_df[model_properties]
-    scale.fit(X)
-    X_scaled = scale.transform(X)
-    
-    df_dft = get_df_dft() #also converts SEs and SFE units
-    X_dft_scaled = scale.transform(df_dft[X_df.columns])
     
     if False:
         X_dft_scaled = sm.add_constant(X_dft_scaled, prepend=False)
@@ -214,8 +204,13 @@ def main():
                     save_loc = "figures/main/dft")
 
     if True:
-        pipe = linear_model.LinearRegression()
-        y_pred = y_pred_loo(pipe, pd.DataFrame(X_scaled), y.reset_index(drop=True))
+        X_df, y = create_X_y(df, model_properties)
+        readme += f"{len(X_df.columns)} factors: {X_df.columns}\n"
+        X = X_df[model_properties]
+
+        # first, get estimate for RMSE
+        pipe = linear_model_create("lr", add_imputer = True)
+        y_pred = y_pred_loo(pipe, X, y)
         error_plots(y, y_pred)
         rmse = mean_squared_error(y, y_pred, squared = False)
 
@@ -223,10 +218,16 @@ def main():
         readme += f"factors used: {model_properties}\n\n"
         readme += f"rmse = {rmse}\n"
         readme += f"relative rmse = {rmse/np.mean(y)}\n"
-        readme += f"2*rmse = {2*rmse}\n"        
+        readme += f"2*rmse = {2*rmse}\n"  
 
-        pipe.fit(X_scaled,y)
-        y_pred_dft = pipe.predict(X_dft_scaled)
+        # now, prepare model for DFT 
+        pipe = linear_model_create("lr", add_imputer = True)
+        
+        df_dft = get_df_dft() #also converts SEs and SFE units
+        X_dft = df_dft[X_df.columns]     
+
+        pipe.fit(X,y)
+        y_pred_dft = pipe.predict(X_dft)
         lower = [2*rmse for i in range(len(df_dft))]
         upper = lower
         df_pred = pd.DataFrame({'mean':y_pred_dft,

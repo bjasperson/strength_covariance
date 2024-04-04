@@ -118,7 +118,8 @@ def factor_select_cv(X, y, pipe, n_factor_max=2, cv=5):
     cv_score_rmse_mean = []
     cv_score_r2_mean = []
     for i, subset in enumerate(subsets):
-        print(f'{i} of {len(subsets)}: {subset}')
+        if i%100 == 0:
+            print(f'{i} of {len(subsets)}')
         scoring = {'neg_rmse':'neg_root_mean_squared_error',
                    'r2':'r2'}
         score = cross_validate(pipe, X[subset], y, cv=cv, scoring=scoring, n_jobs = -1)
@@ -257,9 +258,9 @@ def main():
 
     params_list = ['lattice_constant',
                    'bulk_modulus', 'c11', 'c12', 'c44',
-                   'cohesive_energy_fcc', # highly correlated with other CohEng; LM uses all
+                   'cohesive_energy', # highly correlated with other CohEng; LM uses all
                    'thermal_expansion_coeff_fcc',
-                   'surface_energy_100_fcc',
+                   'surface_energy',
                    'extr_stack_fault_energy',
                    'intr_stack_fault_energy', # highly correlated with extr SFE
                    'unstable_stack_energy', 
@@ -271,7 +272,8 @@ def main():
                    ]
 
     params_list_full = filter_param_list(df_clean, params_list)
-    print(f"number of factors: {len(params_list_full)}")
+    print(f"number of factors: {len(params_list_full)}\n")
+    print(f"factors list: {params_list_full}")
 
     # remove jammed; significantly changes importance of uSFE in model selection for SVR
     print(f"number of points before removing jamming: {len(df_clean)}")

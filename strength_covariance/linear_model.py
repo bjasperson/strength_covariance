@@ -47,7 +47,7 @@ def pred_vs_actual_plot(df_in,
     note = "\nall factors"
     if factor_list != False:
         note = '\n' + factor_list 
-    p.text(0.95, 0.01, f"N = {len(y_true)}\nAdjusted r\N{SUPERSCRIPT TWO} = {r2_adj:.3f}"+note,
+    p.text(0.95, 0.01, f"N = {len(y_true)}\nrmse = {rmse:.2f}\nAdjusted r\N{SUPERSCRIPT TWO} = {r2_adj:.3f}"+note,
         verticalalignment='bottom', horizontalalignment='right',
         transform=p.transAxes)#, fontsize=12, weight='bold')
     plt.legend(loc='upper left',bbox_to_anchor=(1,1))
@@ -65,9 +65,10 @@ def r2_plot(r2_list, r2_adj_list, corr_list, label_dict, filename):
     ax.set_ylabel(r"$r^2$")
     #ax.set_xticklabels(corr_list)
     ax.set_xticks(xloc, corr_list, rotation=90)
+    ax.tick_params(axis="x", labelsize = 8)
     ax.grid()
     ax.legend()
-    plt.savefig(f"./strength_covariance/model_ays/{filename}.pdf",bbox_inches='tight')
+    plt.savefig(f"./figures/main/{filename}.pdf",bbox_inches='tight')
     plt.close()
 
 
@@ -105,25 +106,32 @@ def y_pred_loo_w_nested_CV(pipe_in,X,y):
         y_pred.extend([y_pred_value])
     return y_pred
 
-def linear_model_create(model_type):
+def linear_model_create(model_type, add_imputer = True):
     if model_type == "ridge":
         model = linear_model.Ridge()
     elif model_type == "lr":
         model = linear_model.LinearRegression()
 
-    pipe = Pipeline(steps=[('scale',StandardScaler()),
-                           ('lr',model)])
+    if add_imputer == False:
+        pipe = Pipeline(steps=[('scale',StandardScaler()),
+                            ('lr',model)])
+    elif add_imputer == True:
+        imput = KNNImputer(n_neighbors=2, weights="uniform", keep_empty_features=True)
+        pipe = Pipeline(steps=[('scale',StandardScaler()),
+                               ('imputer',imput),
+                               ('lr',model)])
     pipe = TransformedTargetRegressor(regressor = pipe,
                                            transformer = StandardScaler())
     return pipe
 
-def create_X_y(df, params):
+def create_X_y(df, params, use_imputer = False):
     X_df = df[params]
     y = df['strength_MPa']
 
     # apply imputer at start; otherwise R2 doesn't increase w/ each factor added
-    imput = KNNImputer(n_neighbors=2, weights="uniform", keep_empty_features=True)
-    X_df = pd.DataFrame(imput.fit_transform(X_df), columns = imput.feature_names_in_)
+    if use_imputer == True:
+        imput = KNNImputer(n_neighbors=2, weights="uniform", keep_empty_features=True)
+        X_df = pd.DataFrame(imput.fit_transform(X_df), columns = imput.feature_names_in_)
     return X_df, y
 
 def main():
@@ -132,22 +140,22 @@ def main():
 
     print(f"number of points initially: {len(df)}")
 
+    # ignore vacancy params for initial plot (matches research narative)
+    readme += "\n\n--------linear model----------\n"\
+              "all factor linear model does not include "\
+              "vacancy formation/migration energies at this point in manuscript\n"
     params_list = ['lattice_constant',
                    'bulk_modulus','c44','c11','c12',
-                   'cohesive_energy','thermal_expansion_coeff_fcc','surface_energy_100_fcc',
+                   'cohesive_energy','thermal_expansion_coeff_fcc','surface_energy',
                    'extr_stack_fault_energy','intr_stack_fault_energy','unstable_stack_energy',
                    'unstable_twinning_energy',
-                   ] # only using one surface energy, ignore vacancy params for initial plot (matches research narative)
+                   ] 
 
     params_list_full = filter_param_list(df, params_list)
     #params_list_full.remove('lattice_constant_diamond')
     #params_list_full.remove('cohesive_energy_diamond')
 
     print(f"Number of parameters: {len(params_list_full)}")
-
-    X_df, y = create_X_y(df, params_list_full)
-    readme += f"{len(X_df.columns)} factors: {X_df.columns}\n"
-
 
     df_corr = df[['strength_MPa']+params_list_full].copy().corr(numeric_only=True).round(2)
     df_corr = abs(df_corr['strength_MPa']).sort_values(ascending=False).dropna()
@@ -156,7 +164,9 @@ def main():
 
     if True: #r2 plotting, before removing jammed
         # params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
-        pipe = linear_model_create("ridge")
+        X_df, y = create_X_y(df, params_list_full, use_imputer = True) # use imputer at start for this plot
+        readme += f"{len(X_df.columns)} factors: {X_df.columns}\n"
+        pipe = linear_model_create("ridge", add_imputer = False)
 
         # leave out point you are predicting
         r2_list = []
@@ -191,7 +201,8 @@ def main():
 
     if True: #all factor eval, nested_cv
         # leave out point you are predicting
-        pipe = linear_model_create("ridge") # had to switch to ridge due to colinearity issue/blows up for all factors
+        pipe = linear_model_create("ridge", add_imputer = True) # had to switch to ridge due to colinearity issue/blows up for all factors
+        X_df, y = create_X_y(df, params_list_full, use_imputer = False)
         X = X_df[corr_list]# df_clean[corr_list[:i]]
         print(f"X shape = {X.shape}, y shape = {y.shape}")
         print(f"factors = {X.columns.to_list()}")
@@ -224,15 +235,17 @@ def main():
                         'vacancy_migration_energy_fcc'])
     params_list_full = filter_param_list(df, params_list)
 
-    X_df, y = create_X_y(df_clean, params_list_full)
+
 
     
     if True: #3 factor model, exclude jamming
-        # still need to fix imputer to be applied at start??? no if we are assuming that data doesn't exist by practioner
-        pipe = linear_model_create("lr") 
-        #params_short = ['c44_fcc','extr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']#'unstable_stack_energy_fcc']
-        params_short = ['c44_fcc','intr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']
-        factor_list = 'c44, iSFE, VME (all FCC)'
+        params_short = ['vacancy_migration_energy_fcc',
+                        'surface_energy_111_fcc',
+                        'lattice_constant_fcc']
+        factor_list = 'SE 111, LC, VME (all FCC)'
+
+        X_df, y = create_X_y(df_clean, params_short, use_imputer = False)
+        pipe = linear_model_create("lr", add_imputer = True)         
         X = X_df[params_short]
         readme += f"\n3 factor model: {X.columns}\n"
         y_pred = y_pred_loo(pipe,X,y)
@@ -245,32 +258,40 @@ def main():
                             factor_list = factor_list, 
                             error_bars = False,
                             save_loc = "./figures/main")
+        
+        readme += "\n\n---------------------\n3 factor leave-one-out results\n\n"
+        readme += pd.DataFrame({"strength":y,
+                               "predicted":y_pred,
+                               "error":(y - y_pred),
+                               "rel error":(y - y_pred)/y_pred,
+                               "species":df_clean.species}
+                               ).sort_values(['strength','species']).to_string()
 
     with open(f"./strength_covariance/model_ays/linear_model_readme.txt", "w") as text_file:
         for line in readme:
             text_file.write(line)
 
 
-    if True: #3 factor model, excluding jamming, statsmodel
-        pipe = Pipeline(steps=[('scale',StandardScaler()),
-                        ])
-        params_short = ['c44_fcc','intr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']
-        factor_list = 'c44, iSFE, VME (all FCC)'
-        X = X_df[params_short]
-        pipe.fit(X)
-        X_scaled = pipe.transform(X)
-        X_scaled = sm.add_constant(X_scaled, prepend=False)
-        res = sm.OLS(y,X_scaled).fit()
-        print(res.summary())
-        y_pred = res.predict(X_scaled)
-        r2_adj = r2_score(y,y_pred)
-        pred_vs_actual_plot(df_clean, 
-                            y_pred, 
-                            r2_adj, 
-                            "linear_3factors_sm", 
-                            factor_list = factor_list, 
-                            error_bars = True)
-    return
+    # if False: #3 factor model, excluding jamming, statsmodel
+    #     pipe = Pipeline(steps=[('scale',StandardScaler()),
+    #                     ])
+    #     params_short = ['c44_fcc','intr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']
+    #     factor_list = 'c44, iSFE, VME (all FCC)'
+    #     X = X_df[params_short]
+    #     pipe.fit(X)
+    #     X_scaled = pipe.transform(X)
+    #     X_scaled = sm.add_constant(X_scaled, prepend=False)
+    #     res = sm.OLS(y,X_scaled).fit()
+    #     print(res.summary())
+    #     y_pred = res.predict(X_scaled)
+    #     r2_adj = r2_score(y,y_pred)
+    #     pred_vs_actual_plot(df_clean, 
+    #                         y_pred, 
+    #                         r2_adj, 
+    #                         "linear_3factors_sm", 
+    #                         factor_list = factor_list, 
+    #                         error_bars = True)
+    # return
 
 if __name__ == "__main__":
     main()

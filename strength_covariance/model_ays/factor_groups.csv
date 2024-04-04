@@ -11,21 +11,30 @@
 9,c44_bcc,elastic const
 10,c44_fcc,elastic const
 11,c44_sc,elastic const
-12,cohesive_energy_fcc,cohesive energy
-13,extr_stack_fault_energy_fcc,stack/twin fault energy
-14,ideal_surface_energy_100_fcc,surface energy
-15,intr_stack_fault_energy_fcc,stack/twin fault energy
-16,lattice_constant_bcc,lattice constant
-17,lattice_constant_diamond,lattice constant
-18,lattice_constant_fcc,lattice constant
-19,lattice_constant_sc,lattice constant
-20,relaxation_volume_fcc,vac. form. vol.
-21,relaxed_formation_potential_energy_fcc,vac. form. energies
-22,surface_energy_100_fcc,surface energy
-23,thermal_expansion_coeff_fcc,thermal exp coeff
-24,unrelaxed_formation_potential_energy_fcc,vac. form. energies
-25,unstable_stack_energy_fcc,stack/twin fault energy
-26,unstable_stack_energy_slip_fraction_fcc,stack/twin fault energy
-27,unstable_twinning_energy_fcc,stack/twin fault energy
-28,unstable_twinning_energy_slip_fraction_fcc,stack/twin fault energy
-29,vacancy_migration_energy_fcc,vac. migr. energies
+12,cohesive_energy_bcc,cohesive energy
+13,cohesive_energy_diamond,cohesive energy
+14,cohesive_energy_fcc,cohesive energy
+15,cohesive_energy_sc,cohesive energy
+16,extr_stack_fault_energy_fcc,stack/twin fault energy
+17,ideal_surface_energy_100_fcc,surface energy
+18,ideal_surface_energy_110_fcc,surface energy
+19,ideal_surface_energy_111_fcc,surface energy
+20,ideal_surface_energy_121_fcc,surface energy
+21,intr_stack_fault_energy_fcc,stack/twin fault energy
+22,lattice_constant_bcc,lattice constant
+23,lattice_constant_diamond,lattice constant
+24,lattice_constant_fcc,lattice constant
+25,lattice_constant_sc,lattice constant
+26,relaxation_volume_fcc,vac. form. vol.
+27,relaxed_formation_potential_energy_fcc,vac. form. energies
+28,surface_energy_100_fcc,surface energy
+29,surface_energy_110_fcc,surface energy
+30,surface_energy_111_fcc,surface energy
+31,surface_energy_121_fcc,surface energy
+32,thermal_expansion_coeff_fcc,thermal exp coeff
+33,unrelaxed_formation_potential_energy_fcc,vac. form. energies
+34,unstable_stack_energy_fcc,stack/twin fault energy
+35,unstable_stack_energy_slip_fraction_fcc,stack/twin fault energy
+36,unstable_twinning_energy_fcc,stack/twin fault energy
+37,unstable_twinning_energy_slip_fraction_fcc,stack/twin fault energy
+38,vacancy_migration_energy_fcc,vac. migr. energies
