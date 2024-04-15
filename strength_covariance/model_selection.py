@@ -15,7 +15,8 @@ import seaborn as sns
 
 def data_import(clean=False,
                 data_path = "./data/models_w_props.csv",
-                readme = ""):
+                readme = "",
+                random_state = 12345):
     
     df = pd.read_csv(data_path)
     readme += f"data import:\nInitial shape: {df.shape}\n"
@@ -49,7 +50,7 @@ def data_import(clean=False,
     readme += f"final factor count is {len(factor_list)}: {factor_list}\n"
 
 
-    df = df.sample(frac=1).reset_index(drop=True)  # shuffle
+    df = df.sample(frac=1, random_state = random_state).reset_index(drop=True)  # shuffle
     readme += f"shuffled\n"
     return df, readme
 

@@ -19,7 +19,7 @@ def factor_usage_plot(save_loc = './strength_covariance/model_ays'):
     for factor in factor_list: 
         if "lattice_constant" in factor:
             factor_dict[factor] = "lattice constant"
-        if "c11" in factor or "c12" in factor or "c44" in factor:
+        if "c11" in factor or "c12" in factor or "c44" in factor or "bulk_modulus" in factor:
             factor_dict[factor] = "elastic const"
         if "surface_energy" in factor:
             factor_dict[factor] = "surface energy"
@@ -35,8 +35,6 @@ def factor_usage_plot(save_loc = './strength_covariance/model_ays'):
             factor_dict[factor] = "vac. migr. energies"
         if "thermal_expansion_coeff" in factor:
             factor_dict[factor] = "thermal exp coeff"
-        if "bulk_modulus" in factor:
-            factor_dict[factor] = "bulk mod"
     
     # save off group labels
     df_factor_dict = pd.DataFrame([[i,factor_dict[i]] for i in factor_dict])

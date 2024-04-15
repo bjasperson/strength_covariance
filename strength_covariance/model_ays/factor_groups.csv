@@ -1,7 +1,7 @@
 ,0,1
-0,bulk_modulus_bcc,bulk mod
-1,bulk_modulus_fcc,bulk mod
-2,bulk_modulus_sc,bulk mod
+0,bulk_modulus_bcc,elastic const
+1,bulk_modulus_fcc,elastic const
+2,bulk_modulus_sc,elastic const
 3,c11_bcc,elastic const
 4,c11_fcc,elastic const
 5,c11_sc,elastic const

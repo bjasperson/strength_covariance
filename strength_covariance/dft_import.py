@@ -217,7 +217,8 @@ def main():
         readme += "\n\n---------------------\ndft results\n\n"
         readme += f"factors used: {model_properties}\n\n"
         readme += f"rmse = {rmse}\n"
-        readme += f"relative rmse = {rmse/np.mean(y)}\n"
+        readme += f"overall mean of strength: {np.mean(y)}\n"
+        readme += f"averaged relative rmse = {rmse/np.mean(y)}\n"
         readme += f"2*rmse = {2*rmse}\n"  
 
         # now, prepare model for DFT 

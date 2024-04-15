@@ -42,12 +42,16 @@ def pred_vs_actual_plot(df_in,
         np.linspace(min(y_true),max(y_true),50))
     p.set_xlabel("actual strength [MPa]")#, weight='bold',fontsize=8)  
     p.set_ylabel("predicted strength [MPa]")#, fontsize=8, weight='bold')
+
     if title != False:
         p.set_title(title)#,fontsize=10, weight='bold')
-    note = "\nall factors"
+    
+    note = f"N = {len(y_true)}\nRMSE = {rmse:.2f}\nAdjusted r\N{SUPERSCRIPT TWO} = {r2_adj:.3f}"
+    height_loc = 0
     if factor_list != False:
-        note = '\n' + factor_list 
-    p.text(0.95, 0.01, f"N = {len(y_true)}\nrmse = {rmse:.2f}\nAdjusted r\N{SUPERSCRIPT TWO} = {r2_adj:.3f}"+note,
+        note += '\n' + factor_list 
+        height_loc = 0.01
+    p.text(0.95, height_loc, note,
         verticalalignment='bottom', horizontalalignment='right',
         transform=p.transAxes)#, fontsize=12, weight='bold')
     plt.legend(loc='upper left',bbox_to_anchor=(1,1))
@@ -58,16 +62,30 @@ def pred_vs_actual_plot(df_in,
 def r2_plot(r2_list, r2_adj_list, corr_list, label_dict, filename):
     corr_list = [label_dict[i] for i in corr_list]
     fig,ax = plt.subplots(figsize=(5,3))
-    xloc = range(1,len(r2_list)+1)
+    xloc = np.arange(1,len(r2_list)+1)
     ax.plot(xloc,r2_list,'bx',label = f"$r^2$",)
     ax.plot(xloc,r2_adj_list,'r.',label = f"adjusted $r^2$")
-    #ax.set_xlabel("Number of parameters")
+    ax.set_xlabel(r"$\longleftarrow$ Indicators included in model")
     ax.set_ylabel(r"$r^2$")
     #ax.set_xticklabels(corr_list)
+    ax.set_xlim(0,len(xloc)+1)
     ax.set_xticks(xloc, corr_list, rotation=90)
     ax.tick_params(axis="x", labelsize = 8)
     ax.grid()
     ax.legend()
+
+    # https://stackoverflow.com/questions/10514315/how-to-add-a-second-x-axis
+    ax2 = ax.twiny()
+    count = np.arange(1,len(xloc)+1)
+    tick_locs = np.array([1,5,10,15,20,25,30,35])
+    tick_labels = ['1','5','10','15','20','25','30','35']
+    ax2.set_xlim(ax.get_xlim())
+    ax2.set_xticks(tick_locs)
+    ax2.set_xticklabels(tick_labels)
+    #ax2.plot(xloc,,'bx',label = f"count",)
+    ax2.set_xlim(0,len(xloc)+1)
+    ax2.set_xlabel(r"Number of indicators included")
+
     plt.savefig(f"./figures/main/{filename}.pdf",bbox_inches='tight')
     plt.close()
 
@@ -84,7 +102,10 @@ def y_pred_loo(pipe_in,X,y):
         y_pred.append(pipe.predict(X)[y_index])
     return y_pred
 
-def y_pred_loo_w_nested_CV(pipe_in,X,y):
+def y_pred_loo_w_nested_CV(pipe_in,
+                           X,
+                           y,
+                           random_state = 12345):
     # define search space
     space = dict()
     space['regressor__lr__alpha'] = [0.1,0.5,1,10,100] # strength of regularization inversely proportional to C
@@ -96,7 +117,9 @@ def y_pred_loo_w_nested_CV(pipe_in,X,y):
         available_indexes = [j for j in range(len(y)) if j != y_index]
         X_train = X.loc[available_indexes]
         y_train = y.loc[available_indexes]
-        cv_inner = KFold(n_splits=10, shuffle=True)
+        cv_inner = KFold(n_splits=10, 
+                         shuffle=True,
+                         random_state = random_state)
         pipe = pipe_in
         search = GridSearchCV(pipe, space, scoring='r2', n_jobs=-1, cv=cv_inner, refit=True)
         result = search.fit(X_train, y_train)
@@ -135,7 +158,8 @@ def create_X_y(df, params, use_imputer = False):
     return X_df, y
 
 def main():
-    df, readme = data_import(clean=True)
+    df, readme = data_import(clean=True,
+                             random_state = 12345)
     label_dict = import_label_dict()
 
     print(f"number of points initially: {len(df)}")
@@ -165,7 +189,7 @@ def main():
     if True: #r2 plotting, before removing jammed
         # params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
         X_df, y = create_X_y(df, params_list_full, use_imputer = True) # use imputer at start for this plot
-        readme += f"{len(X_df.columns)} factors: {X_df.columns}\n"
+        readme += f"{len(X_df.columns)} factors:\n{X_df.columns.sort_values().tolist()}\n"
         pipe = linear_model_create("ridge", add_imputer = False)
 
         # leave out point you are predicting
@@ -196,8 +220,6 @@ def main():
 
         # r2_plot(r2_list, r2_adj_list, corr_list, "linear_r2_loo_plot")  # LOO gives the strange drops/jumps due to different models each time
         r2_plot(r2_all_list, r2_all_adj_list, corr_list, label_dict, "linear_r2_plot")
-        print(f"corr_list = {corr_list}")
-        readme += f"\ncorr_list = {corr_list}\n"
 
     if True: #all factor eval, nested_cv
         # leave out point you are predicting
@@ -207,8 +229,11 @@ def main():
         print(f"X shape = {X.shape}, y shape = {y.shape}")
         print(f"factors = {X.columns.to_list()}")
         print("-----------")
-        readme += f"\n{len(X.columns)} all factors model: {X.columns}\n"
-        y_pred = y_pred_loo_w_nested_CV(pipe,X,y)
+        readme += f"\n{len(X.columns)} all factors model:\n{X.columns.sort_values().tolist()}\n"
+        y_pred = y_pred_loo_w_nested_CV(pipe,
+                                        X,
+                                        y,
+                                        random_state = 12345)
         k = len(X.columns)
         n = len(y)
         r2 = r2_score(y, y_pred)
@@ -221,7 +246,7 @@ def main():
                             y_pred, 
                             r2_adj, 
                             "linear_all_factors_loo_nested_cv", 
-                            factor_list = factor_description,
+                            # factor_list = factor_description,
                             save_loc = "./figures/main")
 
     # remove jamming
@@ -247,7 +272,7 @@ def main():
         X_df, y = create_X_y(df_clean, params_short, use_imputer = False)
         pipe = linear_model_create("lr", add_imputer = True)         
         X = X_df[params_short]
-        readme += f"\n3 factor model: {X.columns}\n"
+        readme += f"\n3 factor model: {X.columns.tolist()}\n"
         y_pred = y_pred_loo(pipe,X,y)
         # title2 = f"Linear model (leave one out, nested CV) w/o jammed:\nc44, eSFE, uSFE (all FCC)"
         r2_adj = r2_score(y,y_pred)
@@ -255,7 +280,7 @@ def main():
                             y_pred, 
                             r2_adj, 
                             "linear_3factors_nested_cv", 
-                            factor_list = factor_list, 
+                            # factor_list = factor_list, 
                             error_bars = False,
                             save_loc = "./figures/main")
         
