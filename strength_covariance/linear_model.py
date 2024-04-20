@@ -49,7 +49,7 @@ def pred_vs_actual_plot(df_in,
     p.plot(np.linspace(min(y_true),max(y_true),50),
            np.linspace(min(y_true),max(y_true),50)
            )
-    p.set_xlabel("actual strength [MPa]")#, weight='bold',fontsize=8)  
+    p.set_xlabel("computed strength [MPa]")#, weight='bold',fontsize=8)  
     p.set_ylabel("predicted strength [MPa]")#, fontsize=8, weight='bold')
 
     if title != False:
