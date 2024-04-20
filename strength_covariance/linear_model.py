@@ -35,11 +35,20 @@ def pred_vs_actual_plot(df_in,
     y_pred = df['y_pred']
     rmse = mean_squared_error(y_true,y_pred,squared=False)
     plt.figure(figsize = (4,3))
-    p = sns.scatterplot(data=df, x=y_true, y=y_pred, style = 'species', hue='species')
+    marker_list = ['o','^','v','<','>','s','D','p','X','*','.','P']
+    p = sns.scatterplot(data=df, 
+                        x=y_true, 
+                        y=y_pred, 
+                        style = 'species', 
+                        hue='species',
+                        markers = marker_list[0:len(df.species.drop_duplicates())]
+                        )
     if error_bars == True:
         p.errorbar(y_true,y_pred, yerr = rmse, fmt='.', markersize=0.001, alpha=0.5)
+
     p.plot(np.linspace(min(y_true),max(y_true),50),
-        np.linspace(min(y_true),max(y_true),50))
+           np.linspace(min(y_true),max(y_true),50)
+           )
     p.set_xlabel("actual strength [MPa]")#, weight='bold',fontsize=8)  
     p.set_ylabel("predicted strength [MPa]")#, fontsize=8, weight='bold')
 
@@ -157,6 +166,113 @@ def create_X_y(df, params, use_imputer = False):
         X_df = pd.DataFrame(imput.fit_transform(X_df), columns = imput.feature_names_in_)
     return X_df, y
 
+def r2_plot_code(df, 
+                 params_list_full, 
+                 corr_list,
+                 label_dict,
+                 readme
+                 ):
+    X_df, y = create_X_y(df, params_list_full, use_imputer = True) # use imputer at start for this plot
+    readme += f"{len(X_df.columns)} factors:\n{X_df.columns.sort_values().tolist()}\n"
+    pipe = linear_model_create("ridge", add_imputer = False)
+
+    # leave out point you are predicting
+    r2_list = []
+    r2_all_list = []
+    r2_adj_list = []
+    r2_all_adj_list = []
+    
+    for i in range(1,len(corr_list)+1):
+        print(f"factor count {i}")
+        X = X_df[corr_list[:i]]
+        print(f"X shape = {X.shape}, y shape = {y.shape}")
+        print(f"factors = {X.columns.to_list()}")
+        print("-----------")
+
+        k = len(X.columns)
+        n = len(y)
+        
+        pipe.fit(X,y)
+        if False: #LOO R2 plot
+            y_pred = y_pred_loo(pipe,X,y)
+            r2_list.append(r2_score(y, y_pred))
+            r2_adj_list.append(r2_adj_fun(r2_list[-1], n, k))
+        
+        y_pred_all = pipe.predict(X)
+        r2_all_list.append(r2_score(y,y_pred_all))
+        r2_all_adj_list.append(r2_adj_fun(r2_all_list[-1], n, k))
+
+    # r2_plot(r2_list, r2_adj_list, corr_list, "linear_r2_loo_plot")  # LOO gives the strange drops/jumps due to different models each time
+    r2_plot(r2_all_list, r2_all_adj_list, corr_list, label_dict, "linear_r2_plot")
+
+    return readme
+
+
+def all_factor_model_code(df,
+                          params_list_full,
+                          corr_list,
+                          readme
+                          ):
+    # leave out point you are predicting
+    pipe = linear_model_create("ridge", add_imputer = True) # had to switch to ridge due to colinearity issue/blows up for all factors
+    X_df, y = create_X_y(df, params_list_full, use_imputer = False)
+    X = X_df[corr_list]# df_clean[corr_list[:i]]
+    print(f"X shape = {X.shape}, y shape = {y.shape}")
+    print(f"factors = {X.columns.to_list()}")
+    print("-----------")
+    readme += f"\n{len(X.columns)} all factors model:\n{X.columns.sort_values().tolist()}\n"
+    y_pred = y_pred_loo_w_nested_CV(pipe,
+                                    X,
+                                    y,
+                                    random_state = 12345)
+    k = len(X.columns)
+    n = len(y)
+    r2 = r2_score(y, y_pred)
+    r2_adj = r2_adj_fun(r2, n, k)
+
+    factor_description = f"{X.shape[1]} factors"
+
+    # title = f"Linear model (leave one out, nested CV) using all factors"
+    pred_vs_actual_plot(df, 
+                        y_pred, 
+                        r2_adj, 
+                        "linear_all_factors_loo_nested_cv", 
+                        # factor_list = factor_description,
+                        save_loc = "./figures/main")
+
+    return readme
+
+
+def three_factor_model_code(df_clean,
+                            params_short,
+                            readme):
+
+
+    X_df, y = create_X_y(df_clean, params_short, use_imputer = False)
+    pipe = linear_model_create("lr", add_imputer = True)         
+    X = X_df[params_short]
+    readme += f"\n3 factor model: {X.columns.tolist()}\n"
+    y_pred = y_pred_loo(pipe,X,y)
+    # title2 = f"Linear model (leave one out, nested CV) w/o jammed:\nc44, eSFE, uSFE (all FCC)"
+    r2_adj = r2_score(y,y_pred)
+    pred_vs_actual_plot(df_clean, 
+                        y_pred, 
+                        r2_adj, 
+                        "linear_3factors_nested_cv", 
+                        # factor_list = factor_list, 
+                        error_bars = False,
+                        save_loc = "./figures/main")
+    
+    readme += "\n\n---------------------\n3 factor leave-one-out results\n\n"
+    readme += pd.DataFrame({"strength":y,
+                            "predicted":y_pred,
+                            "error":(y - y_pred),
+                            "rel error":(y - y_pred)/y_pred,
+                            "species":df_clean.species}
+                            ).sort_values(['strength','species']).to_string()
+
+    return readme
+
 def main():
     df, readme = data_import(clean=True,
                              random_state = 12345)
@@ -176,8 +292,6 @@ def main():
                    ] 
 
     params_list_full = filter_param_list(df, params_list)
-    #params_list_full.remove('lattice_constant_diamond')
-    #params_list_full.remove('cohesive_energy_diamond')
 
     print(f"Number of parameters: {len(params_list_full)}")
 
@@ -186,68 +300,16 @@ def main():
     corr_list = df_corr.index.to_list()
     corr_list = corr_list[1:] # remove strength from list
 
-    if True: #r2 plotting, before removing jammed
-        # params_list_full = [i for i in params_list_full if "gb_coeff" not in i]
-        X_df, y = create_X_y(df, params_list_full, use_imputer = True) # use imputer at start for this plot
-        readme += f"{len(X_df.columns)} factors:\n{X_df.columns.sort_values().tolist()}\n"
-        pipe = linear_model_create("ridge", add_imputer = False)
-
-        # leave out point you are predicting
-        r2_list = []
-        r2_all_list = []
-        r2_adj_list = []
-        r2_all_adj_list = []
+    readme = r2_plot_code(df,
+                          params_list_full,
+                          corr_list,
+                          label_dict,
+                          readme) #r2 plotting, before removing jammed
         
-        for i in range(1,len(corr_list)+1):
-            print(f"factor count {i}")
-            X = X_df[corr_list[:i]]
-            print(f"X shape = {X.shape}, y shape = {y.shape}")
-            print(f"factors = {X.columns.to_list()}")
-            print("-----------")
-
-            k = len(X.columns)
-            n = len(y)
-            
-            pipe.fit(X,y)
-            if False: #LOO R2 plot
-                y_pred = y_pred_loo(pipe,X,y)
-                r2_list.append(r2_score(y, y_pred))
-                r2_adj_list.append(r2_adj_fun(r2_list[-1], n, k))
-            
-            y_pred_all = pipe.predict(X)
-            r2_all_list.append(r2_score(y,y_pred_all))
-            r2_all_adj_list.append(r2_adj_fun(r2_all_list[-1], n, k))
-
-        # r2_plot(r2_list, r2_adj_list, corr_list, "linear_r2_loo_plot")  # LOO gives the strange drops/jumps due to different models each time
-        r2_plot(r2_all_list, r2_all_adj_list, corr_list, label_dict, "linear_r2_plot")
-
-    if True: #all factor eval, nested_cv
-        # leave out point you are predicting
-        pipe = linear_model_create("ridge", add_imputer = True) # had to switch to ridge due to colinearity issue/blows up for all factors
-        X_df, y = create_X_y(df, params_list_full, use_imputer = False)
-        X = X_df[corr_list]# df_clean[corr_list[:i]]
-        print(f"X shape = {X.shape}, y shape = {y.shape}")
-        print(f"factors = {X.columns.to_list()}")
-        print("-----------")
-        readme += f"\n{len(X.columns)} all factors model:\n{X.columns.sort_values().tolist()}\n"
-        y_pred = y_pred_loo_w_nested_CV(pipe,
-                                        X,
-                                        y,
-                                        random_state = 12345)
-        k = len(X.columns)
-        n = len(y)
-        r2 = r2_score(y, y_pred)
-        r2_adj = r2_adj_fun(r2, n, k)
-
-        factor_description = f"{X.shape[1]} factors"
-
-        # title = f"Linear model (leave one out, nested CV) using all factors"
-        pred_vs_actual_plot(df, 
-                            y_pred, 
-                            r2_adj, 
-                            "linear_all_factors_loo_nested_cv", 
-                            # factor_list = factor_description,
-                            save_loc = "./figures/main")
+    readme = all_factor_model_code(df,
+                                   params_list_full,
+                                   corr_list,
+                                   readme)
 
     # remove jamming
     df_clean = df[df['SF_jamming']!='yes'].reset_index()
@@ -260,63 +322,18 @@ def main():
                         'vacancy_migration_energy_fcc'])
     params_list_full = filter_param_list(df, params_list)
 
+    params_short = ['vacancy_migration_energy_fcc',
+                    'surface_energy_111_fcc',
+                    'lattice_constant_fcc']
 
-
-    
-    if True: #3 factor model, exclude jamming
-        params_short = ['vacancy_migration_energy_fcc',
-                        'surface_energy_111_fcc',
-                        'lattice_constant_fcc']
-        factor_list = 'SE 111, LC, VME (all FCC)'
-
-        X_df, y = create_X_y(df_clean, params_short, use_imputer = False)
-        pipe = linear_model_create("lr", add_imputer = True)         
-        X = X_df[params_short]
-        readme += f"\n3 factor model: {X.columns.tolist()}\n"
-        y_pred = y_pred_loo(pipe,X,y)
-        # title2 = f"Linear model (leave one out, nested CV) w/o jammed:\nc44, eSFE, uSFE (all FCC)"
-        r2_adj = r2_score(y,y_pred)
-        pred_vs_actual_plot(df_clean, 
-                            y_pred, 
-                            r2_adj, 
-                            "linear_3factors_nested_cv", 
-                            # factor_list = factor_list, 
-                            error_bars = False,
-                            save_loc = "./figures/main")
-        
-        readme += "\n\n---------------------\n3 factor leave-one-out results\n\n"
-        readme += pd.DataFrame({"strength":y,
-                               "predicted":y_pred,
-                               "error":(y - y_pred),
-                               "rel error":(y - y_pred)/y_pred,
-                               "species":df_clean.species}
-                               ).sort_values(['strength','species']).to_string()
-
+    readme = three_factor_model_code(df_clean,
+                                     params_short,
+                                     readme)
+ 
     with open(f"./strength_covariance/model_ays/linear_model_readme.txt", "w") as text_file:
         for line in readme:
             text_file.write(line)
 
-
-    # if False: #3 factor model, excluding jamming, statsmodel
-    #     pipe = Pipeline(steps=[('scale',StandardScaler()),
-    #                     ])
-    #     params_short = ['c44_fcc','intr_stack_fault_energy_fcc','vacancy_migration_energy_fcc']
-    #     factor_list = 'c44, iSFE, VME (all FCC)'
-    #     X = X_df[params_short]
-    #     pipe.fit(X)
-    #     X_scaled = pipe.transform(X)
-    #     X_scaled = sm.add_constant(X_scaled, prepend=False)
-    #     res = sm.OLS(y,X_scaled).fit()
-    #     print(res.summary())
-    #     y_pred = res.predict(X_scaled)
-    #     r2_adj = r2_score(y,y_pred)
-    #     pred_vs_actual_plot(df_clean, 
-    #                         y_pred, 
-    #                         r2_adj, 
-    #                         "linear_3factors_sm", 
-    #                         factor_list = factor_list, 
-    #                         error_bars = True)
-    # return
 
 if __name__ == "__main__":
     main()
