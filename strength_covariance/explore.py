@@ -317,7 +317,7 @@ def manuscript_plots(df_clean, label_dict):
                     annot_fontsize = 8,
                     annot = True,
                     lower = True,
-                    custom_order=['C44-FCC','rVFPE-FCC','uSFE-FCC','iSFE-FCC','Strength'],
+                    custom_order=['C44 FCC','rVFPE FCC','uSFE FCC','iSFE FCC','Strength'],
                     save_location = save_location,
                     )
     
