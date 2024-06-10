@@ -11,13 +11,14 @@ from sklearn import linear_model, svm
 from sklearn.utils import resample
 from sklearn.metrics import r2_score, mean_squared_error
 from scipy import stats
-from strength_covariance.uncertainty_quantification import r2_adj_fun
 from strength_covariance.model_selection import data_import
 from sklearn.model_selection import GridSearchCV, KFold, cross_val_score
 from strength_covariance.explore import import_label_dict
 import statsmodels.api as sm
 
 
+def r2_adj_fun(r2,n,k):
+    return (1 - ((1-r2)*(n-1)/(n-k-1)))
 
 
 def pred_vs_actual_plot(df_in, 
