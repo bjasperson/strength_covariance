@@ -152,15 +152,8 @@ def error_plots(y,
 
 
 def main():
-    all_dft_properties = [#'bulk_modulus_fcc',
-                          'c44_fcc',
-                          #'C11-C12',
-                          #'c11_fcc',
-                          #'c12_fcc',
+    all_dft_properties = ['c44_fcc',
                           'surface_energy_111_fcc',
-                          #'surface_energy_121_fcc',
-                          #'surface_energy_100_fcc',
-                          #'unstable_stack_energy_fcc',
                           'intr_stack_fault_energy_fcc',
                           'lattice_constant_fcc',
                           'relaxed_formation_potential_energy_fcc',

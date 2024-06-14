@@ -4,7 +4,6 @@ import os
 import tarfile
 import glob
 import pybtex.database
-# from pybtex.database.input import bibtex
 import bibtexparser
 import edn_format
 
@@ -72,11 +71,6 @@ def create_citation_df(models_list, df_models):
         bib_ids.append(source_list)
 
     model_sources_key = {models_list[i]:bib_ids[i] for i in range(len(models_list))}
-    # df_model_key = pd.DataFrame({"model":models_list,
-    #                              "sources":bib_ids})
-        # next: create df of model, bib_ids for source, ids for drivers
-        # will need to figureout how to relate driver id to citation
-    #df_models['sources'] = [model_sources_key[i] for i in df_models['model'].to_list()]
 
     return model_sources_key
 
@@ -181,8 +175,6 @@ def main():
     with open(f'./data/citation_list.txt','w') as out:
         out.write(output_file)
 
-
- 
     return
 
 

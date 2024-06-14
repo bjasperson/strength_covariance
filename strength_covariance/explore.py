@@ -134,7 +134,6 @@ def run_pairplots(df_clean, label_dict):
                       ['c11_fcc',
                        'c12_fcc',
                        'c44_fcc',
-                       #'c11-c12-c44',
                        'c11-c12+c44'],
                       'elastic_const_combos',
                       label_dict)
@@ -265,7 +264,6 @@ def run_pairplots(df_clean, label_dict):
                        'vacancy_migration_energy_fcc',
                        'c44_fcc',
                        'intr_stack_fault_energy_fcc',
-                       #'gb_coeff_111',
                        ],
                        'pairplot_top_factors',
                        label_dict)
@@ -279,15 +277,6 @@ def run_pairplots(df_clean, label_dict):
                        'DFT_indicator_properties',
                       label_dict)
     
-    # pairplot_selected(df_clean,
-    #                   ['gb_coeff_001',
-    #                    'gb_coeff_110',
-    #                    'gb_coeff_111',
-    #                    'gb_coeff_112'
-    #                    ],
-    #                    'gb_coeff',
-    #                   label_dict)
-    
 
 def manuscript_plots(df_clean, label_dict):
     param_list = ['c44_fcc',
@@ -297,8 +286,7 @@ def manuscript_plots(df_clean, label_dict):
                     ]
     
     save_location = "figures/main"
-    
-    #sns.set(font_scale=1.5)
+
     
     pairplot_selected(df_clean,
                     param_list,
@@ -309,7 +297,6 @@ def manuscript_plots(df_clean, label_dict):
                     save_location = save_location,
                     marker_size = 25)
     
-    #sns.set(font_scale=1.5)
     correlation_plot(df_clean[param_list],
                     "corr_plot_manuscript",
                     label_dict,
@@ -320,20 +307,6 @@ def manuscript_plots(df_clean, label_dict):
                     custom_order=['C44 FCC','rVFPE FCC','uSFE FCC','iSFE FCC','Strength'],
                     save_location = save_location,
                     )
-    
-    #sns.set(font_scale = 1)
-
-    # initial attempt to combine pairplot and corr matrix.
-    # not working yet
-    # https://stackoverflow.com/questions/63416894/correlation-values-in-pairplot
-    # https://matplotlib.org/stable/gallery/images_contours_and_fields/image_annotated_heatmap.html
-    # checkout ax.set_facecolor
-    # df_corr = correlation_df(df_clean[param_list],label_dict)
-    # g = sns.PairGrid(df_clean[param_list])
-    # g.map_diag(sns.distplot)
-    # g.map_lower(sns.regplot)
-    # g.map_upper(sns.heatmap(df_corr))
-    # plt.show()
     return
 
 

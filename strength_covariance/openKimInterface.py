@@ -1,10 +1,6 @@
 #import kim_query
 import statsmodels.api as sm
 import numpy as np
-# from sklearn  import linear_model, svm, metrics
-# from sklearn.preprocessing import MinMaxScaler, StandardScaler
-# from sklearn.feature_selection import SelectKBest, f_regression
-# from sklearn.pipeline import make_pipeline
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt

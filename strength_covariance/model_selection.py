@@ -29,7 +29,6 @@ def data_import(clean=False,
     drop_list = ['bulk_modulus_diamond','c44_diamond','c12_diamond','c11_diamond']
     df = df.drop(drop_list,axis=1)
     readme += f"removed {len(drop_list)} very sparse columns: {drop_list}\n"
-    #df_in = df_in.drop([i for i in df_in.columns if 'diamond' in i],axis=1)
     
     if 'disqualified' in df.columns:
         df = df.drop('disqualified', axis=1)
@@ -212,11 +211,7 @@ def factor_select_plotting(df, label_dict, filename, width = 0.125, size = (7,3)
     ax.xaxis.set_minor_locator(ticker.FixedLocator(0.5+x+tick_loc))
     ax.xaxis.grid(visible=True, which="minor")
 
-    #plt.show()
-    #fig.tight_layout()
     fig.savefig(f"./strength_covariance/model_ays/{filename}.pdf", bbox_inches = 'tight')#dpi=300)
-    #fig.savefig(f"./strength_covariance/model_ays/{filename}.eps", dpi=300)
-
 
     return
 
